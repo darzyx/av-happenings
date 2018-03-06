@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { getEventsActions } from '../../actions/getEventsActions'
 import { Card, Container } from 'semantic-ui-react'
-import { getEventsActions } from '../actions/getEventsActions'
-import EventCard from '../components/EventCard'
+import EventCard from '../../components/EventCard'
 
-class Dashboard extends Component {
+class HomePage extends Component {
   componentDidMount() { this.props._getEvents() }
 
   render() {
@@ -33,4 +33,4 @@ const mapDispatchToProps = dispatch => {
   return { _getEvents: () => { dispatch(getEventsActions()) }}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage)

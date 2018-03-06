@@ -1,19 +1,19 @@
-import { eventsDB } from '../Firebase'
+import { eventsDB, timestamp } from '../Firebase'
 
 export const POST_EVENT_REQUEST = 'POST_EVENT_REQUEST'
 export const POST_EVENT_SUCCESS = 'POST_EVENT_SUCCESS'
 export const POST_EVENT_FAILURE = 'POST_EVENT_FAILURE'
 
-export const postEventRequest = () => ({
+const postEventRequest = () => ({
   type: POST_EVENT_REQUEST
 })
 
-export const postEventSuccess = id => ({
+const postEventSuccess = id => ({
   type: POST_EVENT_SUCCESS,
   payload: id
 })
 
-export const postEventFailure = error => ({
+const postEventFailure = error => ({
   type: POST_EVENT_FAILURE,
   payload: error
 })
@@ -21,12 +21,10 @@ export const postEventFailure = error => ({
 export const postEventActions = event => dispatch => {
   dispatch(postEventRequest())
 
+  event.timestamp = timestamp
+
   eventsDB.add(event).then(
-    (docRef) => {
-      dispatch(postEventSuccess(docRef.id))
-    },
-    (error) => {
-      dispatch(postEventFailure(error))
-    }
+    (docRef) => { dispatch(postEventSuccess(docRef.id)) },
+    (error) => { dispatch(postEventFailure(error)) }
   )
 }

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Divider } from 'semantic-ui-react'
 import NavBar from './containers/NavBar'
 import MenuBar from './containers/MenuBar'
-import NewEventForm from './containers/NewEventForm'
-import Dashboard from './containers/Dashboard'
+import HomePage from './containers/home/HomePage'
+import SubmitPage from './containers/submit/SubmitPage'
 
 export default class App extends Component {
   render() {
@@ -12,9 +12,9 @@ export default class App extends Component {
         <NavBar />
         <MenuBar />
         <Divider hidden />
-        <NewEventForm />
+        <SubmitPage />
         <Divider hidden />
-        <Dashboard />
+        <HomePage />
       </div>
     )
   }

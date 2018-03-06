@@ -13,3 +13,4 @@ const FIREBASE_CONFIG = {
 firebase.initializeApp(FIREBASE_CONFIG)
 
 export const eventsDB = firebase.firestore().collection('events')
+export const timestamp = firebase.firestore.FieldValue.serverTimestamp()

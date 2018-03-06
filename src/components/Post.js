@@ -3,12 +3,12 @@ import { Card, Icon, Menu } from 'semantic-ui-react'
 
 export default class Post extends Component {
   render() {
+    const { event } = this.props
+
     return (
       <Card color='blue'>
         <Card.Content>
-          <Card.Header>
-            Event Name
-          </Card.Header>
+          <Card.Header>{event.title}</Card.Header>
           <Card.Meta>
             Event Date and Time
           </Card.Meta>
@@ -16,7 +16,7 @@ export default class Post extends Component {
             Event Location
           </Card.Meta>
           <Card.Description>
-            This is a short description for this event.
+            {event.description}
           </Card.Description>
         </Card.Content>
         <Card.Content extra>

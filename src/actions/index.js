@@ -17,3 +17,20 @@ export const getEventsFailure = error => ({
   type: GET_EVENTS_FAILURE,
   payload: error
 })
+
+export const getEvents = () => dispatch => {
+  dispatch(getEventsRequest())
+
+  eventsDB.get().then(
+    (querySnapshot) => {
+      const events = []
+
+      querySnapshot.forEach((event) => {
+        events.push({ id: event.id, ...event.data() })
+      })
+
+      dispatch(getEventsReceive(events))
+    },
+    (error) => { dispatch(getEventsFailure(error)) }
+  )
+}

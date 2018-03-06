@@ -12,7 +12,7 @@ const initialState = {
   events: null
 }
 
-const getPostsReducer = (state = initialState, action) => {
+const getEventsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_EVENTS_REQUEST:
       return {
@@ -41,7 +41,7 @@ const getPostsReducer = (state = initialState, action) => {
 }
 
 const rootReducer = combineReducers({
-  getPosts: getPostsReducer,
+  getEvents: getEventsReducer,
   form: formReducer
 })
 

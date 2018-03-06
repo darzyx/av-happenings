@@ -1,0 +1,16 @@
+/*
+ * Color Scheme:
+ * Orange - #E1965D
+ * Dark Orange - #CF7456
+ */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+#heading {
+  background: red;
+  background: linear-gradient(#E1965D, #CF7456);
+}

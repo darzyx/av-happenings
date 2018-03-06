@@ -10,7 +10,17 @@ body {
   font-family: sans-serif;
 }
 
-#heading {
+#nav-bar {
   background: red;
   background: linear-gradient(#E1965D, #CF7456);
+
+  border-radius: 0;
+  border-color: #E1965D;
+}
+
+#menu-bar {
+  position: sticky;
+  z-index: 1;
+
+  border-radius: 0;
 }

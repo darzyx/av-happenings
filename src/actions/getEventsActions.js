@@ -18,7 +18,7 @@ export const getEventsFailure = error => ({
   payload: error
 })
 
-export const getEvents = () => dispatch => {
+export const getEventsActions = () => dispatch => {
   dispatch(getEventsRequest())
 
   eventsDB.get().then(
@@ -29,7 +29,8 @@ export const getEvents = () => dispatch => {
         events.push({ id: event.id, ...event.data() })
       })
 
-      dispatch(getEventsReceive(events))
+      if (events.length > 0) { dispatch(getEventsReceive(events)) }
+      else { dispatch(getEventsFailure('No events retrieved.')) }
     },
     (error) => { dispatch(getEventsFailure(error)) }
   )

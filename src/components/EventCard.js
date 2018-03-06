@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Card, Icon, Menu } from 'semantic-ui-react'
 
-export default class Post extends Component {
+export default class EventCard extends Component {
   render() {
     const { event } = this.props
 

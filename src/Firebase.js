@@ -12,4 +12,4 @@ const FIREBASE_CONFIG = {
 
 firebase.initializeApp(FIREBASE_CONFIG)
 
-export const eventsDB = firebase.database().ref('events')
+export const eventsDB = firebase.firestore().collection('events')

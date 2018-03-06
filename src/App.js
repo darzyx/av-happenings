@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import NavBar from './containers/NavBar';
-import MenuBar from './containers/MenuBar';
-import Home from './containers/Home';
+import React, { Component } from 'react'
+import NavBar from './containers/NavBar'
+import MenuBar from './containers/MenuBar'
+import Dashboard from './containers/Dashboard'
 
 export default class App extends Component {
   render() {
@@ -9,8 +9,8 @@ export default class App extends Component {
       <div className='app'>
         <NavBar />
         <MenuBar />
-        <Home />
+        <Dashboard />
       </div>
-    );
+    )
   }
 }

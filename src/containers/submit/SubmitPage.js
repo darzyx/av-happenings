@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { postEventActions } from '../../actions/postEventActions'
+import { Divider } from 'semantic-ui-react'
 import SubmitForm from './SubmitForm'
 
 class SubmitPage extends Component {
@@ -9,6 +10,7 @@ class SubmitPage extends Component {
 
     return (
       <div>
+        <Divider hidden />
         <SubmitForm onSubmit={_postEvent} />
       </div>
     )

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
 
-export default class MenuBar extends Component {
+export default class HomeMenu extends Component {
   constructor(props) {
     super(props)
 

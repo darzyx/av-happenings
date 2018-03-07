@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getEventsActions } from '../../actions/getEventsActions'
-import { Card, Container } from 'semantic-ui-react'
+import { Card, Container, Divider } from 'semantic-ui-react'
+import HomeMenu from './HomeMenu'
 import EventCard from '../../components/EventCard'
 
 class HomePage extends Component {
@@ -11,15 +12,19 @@ class HomePage extends Component {
     const { error, hasRequested, events } = this.props
 
     return (
-      <Container>
-        <Card.Group doubling itemsPerRow={3} stackable>
-        {
-          !hasRequested ? <h1>Loading</h1> :
-          error ? <h1>There was an error fetching the events</h1> :
-          events.map((event, key) => <EventCard event={event} key={key} />)
-        }
-        </Card.Group>
-      </Container>
+      <div>
+        <HomeMenu />
+        <Divider hidden />
+        <Container>
+          <Card.Group doubling itemsPerRow={3} stackable>
+          {
+            !hasRequested ? <h1>Loading</h1> :
+            error ? <h1>There was an error fetching the events</h1> :
+            events.map((event, key) => <EventCard event={event} key={key} />)
+          }
+          </Card.Group>
+        </Container>
+      </div>
     )
   }
 }

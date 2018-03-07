@@ -1,22 +1,25 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
-import { Divider } from 'semantic-ui-react'
-import NavigationBar from './containers/navigation/NavigationBar'
-import MenuBar from './containers/menu/MenuBar'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Header from './containers/header/Header'
 import HomePage from './containers/home/HomePage'
 import SubmitPage from './containers/submit/SubmitPage'
+import HelpPage from './components/HelpPage'
+import AboutPage from './components/AboutPage'
+import NotFoundPage from './components/NotFoundPage'
 
 export default class App extends Component {
   render() {
     return (
       <BrowserRouter>
         <div id='app'>
-          <NavigationBar />
-          <MenuBar />
-          <Divider hidden />
-          <Route exact path='/' component={HomePage} />
-          <Route exact path='/submit' component={SubmitPage} />
-          <Divider hidden />
+          <Header />
+          <Switch>
+            <Route exact path='/' component={HomePage} />
+            <Route path='/submit' component={SubmitPage} />
+            <Route path='/help' component={HelpPage} />
+            <Route path='/about' component={AboutPage} />
+            <Route component={NotFoundPage} />
+          </Switch>
         </div>
       </BrowserRouter>
     )

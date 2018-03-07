@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Modal } from 'semantic-ui-react'
 
-export default class NavigationModal extends Component {
+export default class HeaderModal extends Component {
   state = { modalOpen: false }
 
   _handleOpen = () => this.setState({ modalOpen: true })

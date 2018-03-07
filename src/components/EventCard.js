@@ -10,10 +10,10 @@ export default class EventCard extends Component {
         <Card.Content>
           <Card.Header>{event.title}</Card.Header>
           <Card.Meta>
-            Event Date and Time
+            {event.date} @ {event.time}
           </Card.Meta>
           <Card.Meta>
-            Event Location
+            {event.location}
           </Card.Meta>
           <Card.Description>
             {event.description}

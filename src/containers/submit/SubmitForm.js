@@ -14,8 +14,8 @@ class SubmitForm extends Component {
               <Form.Field
                 component='input'
                 control={Field}
-                label='Name'
-                name='name'
+                label='Title'
+                name='title'
                 placeholder='Name this happening!'
                 type='text'
                 width={8}

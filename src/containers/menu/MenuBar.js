@@ -16,7 +16,7 @@ export default class MenuBar extends Component {
     const { activeItem } = this.state
 
     return (
-      <Menu attached='bottom' id='menu-bar' pointing widths='4'>
+      <Menu attached='bottom' id='menu-bar' pointing size='tiny' widths='5'>
         <Menu.Item
           name='top'
           active={activeItem === 'top'}
@@ -35,6 +35,11 @@ export default class MenuBar extends Component {
         <Menu.Item
           name='mine'
           active={activeItem === 'mine'}
+          onClick={this._handleItemClick}
+        />
+        <Menu.Item
+          name='search'
+          active={activeItem === 'search'}
           onClick={this._handleItemClick}
         />
       </Menu>

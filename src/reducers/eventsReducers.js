@@ -1,5 +1,6 @@
 import {
   SELECT_EVENTS_SORT,
+  VOID_GOTTEN_EVENTS,
   GET_EVENTS_REQUEST,
   GET_EVENTS_RECEIVE,
   GET_EVENTS_FAILURE,
@@ -8,50 +9,68 @@ import {
   POST_EVENT_FAILURE
 } from '../actions/eventsActions'
 
-// SORT EVENTS REDUCER
+// SELECTED EVENTS SORT
 
-export const sortEventsReducer = (state = { sort: 'top' }, action) => {
+export const selectedEventsSortReducer = (state = 'new', action) => {
   switch (action.type) {
     case SELECT_EVENTS_SORT:
+      return action.eventsSort
+    default:
+      return state
+  }
+}
+
+// EVENTS REDUCERS
+
+const initEventsState = {
+  didInvalidate: false,
+  error: null,
+  isGetting: false,
+  items: []
+}
+
+const eventsReducer = (state = initEventsState, action) => {
+  switch (action.type) {
+    case VOID_GOTTEN_EVENTS:
       return {
         ...state,
-        sort: action.payload
+        didInvalidate: true
+      }
+    case GET_EVENTS_REQUEST:
+      return {
+        ...state,
+        didInvalidate: false,
+        error: null,
+        isGetting: true
+      }
+    case GET_EVENTS_RECEIVE:
+      return {
+        ...state,
+        didInvalidate: false,
+        isGetting: false,
+        items: action.events
+      }
+    case GET_EVENTS_FAILURE:
+      return {
+        ...state,
+        didInvalidate: false,
+        error: action.error,
+        isGetting: false
       }
     default:
       return state
   }
 }
 
-// GET EVENTS REDUCER
-
-const initGetEventsState = {
-  error: null,
-  events: null,
-  hasRequested: false
-}
-
-export const getEventsReducer = (state = initGetEventsState, action) => {
+export const eventsBySortReducer = (state = { }, action) => {
   switch (action.type) {
+    case VOID_GOTTEN_EVENTS:
     case GET_EVENTS_REQUEST:
-      return {
-        ...state,
-        error: null,
-        events: null,
-        hasRequested: false
-      }
     case GET_EVENTS_RECEIVE:
-      return {
-        ...state,
-        error: null,
-        events: action.payload,
-        hasRequested: true
-      }
     case GET_EVENTS_FAILURE:
       return {
         ...state,
-        error: action.payload,
-        events: null,
-        hasRequested: true
+        [action.eventsSort]: eventsReducer(state[action.eventsSort], action)
       }
     default:
       return state
@@ -60,11 +79,7 @@ export const getEventsReducer = (state = initGetEventsState, action) => {
 
 // POST EVENT REDUCER
 
-const initPostEventState = {
-  error: null,
-  id: null,
-  requesting: false
-}
+const initPostEventState = { error: null, id: null, requesting: false }
 
 export const postEventReducer = (state = initPostEventState, action) => {
   switch (action.type) {

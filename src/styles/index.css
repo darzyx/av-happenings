@@ -9,7 +9,7 @@
    min-height: 100vh;
  }
 
-#navigation-bar {
+#header {
   background: red;
   background: linear-gradient(#E1965D, #CF7456);
 
@@ -17,7 +17,7 @@
   border-color: #CF7456;
 }
 
-#menu-bar {
+#home-menu {
   position: sticky;
   z-index: 1;
 

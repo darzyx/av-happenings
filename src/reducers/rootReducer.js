@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 import {
-  getEventsReducer,
-  sortEventsReducer,
+  selectedEventsSortReducer,
+  eventsBySortReducer,
   postEventReducer
 } from './eventsReducers'
 
 const rootReducer = combineReducers({
-  getEvents: getEventsReducer,
-  sortEvents: sortEventsReducer,
+  selectedEventsSort: selectedEventsSortReducer,
+  eventsBySort: eventsBySortReducer,
   postEvent: postEventReducer,
   form: formReducer
 })

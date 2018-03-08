@@ -1,41 +1,54 @@
 import { eventsDB, timestamp } from '../Firebase'
 
+// ACTION TYPES
+
 export const SELECT_EVENTS_SORT = 'SELECT_EVENTS_SORT'
+
+export const VOID_GOTTEN_EVENTS = 'VOID_GOTTEN_EVENTS'
+
 export const GET_EVENTS_REQUEST = 'GET_EVENTS_REQUEST'
 export const GET_EVENTS_RECEIVE = 'GET_EVENTS_RECEIVE'
 export const GET_EVENTS_FAILURE = 'GET_EVENTS_FAILURE'
+
 export const POST_EVENT_REQUEST = 'POST_EVENT_REQUEST'
 export const POST_EVENT_SUCCESS = 'POST_EVENT_SUCCESS'
 export const POST_EVENT_FAILURE = 'POST_EVENT_FAILURE'
 
 // SELECT EVENTS SORT ACTION CREATOR
 
-export const selectEventsSort = sort => ({
+export const selectEventsSort = eventsSort => ({
   type: SELECT_EVENTS_SORT,
-  payload: sort
+  eventsSort
+})
+
+// VOID GOTTEN EVENTS ACTION CREATOR
+
+export const voidGottenEvents = eventsSort => ({
+  type: VOID_GOTTEN_EVENTS,
+  eventsSort
 })
 
 // GET EVENTS ACTION CREATORS
 
-const getEventsRequest = sort => ({
+const getEventsRequest = eventsSort => ({
   type: GET_EVENTS_REQUEST,
-  sort
+  eventsSort
 })
 
-const getEventsReceive = (items, sort) => ({
+const getEventsReceive = (eventsSort, events) => ({
   type: GET_EVENTS_RECEIVE,
-  payload: items,
-  sort
+  eventsSort,
+  events
 })
 
-const getEventsFailure = (error, sort) => ({
+const getEventsFailure = (eventsSort, error) => ({
   type: GET_EVENTS_FAILURE,
-  payload: error,
-  sort
+  eventsSort,
+  error
 })
 
-const sortedEventsDB = sort => {
-  switch (sort) {
+const sortedEventsDB = eventsSort => {
+  switch (eventsSort) {
     case 'new':
       return eventsDB.orderBy('timestamp', 'desc')
     default:
@@ -43,10 +56,10 @@ const sortedEventsDB = sort => {
   }
 }
 
-const getEventsActions = sort => dispatch => {
-  dispatch(getEventsRequest(sort))
+const getEvents = eventsSort => dispatch => {
+  dispatch(getEventsRequest(eventsSort))
 
-  sortedEventsDB(sort).get().then(
+  sortedEventsDB(eventsSort).get().then(
     (querySnapshot) => {
       const events = []
 
@@ -54,21 +67,28 @@ const getEventsActions = sort => dispatch => {
         events.push({ id: event.id, ...event.data() })
       })
 
-      if (events.length > 0) { dispatch(getEventsReceive(events, sort)) }
-      else { dispatch(getEventsFailure('No events retrieved.')) }
+      if (events.length > 0) { dispatch(getEventsReceive(eventsSort, events)) }
+      else { dispatch(getEventsFailure(eventsSort, 'No events retrieved.')) }
     },
-    (error) => { dispatch(getEventsFailure(error, sort)) }
+    (error) => { dispatch(getEventsFailure(eventsSort, error)) }
   )
 }
 
-export const getEventsIfNeeded = sort => (dispatch, getState) => {
+const eventsAreCached = (state, eventsSort) => {
+  const events = state.eventsBySort[eventsSort]
 
-  // TODO: Implement condition (posts already fetched vs not yet fetched)
-
-  return dispatch(getEventsActions(sort))
+  if (!events) { return true }
+  else if (events.isGetting) { return false }
+  else { return events.didInvalidate }
 }
 
-// POST EVENTS ACTION CREATORS
+export const getEventsIfNeed = eventsSort => (dispatch, getState) => {
+  if (eventsAreCached(getState(), eventsSort)) {
+    return dispatch(getEvents(eventsSort))
+  }
+}
+
+// POST EVENT ACTION CREATORS
 
 const postEventRequest = () => ({
   type: POST_EVENT_REQUEST

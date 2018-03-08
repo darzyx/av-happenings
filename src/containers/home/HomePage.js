@@ -1,18 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getEventsActions } from '../../actions/getEventsActions'
+import { Link } from 'react-router-dom'
 import { Card, Container, Divider } from 'semantic-ui-react'
 import HomeMenu from './HomeMenu'
 import EventCard from '../../components/EventCard'
+import SunIcon from '../../components/SunIcon'
 
 class HomePage extends Component {
-  componentDidMount() { this.props._getEvents() }
-
   render() {
     const { error, hasRequested, events } = this.props
 
     return (
-      <div>
+      <div id='home-page'>
         <HomeMenu />
         <Divider hidden />
         <Container>
@@ -24,6 +23,9 @@ class HomePage extends Component {
           }
           </Card.Group>
         </Container>
+        <Link to='/submit'>
+          <SunIcon />
+        </Link>
       </div>
     )
   }
@@ -34,8 +36,4 @@ const mapStateToProps = state => {
   return { error, hasRequested, events }
 }
 
-const mapDispatchToProps = dispatch => {
-  return { _getEvents: () => { dispatch(getEventsActions()) }}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage)
+export default connect(mapStateToProps, null)(HomePage)

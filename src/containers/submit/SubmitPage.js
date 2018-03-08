@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { postEventActions } from '../../actions/postEventActions'
+import { postEventActions } from '../../actions/eventsActions'
 import { Divider } from 'semantic-ui-react'
 import SubmitForm from './SubmitForm'
 

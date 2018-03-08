@@ -4,6 +4,11 @@
  * Dark Orange - #CF7456
  */
 
+ html, body, #root, #app {
+   height: auto;
+   min-height: 100vh;
+ }
+
 #navigation-bar {
   background: red;
   background: linear-gradient(#E1965D, #CF7456);
@@ -17,4 +22,19 @@
   z-index: 1;
 
   border-radius: 0;
+}
+
+#sun-icon {
+  position: fixed;
+  z-index: 1;
+
+  right: 1vw;
+  bottom: 1vh;
+
+  min-width: 50px;
+  width: 8vw;
+  max-width: 100px;
+  min-height: 50px;
+  height: 8vw;
+  max-height: 100px;
 }

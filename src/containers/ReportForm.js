@@ -2,19 +2,14 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import { Divider, Form } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
 
 class ReportForm extends Component {
-  _handleSubmitClick(values) {
-    console.log(values)
-  }
-
   render() {
-    const { handleSubmit, pristine, submitting } = this.props
-    const disable = pristine || submitting
+    const { handleSubmit } = this.props
 
     return (
-      <Form onSubmit={handleSubmit(this._handleSubmitClick)}>
+      <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Field
             component='input'
@@ -26,23 +21,19 @@ class ReportForm extends Component {
             width={16}
           />
         </Form.Group>
-        <Divider hidden />
-        <Form.Group>
-          <Form.Button disabled={disable} type='submit'>
-            Report
-          </Form.Button>
-        </Form.Group>
+        {/* Submit button is remote */}
       </Form>
     )
   }
 }
 
 ReportForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-  pristine: PropTypes.bool.isRequired,
-  submitting: PropTypes.bool.isRequired
+  handleSubmit: PropTypes.func.isRequired
 }
 
-ReportForm = reduxForm({ form: 'report' })(ReportForm)
+ReportForm = reduxForm({
+  form: 'report',
+  onSubmit: values => { console.log(values) }
+})(ReportForm)
 
 export default connect(null, null)(ReportForm)

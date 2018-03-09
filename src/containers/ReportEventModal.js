@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReportForm from './ReportForm'
-import { Button, Dropdown, Modal } from 'semantic-ui-react'
+import ReportFormButtons from './ReportFormButtons'
+import { Dropdown, Modal } from 'semantic-ui-react'
 
 export default class ReportEventModal extends Component {
   constructor(props) {
@@ -30,19 +31,10 @@ export default class ReportEventModal extends Component {
           />
         }
       >
-        <Modal.Header>
-          Report Happening
-        </Modal.Header>
-        <Modal.Content>
-          <ReportForm />
-        </Modal.Content>
+        <Modal.Header>Report Happening</Modal.Header>
+        <Modal.Content><ReportForm /></Modal.Content>
         <Modal.Actions>
-          <Button onClick={this._handleModalClose}>
-            Back
-          </Button>
-          <Button onClick={this._handleModalClose}>
-            Submit Report
-          </Button>
+          <ReportFormButtons _handleModalClose={this._handleModalClose} />
         </Modal.Actions>
       </Modal>
     )

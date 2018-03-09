@@ -1,5 +1,6 @@
 import React from 'react'
-import { Card, Dropdown, Icon, Image, Menu } from 'semantic-ui-react'
+import { Card, Icon, Image, Menu } from 'semantic-ui-react'
+import CardDropdown from '../containers/CardDropdown'
 
 const sampleImage = require('../media/example.jpg')
 
@@ -10,13 +11,7 @@ const EventCard = ({ event }) => (
       src={sampleImage}
     />
     <Card.Content>
-      <Dropdown direction='left' pointing='top' style={{ float: 'right' }}>
-        <Dropdown.Menu>
-          <Dropdown.Item icon='linkify' text='Copy link' />
-          <Dropdown.Item icon='warning sign' text='Report' />
-          <Dropdown.Item icon='delete' text='Delete' />
-        </Dropdown.Menu>
-      </Dropdown>
+      <CardDropdown />
       <Card.Header>{event.title}</Card.Header>
       <Card.Meta>{event.date} @ {event.time}</Card.Meta>
       <Card.Meta>{event.location}</Card.Meta>

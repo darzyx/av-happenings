@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { Button, Modal } from 'semantic-ui-react'
+import NavButton from '../components/NavButton'
 
-export default class BannerModal extends Component {
+export default class NavModal extends Component {
   state = { modalOpen: false }
 
   _handleOpen = () => this.setState({ modalOpen: true })
@@ -21,13 +21,13 @@ export default class BannerModal extends Component {
         size='small'
       >
         <Modal.Content onClick={this._handleClose}>
-          <Button as={Link} attached='top' to='/'>Home</Button>
-          <Button as={Link} attached to='/login'>Log In</Button>
-          <Button as={Link} attached to='/signup'>Sign Up</Button>
-          <Button as={Link} attached to='/'>Log Out</Button>
-          <Button as={Link} attached to='/submit'>Submit</Button>
-          <Button as={Link} attached to='/help'>Help</Button>
-          <Button as={Link} attached='bottom' to='/about'>About</Button>
+          <NavButton attached='top' content='Home' to='/' />
+          <NavButton content='Log In' to='/login' />
+          <NavButton content='Sign Up' to='/signup' />
+          <NavButton content='Log Out' to='/' />
+          <NavButton content='Submit' to='/submit' />
+          <NavButton content='Help' to='/help' />
+          <NavButton attached='bottom' content='About' to='/about' />
         </Modal.Content>
       </Modal>
     )

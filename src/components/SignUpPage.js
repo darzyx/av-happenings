@@ -1,18 +1,18 @@
 import React from 'react'
-import SubmitForm from '../containers/SubmitForm'
 import { Container, Divider, Header, Message, Segment } from 'semantic-ui-react'
+import SignUpForm from '../containers/SignUpForm'
 
-const SubmitPage = () => (
+const SignUpPage = () => (
   <Container>
     <Divider hidden />
     <Segment attached='top'>
-      <Header>Submit</Header>
-      <SubmitForm />
+      <Header>Sign Up</Header>
+      <SignUpForm />
     </Segment>
     <Message attached='bottom' color='blue' style={{ textAlign: 'center' }}>
-      Please be mindful of the content rules.
+      Have an account? Log In
     </Message>
   </Container>
 )
 
-export default SubmitPage
+export default SignUpPage

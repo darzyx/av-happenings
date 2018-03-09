@@ -9,6 +9,12 @@
    min-height: 100vh;
  }
 
+ #user-modal-trigger {
+   cursor: pointer;
+   color: white;
+   text-decoration: underline;
+ }
+
 #header {
   background: red;
   background: linear-gradient(#E1965D, #CF7456);
@@ -37,4 +43,8 @@
   min-height: 50px;
   height: 8vw;
   max-height: 100px;
+}
+
+.card-dropdown {
+  float: right;
 }

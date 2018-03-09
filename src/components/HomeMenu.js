@@ -1,7 +1,7 @@
 import React from 'react'
 import { Menu } from 'semantic-ui-react'
 
-const menuOptions = ['top', 'featured', 'new', 'mine']
+const menuOptions = ['top', 'featured', 'new', 'liked', 'mine']
 
 const HomeMenu = ({ eventsSort, handleChangeSort }) => (
   <Menu

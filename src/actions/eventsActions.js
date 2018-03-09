@@ -14,6 +14,10 @@ export const POST_EVENT_REQUEST = 'POST_EVENT_REQUEST'
 export const POST_EVENT_SUCCESS = 'POST_EVENT_SUCCESS'
 export const POST_EVENT_FAILURE = 'POST_EVENT_FAILURE'
 
+export const DELETE_EVENT_REQUEST = 'DELETE_EVENT_REQUEST'
+export const DELETE_EVENT_SUCCESS = 'DELETE_EVENT_SUCCESS'
+export const DELETE_EVENT_FAILURE = 'DELETE_EVENT_FAILURE'
+
 // SELECT EVENTS SORT ACTION CREATOR
 
 export const selectEventsSort = eventsSort => ({
@@ -112,5 +116,29 @@ export const postEventActions = event => dispatch => {
   eventsDB.add(event).then(
     (docRef) => { dispatch(postEventSuccess(docRef.id)) },
     (error) => { dispatch(postEventFailure(error)) }
+  )
+}
+
+// DELETE EVENT ACTION CREATORS
+
+const deleteEventRequest = () => ({
+  type: DELETE_EVENT_REQUEST
+})
+
+const deleteEventSuccess = () => ({
+  type: DELETE_EVENT_SUCCESS
+})
+
+const deleteEventFailure = error => ({
+  type: DELETE_EVENT_FAILURE,
+  payload: error
+})
+
+export const deleteEventActions = id => dispatch => {
+  dispatch(deleteEventRequest())
+
+  eventsDB.doc(id).delete().then(
+    () => { dispatch(deleteEventSuccess()) },
+    (error) => { dispatch(deleteEventFailure(error)) }
   )
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Card, Icon, Image, Menu } from 'semantic-ui-react'
 import CardDropdown from '../containers/CardDropdown'
 
@@ -31,5 +32,9 @@ const EventCard = ({ event }) => (
     </Card.Content>
   </Card>
 )
+
+EventCard.propTypes = {
+  event: PropTypes.object.isRequired
+}
 
 export default EventCard

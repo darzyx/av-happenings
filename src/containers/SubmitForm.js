@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { postEventActions } from '../actions/eventsActions'
@@ -79,6 +80,14 @@ class SubmitForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return { _postEvent: event => { dispatch(postEventActions(event)) }}
+}
+
+SubmitForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  _postEvent: PropTypes.func.isRequired,
+  pristine: PropTypes.bool.isRequired,
+  reset: PropTypes.func.isRequired,
+  submitting: PropTypes.bool.isRequired
 }
 
 SubmitForm = reduxForm({ form: 'submit' })(SubmitForm)

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Menu } from 'semantic-ui-react'
 
 const menuOptions = ['top', 'featured', 'new', 'liked', 'mine']
@@ -23,5 +24,10 @@ const HomeMenu = ({ eventsSort, handleChangeSort }) => (
     }
   </Menu>
 )
+
+HomeMenu.propTypes = {
+  eventsSort: PropTypes.string.isRequired,
+  handleChangeSort: PropTypes.func.isRequired
+}
 
 export default HomeMenu

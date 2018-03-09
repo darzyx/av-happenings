@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { Divider, Form } from 'semantic-ui-react'
@@ -63,6 +64,12 @@ class SignUpForm extends Component {
       </Form>
     )
   }
+}
+
+SignUpForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  pristine: PropTypes.bool.isRequired,
+  submitting: PropTypes.bool.isRequired
 }
 
 SignUpForm = reduxForm({ form: 'signup' })(SignUpForm)

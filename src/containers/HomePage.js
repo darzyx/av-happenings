@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {
   selectEventsSort,
@@ -112,5 +113,14 @@ const mapDispatchToProps = dispatch => ({
   _getEventsIfNeed: eventsSort => { dispatch(getEventsIfNeed(eventsSort)) },
   _voidGottenEvents: eventsSort => { dispatch(voidGottenEvents(eventsSort)) }
 })
+
+HomePage.propTypes = {
+  _selectedEventsSort: PropTypes.string.isRequired,
+  _events: PropTypes.array.isRequired,
+  _isGetting: PropTypes.bool.isRequired,
+  _selectEventsSort: PropTypes.func.isRequired,
+  _getEventsIfNeed: PropTypes.func.isRequired,
+  _voidGottenEvents: PropTypes.func.isRequired
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage)

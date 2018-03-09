@@ -36,6 +36,7 @@ class HomePage extends Component {
 
   _handleChangeSort(nextEventsSort) {
     this.props._selectEventsSort(nextEventsSort)
+    window.scrollTo(0, 0)
   }
 
   _handleRefresh(e) {

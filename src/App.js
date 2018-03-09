@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import RouterScrollReset from './containers/RouterScrollReset'
 import Banner from './components/Banner'
 import HomePage from './containers/HomePage'
 import LogInPage from './components/LogInPage'
@@ -13,18 +14,20 @@ export default class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div id='app'>
-          <Banner />
-          <Switch>
-            <Route exact path='/' component={HomePage} />
-            <Route path='/login' component={LogInPage} />
-            <Route path='/signup' component={SignUpPage} />
-            <Route path='/submit' component={SubmitPage} />
-            <Route path='/help' component={HelpPage} />
-            <Route path='/about' component={AboutPage} />
-            <Route component={NotFoundPage} />
-          </Switch>
-        </div>
+        <RouterScrollReset>
+          <div id='app'>
+            <Banner />
+            <Switch>
+              <Route exact path='/' component={HomePage} />
+              <Route path='/login' component={LogInPage} />
+              <Route path='/signup' component={SignUpPage} />
+              <Route path='/submit' component={SubmitPage} />
+              <Route path='/help' component={HelpPage} />
+              <Route path='/about' component={AboutPage} />
+              <Route component={NotFoundPage} />
+            </Switch>
+          </div>
+        </RouterScrollReset>
       </BrowserRouter>
     )
   }

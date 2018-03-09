@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { Divider, Form } from 'semantic-ui-react'
 
-class LogInForm extends Component {
+class ReportForm extends Component {
   _handleSubmitClick(values) {
     console.log(values)
   }
@@ -18,20 +18,9 @@ class LogInForm extends Component {
           <Form.Field
             component='input'
             control={Field}
-            label='Email'
-            name='email'
-            placeholder='Enter email address'
-            type='text'
-            width={16}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Field
-            component='input'
-            control={Field}
-            label='Password'
-            name='password'
-            placeholder='Enter password'
+            label='Details'
+            name='details'
+            placeholder='Details about the problem'
             type='text'
             width={16}
           />
@@ -39,7 +28,7 @@ class LogInForm extends Component {
         <Divider hidden />
         <Form.Group>
           <Form.Button disabled={disable} type='submit'>
-            Log In
+            Report
           </Form.Button>
         </Form.Group>
       </Form>
@@ -47,6 +36,6 @@ class LogInForm extends Component {
   }
 }
 
-LogInForm = reduxForm({ form: 'login' })(LogInForm)
+ReportForm = reduxForm({ form: 'report' })(ReportForm)
 
-export default connect(null, null)(LogInForm)
+export default connect(null, null)(ReportForm)

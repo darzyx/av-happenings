@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Card, Icon, Image, Menu } from 'semantic-ui-react'
-import CardDropdown from '../containers/CardDropdown'
+import EventDropdown from './EventDropdown'
 
 const sampleImage = require('../media/example.jpg')
 
@@ -12,7 +12,7 @@ const EventCard = ({ event }) => (
       src={sampleImage}
     />
     <Card.Content>
-      <CardDropdown />
+      <EventDropdown />
       <Card.Header>{event.title}</Card.Header>
       <Card.Meta>{event.date} @ {event.time}</Card.Meta>
       <Card.Meta>{event.location}</Card.Meta>

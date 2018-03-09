@@ -40,4 +40,4 @@ ReportFormButtons.propTypes = {
   _submitReport: PropTypes.func.isRequired
 }
 
-export default connect(null, mapDispatchToProps)(ReportFormButtons);
+export default connect(null, mapDispatchToProps)(ReportFormButtons)

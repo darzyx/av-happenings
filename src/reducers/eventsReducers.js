@@ -80,21 +80,20 @@ export const eventsBySortReducer = (state = { }, action) => {
 
 // POST EVENT REDUCER
 
-const initPostEventState = { error: null, id: null, requesting: false }
+const initPostEventState = { error: ' ', id: null, requesting: false }
 
 export const postEventReducer = (state = initPostEventState, action) => {
   switch (action.type) {
     case POST_EVENT_REQUEST:
       return {
         ...state,
-        error: null,
+        error: ' ',
         id: null,
         requesting: true
       }
     case POST_EVENT_SUCCESS:
       return {
         ...state,
-        error: null,
         id: action.payload,
         requesting: false
       }

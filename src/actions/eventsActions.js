@@ -88,7 +88,7 @@ const eventsAreCached = (state, eventsSort) => {
 
 export const getEventsIfNeed = eventsSort => (dispatch, getState) => {
   if (eventsAreCached(getState(), eventsSort)) {
-    return dispatch(getEvents(eventsSort))
+    dispatch(getEvents(eventsSort))
   }
 }
 
@@ -108,15 +108,30 @@ const postEventFailure = error => ({
   payload: error
 })
 
-export const postEventActions = event => dispatch => {
-  dispatch(postEventRequest())
-
+const postEvent = event => dispatch => {
   event.timestamp = timestamp
 
   eventsDB.add(event).then(
     (docRef) => { dispatch(postEventSuccess(docRef.id)) },
     (error) => { dispatch(postEventFailure(error)) }
   )
+}
+
+const eventFieldErrors = event => {
+  const { title, date, time, location, description } = event
+
+  if (!!(title && date && time && location && description) === false) {
+    return 'All fields are required before submitting.'
+  } else {
+    return 'none'
+  }
+}
+
+export const postEventIfValid = event => dispatch => {
+  dispatch(postEventRequest())
+
+  if (eventFieldErrors(event) === 'none') { dispatch(postEvent(event)) }
+  else { dispatch(postEventFailure(eventFieldErrors(event))) }
 }
 
 // DELETE EVENT ACTION CREATORS

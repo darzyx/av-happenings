@@ -2,16 +2,18 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import { postEventActions } from '../actions/eventsActions'
-import { Divider, Form } from 'semantic-ui-react'
+import { postEventIfValid } from '../actions/eventsActions'
+import { Divider, Form, Message } from 'semantic-ui-react'
 
 class SubmitForm extends Component {
   render() {
-    const { handleSubmit, _postEvent, pristine, reset, submitting } = this.props
+    const {
+      handleSubmit, _postEventIfValid, _error, pristine, reset, submitting
+    } = this.props
     const disable = pristine || submitting
 
     return (
-      <Form onSubmit={handleSubmit(_postEvent)}>
+      <Form onSubmit={handleSubmit(_postEventIfValid)}>
         <Form.Group>
           <Form.Field
             component='input'
@@ -64,7 +66,13 @@ class SubmitForm extends Component {
             width={16}
           />
         </Form.Group>
-        <Divider hidden />
+        {
+          _error.length > 1 &&
+          <Message negative>
+            <Message.Header>Oops!</Message.Header>
+            <p>{_error}</p>
+          </Message>
+        }
         <Form.Group>
           <Form.Button disabled={disable} type='submit'>
             Submit
@@ -78,13 +86,18 @@ class SubmitForm extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return { _postEvent: event => { dispatch(postEventActions(event)) }}
-}
+const mapStateToProps = state => ({
+  _error: state.postEvent.error
+})
+
+const mapDispatchToProps = dispatch => ({
+  _postEventIfValid: event => dispatch(postEventIfValid(event))
+})
 
 SubmitForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  _postEvent: PropTypes.func.isRequired,
+  _postEventIfValid: PropTypes.func.isRequired,
+  _error: PropTypes.string.isRequired,
   pristine: PropTypes.bool.isRequired,
   reset: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired
@@ -92,4 +105,4 @@ SubmitForm.propTypes = {
 
 SubmitForm = reduxForm({ form: 'submit' })(SubmitForm)
 
-export default connect(null, mapDispatchToProps)(SubmitForm)
+export default connect(mapStateToProps, mapDispatchToProps)(SubmitForm)

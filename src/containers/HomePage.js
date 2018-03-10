@@ -21,16 +21,16 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
-    const { _selectedEventsSort, _getEventsIfNeed } = this.props
+    const { _activeEventsSort, _getEventsIfNeed } = this.props
 
-    _getEventsIfNeed(_selectedEventsSort)
+    _getEventsIfNeed(_activeEventsSort)
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps._selectedEventsSort !== this.props._selectedEventsSort) {
-      const { _selectedEventsSort, _getEventsIfNeed } = nextProps
+    if (nextProps._activeEventsSort !== this.props._activeEventsSort) {
+      const { _activeEventsSort, _getEventsIfNeed } = nextProps
 
-      _getEventsIfNeed(_selectedEventsSort)
+      _getEventsIfNeed(_activeEventsSort)
     }
   }
 
@@ -41,23 +41,23 @@ class HomePage extends Component {
 
   _handleRefresh(e) {
     const {
-      _selectedEventsSort,
+      _activeEventsSort,
       _voidGottenEvents,
       _getEventsIfNeed
     } = this.props
 
-    _voidGottenEvents(_selectedEventsSort)
-    _getEventsIfNeed(_selectedEventsSort)
+    _voidGottenEvents(_activeEventsSort)
+    _getEventsIfNeed(_activeEventsSort)
   }
 
   render() {
-    const { _selectedEventsSort, _events, _isGetting } = this.props
+    const { _activeEventsSort, _events, _isGetting } = this.props
     const noEvents = _events.length === 0
 
     return (
       <div id='home-page'>
         <HomeMenu
-          eventsSort={_selectedEventsSort}
+          activeEventsSort={_activeEventsSort}
           handleChangeSort={this._handleChangeSort}
         />
         <Divider hidden />
@@ -90,19 +90,19 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = state => {
-  const { selectedEventsSort, eventsBySort } = state
+  const { activeEventsSort, eventsBySort } = state
 
-  if (eventsBySort[selectedEventsSort]) {
-    const { isGetting, items } = eventsBySort[selectedEventsSort]
+  if (eventsBySort[activeEventsSort]) {
+    const { isGetting, items } = eventsBySort[activeEventsSort]
 
     return {
-      _selectedEventsSort: selectedEventsSort,
+      _activeEventsSort: activeEventsSort,
       _events: items,
       _isGetting: isGetting
     }
   } else {
     return {
-      _selectedEventsSort: selectedEventsSort,
+      _activeEventsSort: activeEventsSort,
       _events: [ ],
       _isGetting: true
     }
@@ -116,7 +116,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 HomePage.propTypes = {
-  _selectedEventsSort: PropTypes.string.isRequired,
+  _activeEventsSort: PropTypes.string.isRequired,
   _events: PropTypes.array.isRequired,
   _isGetting: PropTypes.bool.isRequired,
   _selectEventsSort: PropTypes.func.isRequired,

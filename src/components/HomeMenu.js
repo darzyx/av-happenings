@@ -4,7 +4,7 @@ import { Menu } from 'semantic-ui-react'
 
 const menuOptions = ['top', 'featured', 'new', 'liked', 'mine']
 
-const HomeMenu = ({ eventsSort, handleChangeSort }) => (
+const HomeMenu = ({ activeEventsSort, handleChangeSort }) => (
   <Menu
     attached='bottom'
     id='home-menu'
@@ -16,7 +16,7 @@ const HomeMenu = ({ eventsSort, handleChangeSort }) => (
       menuOptions.map((item, key) =>
         <Menu.Item
           name={item}
-          active={eventsSort === item}
+          active={activeEventsSort === item}
           onClick={() => handleChangeSort(item)}
           key={key}
         />
@@ -26,7 +26,7 @@ const HomeMenu = ({ eventsSort, handleChangeSort }) => (
 )
 
 HomeMenu.propTypes = {
-  eventsSort: PropTypes.string.isRequired,
+  activeEventsSort: PropTypes.string.isRequired,
   handleChangeSort: PropTypes.func.isRequired
 }
 

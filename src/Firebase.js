@@ -12,7 +12,13 @@ const FIREBASE_CONFIG = {
 
 firebase.initializeApp(FIREBASE_CONFIG)
 
+const database = firebase.firestore
+
 export const userAuth = firebase.auth()
-export const usersDB = firebase.firestore().collection('users')
-export const eventsDB = firebase.firestore().collection('events')
-export const timestamp = firebase.firestore.FieldValue.serverTimestamp()
+
+export const usersDB = database().collection('users')
+export const eventsDB = database().collection('events')
+export const reportsDB = database().collection('reports')
+export const commentsDB = database().collection('comments')
+
+export const timestamp = database.FieldValue.serverTimestamp()

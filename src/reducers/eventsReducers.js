@@ -9,9 +9,9 @@ import {
   POST_EVENT_FAILURE
 } from '../actions/eventsActions'
 
-// SELECTED EVENTS SORT
+// ACTIVE EVENTS SORT
 
-export const selectedEventsSortReducer = (state = 'new', action) => {
+export const activeEventsSortReducer = (state = 'new', action) => {
   switch (action.type) {
     case SELECT_EVENTS_SORT:
       return action.eventsSort

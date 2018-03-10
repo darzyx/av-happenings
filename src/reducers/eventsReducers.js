@@ -26,7 +26,7 @@ const initEventsState = {
   didInvalidate: false,
   error: null,
   isGetting: false,
-  items: []
+  items: [ ]
 }
 
 const eventsReducer = (state = initEventsState, action) => {
@@ -34,7 +34,8 @@ const eventsReducer = (state = initEventsState, action) => {
     case VOID_GOTTEN_EVENTS:
       return {
         ...state,
-        didInvalidate: true
+        didInvalidate: true,
+        items: [ ]
       }
     case GET_EVENTS_REQUEST:
       return {

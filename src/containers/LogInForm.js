@@ -22,7 +22,7 @@ class LogInForm extends Component {
             label='Email'
             name='email'
             placeholder='Enter email address'
-            type='text'
+            type='email'
             width={16}
           />
         </Form.Group>
@@ -33,7 +33,7 @@ class LogInForm extends Component {
             label='Password'
             name='password'
             placeholder='Enter password'
-            type='text'
+            type='password'
             width={16}
           />
         </Form.Group>

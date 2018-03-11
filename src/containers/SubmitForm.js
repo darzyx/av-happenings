@@ -30,7 +30,7 @@ class SubmitForm extends Component {
             label='Date'
             name='date'
             placeholder='When is it?'
-            type='text'
+            type='date'
             width={8}
           />
         </Form.Group>
@@ -41,7 +41,7 @@ class SubmitForm extends Component {
             label='Time'
             name='time'
             placeholder='At what time?'
-            type='text'
+            type='time'
             width={4}
           />
           <Form.Field

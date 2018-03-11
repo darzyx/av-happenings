@@ -22,7 +22,7 @@ class SignUpForm extends Component {
             label='Email'
             name='email'
             placeholder='Your email address'
-            type='text'
+            type='email'
             width={8}
           />
           <Form.Field
@@ -42,7 +42,7 @@ class SignUpForm extends Component {
             label='Password'
             name='password'
             placeholder='Pick a password'
-            type='text'
+            type='password'
             width={8}
           />
           <Form.Field
@@ -51,7 +51,7 @@ class SignUpForm extends Component {
             label='Confirm Password'
             name='confirm'
             placeholder='Confirm your password'
-            type='text'
+            type='password'
             width={8}
           />
         </Form.Group>

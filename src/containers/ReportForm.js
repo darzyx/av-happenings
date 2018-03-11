@@ -32,8 +32,8 @@ class ReportForm extends Component {
           value='illegal'
         />
         <Form.Group>
-          <Form.Field
-            component='input'
+          <Form.TextArea
+            component='textarea'
             control={Field}
             label='Details'
             name='details'

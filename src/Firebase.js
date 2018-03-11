@@ -1,16 +1,16 @@
 import * as firebase from 'firebase'
 import 'firebase/firestore'
 
-const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyDHjXI07A9Jk0NobMnif3GZzCmG0OpK75Y",
-  authDomain: "my-demo-project-20371.firebaseapp.com",
-  databaseURL: "https://my-demo-project-20371.firebaseio.com",
-  projectId: "my-demo-project-20371",
-  storageBucket: "my-demo-project-20371.appspot.com",
-  messagingSenderId: "734902640250"
+const config = {
+  apiKey: 'AIzaSyDvooP-CY4nvS7jcHyTJYGRIJym2gSWZFA',
+  authDomain: 'av-happenings-project.firebaseapp.com',
+  databaseURL: 'https://av-happenings-project.firebaseio.com',
+  projectId: 'av-happenings-project',
+  storageBucket: 'av-happenings-project.appspot.com',
+  messagingSenderId: '410209896028'
 }
 
-firebase.initializeApp(FIREBASE_CONFIG)
+firebase.initializeApp(config)
 
 const database = firebase.firestore
 

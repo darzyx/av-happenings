@@ -110,6 +110,7 @@ const postEventFailure = error => ({
 
 const postEvent = event => dispatch => {
   event.timestamp = timestamp
+  event.featured = false
 
   eventsDB.add(event).then(
     (docRef) => { dispatch(postEventSuccess(docRef.id)) },

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import { Form, Radio } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
 
 class ReportForm extends Component {
   state = {}
@@ -14,27 +14,52 @@ class ReportForm extends Component {
 
     return (
       <Form onSubmit={handleSubmit}>
-        <Form.Field>
-          Selected value: <b>{this.state.value}</b>
-        </Form.Field>
-        <Form.Field>
-          <Radio
-            label='Choose this'
-            name='radioGroup'
-            value='this'
-            checked={this.state.value === 'this'}
-            onChange={this.handleChange}
-          />
-        </Form.Field>
-        <Form.Field>
-          <Radio
-            label='Or that'
-            name='radioGroup'
-            value='that'
-            checked={this.state.value === 'that'}
-            onChange={this.handleChange}
-          />
-        </Form.Field>
+        <Form.Group>
+          <Form.Field>
+            <label>
+              <Field
+                name='reason'
+                component='input'
+                type='radio'
+                value='uninteresting'
+              />{' '}
+              Uninteresting
+            </label>
+          </Form.Field>
+          <Form.Field>
+            <label>
+              <Field
+                name='reason'
+                component='input'
+                type='radio'
+                value='spam'
+              />{' '}
+              Spam
+            </label>
+          </Form.Field>
+          <Form.Field>
+            <label>
+              <Field
+                name='reason'
+                component='input'
+                type='radio'
+                value='harassment'
+              />{' '}
+              Harassment
+            </label>
+          </Form.Field>
+          <Form.Field>
+            <label>
+              <Field
+                name='reason'
+                component='input'
+                type='radio'
+                value='illegal'
+              />{' '}
+              Illegal
+            </label>
+          </Form.Field>
+        </Form.Group>
         <Form.Group>
           <Form.Field
             component='input'

@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import HomeMenu from './HomeMenu'
+import EventCard from '../components/EventCard'
+import SunIcon from '../components/SunIcon'
 import {
   selectEventsSort,
   getEventsIfNeed,
   voidGottenEvents
 } from '../actions/eventsActions'
-import { Link } from 'react-router-dom'
-import { Button, Card, Container, Divider } from 'semantic-ui-react'
-import HomeMenu from '../components/HomeMenu'
-import EventCard from '../components/EventCard'
-import SunIcon from '../components/SunIcon'
+import { Card, Container, Divider, Loader, Message } from 'semantic-ui-react'
 
 class HomePage extends Component {
   constructor(props) {
@@ -18,6 +18,7 @@ class HomePage extends Component {
 
     this._handleChangeSort = this._handleChangeSort.bind(this)
     this._handleRefresh = this._handleRefresh.bind(this)
+    this._handleMenuClick = this._handleMenuClick.bind(this)
   }
 
   componentDidMount() {
@@ -39,15 +40,22 @@ class HomePage extends Component {
     window.scrollTo(0, 0)
   }
 
-  _handleRefresh(e) {
+  _handleRefresh() {
     const {
       _activeEventsSort,
-      _voidGottenEvents,
-      _getEventsIfNeed
+      _getEventsIfNeed,
+      _voidGottenEvents
     } = this.props
 
     _voidGottenEvents(_activeEventsSort)
     _getEventsIfNeed(_activeEventsSort)
+  }
+
+  _handleMenuClick(item) {
+    const { _activeEventsSort } = this.props
+
+    if (item === _activeEventsSort) { this._handleRefresh() }
+    else { this._handleChangeSort(item) }
   }
 
   render() {
@@ -58,29 +66,26 @@ class HomePage extends Component {
       <div id='home-page'>
         <HomeMenu
           activeEventsSort={_activeEventsSort}
-          handleChangeSort={this._handleChangeSort}
+          handleMenuClick={this._handleMenuClick}
         />
         <Divider hidden />
         <Container>
-          {
-            !_isGetting &&
-            <Button fluid onClick={this._handleRefresh}>Refresh</Button>
-          }
-          <Divider hidden />
-          <Card.Group doubling itemsPerRow={3} stackable>
-            {
-              noEvents ?
-              (_isGetting ? <h1>Loading...</h1> : <h1>Empty.</h1>) :
-              _events.map((event, key) => <EventCard event={event} key={key} />)
-            }
-          </Card.Group>
           <Divider hidden />
           {
-            !_isGetting &&
-            <Button fluid>Load More</Button>
+            _isGetting ?
+            <Loader active content='Loading...' inline='centered' /> :
+            noEvents ?
+            <Message content='No happenings fetched!' header='Empty' /> :
+            <Card.Group doubling itemsPerRow={3} stackable>
+              {
+                _events.map((event, key) =>
+                  <EventCard event={event} key={key} />
+                )
+              }
+            </Card.Group>
           }
+          <Divider hidden />
         </Container>
-        <Divider hidden />
         <Link to='/submit'>
           <SunIcon />
         </Link>

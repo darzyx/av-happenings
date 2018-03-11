@@ -47,3 +47,18 @@
 .card-dropdown {
   float: right;
 }
+
+.radio-container {
+  white-space: nowrap;
+  width: 100%;
+  clear: none;
+  padding: 5px 0px 15px 0px;
+}
+
+.radio {
+  cursor: pointer;
+}
+
+.radio-label {
+  padding-left: 10px;
+}

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { Form } from 'semantic-ui-react'
+import ReduxFormRadio from '../components/ReduxFormRadio'
 
 class ReportForm extends Component {
   state = {}
@@ -14,59 +15,33 @@ class ReportForm extends Component {
 
     return (
       <Form onSubmit={handleSubmit}>
-        <Form.Group>
-          <Form.Field>
-            <label>
-              <Field
-                name='reason'
-                component='input'
-                type='radio'
-                value='uninteresting'
-              />{' '}
-              Uninteresting
-            </label>
-          </Form.Field>
-          <Form.Field>
-            <label>
-              <Field
-                name='reason'
-                component='input'
-                type='radio'
-                value='spam'
-              />{' '}
-              Spam
-            </label>
-          </Form.Field>
-          <Form.Field>
-            <label>
-              <Field
-                name='reason'
-                component='input'
-                type='radio'
-                value='harassment'
-              />{' '}
-              Harassment
-            </label>
-          </Form.Field>
-          <Form.Field>
-            <label>
-              <Field
-                name='reason'
-                component='input'
-                type='radio'
-                value='illegal'
-              />{' '}
-              Illegal
-            </label>
-          </Form.Field>
-        </Form.Group>
+        <ReduxFormRadio
+          label='I find this happening uninteresting.'
+          name='reason'
+          value='uninteresting'
+        />
+        <ReduxFormRadio
+          label='This is spam.'
+          name='reason'
+          value='spam'
+        />
+        <ReduxFormRadio
+          label='This harasses me or someone else.'
+          name='reason'
+          value='harassment'
+        />
+        <ReduxFormRadio
+          label='This contains illegal content.'
+          name='reason'
+          value='illegal'
+        />
         <Form.Group>
           <Form.Field
             component='input'
             control={Field}
             label='Details'
             name='details'
-            placeholder='Details about the problem'
+            placeholder='Please provide details.'
             type='text'
             width={16}
           />

@@ -43,7 +43,10 @@ export default class HomeMenu extends Component {
               icon={activeEventsSort === item && mouseOver ? 'refresh' : null}
               key={key}
               name={activeEventsSort === item && mouseOver ? null : item}
-              onClick={() => handleMenuClick(item)}
+              onClick={() => {
+                _handleMouseOver()
+                handleMenuClick(item)
+              }}
               onMouseEnter={activeEventsSort === item ? _handleMouseOver: null}
               onMouseLeave={activeEventsSort === item ? _handleMouseOut: null}
             />

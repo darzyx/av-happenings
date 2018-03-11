@@ -33,9 +33,7 @@ export default class ReportEventModal extends Component {
       >
         <Modal.Header>Report Happening</Modal.Header>
         <Modal.Content><ReportForm /></Modal.Content>
-        <Modal.Actions>
-          <ReportFormButtons _handleModalClose={this._handleModalClose} />
-        </Modal.Actions>
+        <ReportFormButtons _handleModalClose={this._handleModalClose} />
       </Modal>
     )
   }

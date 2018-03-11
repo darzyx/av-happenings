@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { submit } from 'redux-form'
-import { Button } from 'semantic-ui-react'
+import { Button, Modal } from 'semantic-ui-react'
 
 class ReportFormButtons extends Component {
   constructor(props) {
@@ -23,10 +23,10 @@ class ReportFormButtons extends Component {
     const { _handleModalClose } = this.props
 
     return (
-      <div>
+      <Modal.Actions>
         <Button onClick={_handleModalClose}>Back</Button>
         <Button onClick={this._handleReportClick}>Submit Report</Button>
-      </div>
+      </Modal.Actions>
     )
   }
 }

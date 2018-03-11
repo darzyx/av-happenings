@@ -6,10 +6,6 @@ import { Form } from 'semantic-ui-react'
 import ReduxFormRadio from '../components/ReduxFormRadio'
 
 class ReportForm extends Component {
-  state = {}
-
-  handleChange = (e, { value }) => this.setState({ value })
-
   render() {
     const { handleSubmit } = this.props
 

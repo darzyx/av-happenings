@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { watchLogInStatus } from './actions/userActions'
 import RouterScrollReset from './containers/RouterScrollReset'
 import Banner from './components/Banner'
 import HomePage from './containers/HomePage'
@@ -10,10 +12,12 @@ import HelpPage from './components/HelpPage'
 import AboutPage from './components/AboutPage'
 import NotFoundPage from './components/NotFoundPage'
 
-export default class App extends Component {
+class App extends Component {
+  componentDidMount() { this.props._watchLogInStatus() }
+
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <RouterScrollReset>
           <div id='app'>
             <Banner />
@@ -32,3 +36,9 @@ export default class App extends Component {
     )
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  _watchLogInStatus: () => { dispatch(watchLogInStatus()) }
+})
+
+export default connect(null, mapDispatchToProps)(App)

@@ -9,34 +9,31 @@ export default class UserModal extends Component {
   _handleClose = () => this.setState({ modalOpen: false })
 
   render() {
+    const { displayName, email, likeCount, eventCount } = this.props.user
+
     return (
       <Modal
         trigger={
           <a id='user-modal-trigger' onClick={this._handleOpen}>
-            username
+            {displayName}
           </a>
         }
         open={this.state.modalOpen}
         onClose={this._handleClose}
         size='small'
       >
-        <Header textAlign='center'>
-          USERNAME
-          <Header.Subheader>
-            email@example.com
-          </Header.Subheader>
-        </Header>
+        <Header content={displayName} subheader={email} textAlign='center' />
         <Modal.Content>
           <Modal.Description>
             <Statistic.Group size='mini' widths={2}>
               <Statistic>
-                <Statistic.Value>307</Statistic.Value>
+                <Statistic.Value>{likeCount}</Statistic.Value>
                 <Statistic.Label>
                   <Icon color='pink' name='heart' />Likes
                 </Statistic.Label>
               </Statistic>
               <Statistic>
-                <Statistic.Value>29</Statistic.Value>
+                <Statistic.Value>{eventCount}</Statistic.Value>
                 <Statistic.Label>
                   <Icon color='teal' name='write' />Posted
                 </Statistic.Label>

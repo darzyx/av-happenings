@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Container, Divider, Header, Message, Segment } from 'semantic-ui-react'
 import SignUpForm from '../containers/SignUpForm'
 
@@ -9,8 +10,8 @@ const SignUpPage = () => (
       <Header>Sign Up</Header>
       <SignUpForm />
     </Segment>
-    <Message attached='bottom' color='blue' style={{ textAlign: 'center' }}>
-      Have an account? Log In
+    <Message attached='bottom' color='orange'>
+      <center>Have an account? <Link to='/login'>Log In</Link></center>
     </Message>
   </Container>
 )

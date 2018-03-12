@@ -9,7 +9,7 @@ const SubmitPage = () => (
       <Header>Submit</Header>
       <SubmitForm />
     </Segment>
-    <Message attached='bottom' color='blue' style={{ textAlign: 'center' }}>
+    <Message attached='bottom' color='orange' style={{ textAlign: 'center' }}>
       Please be mindful of the content rules.
     </Message>
   </Container>

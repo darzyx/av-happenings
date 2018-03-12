@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Button } from 'semantic-ui-react'
 
-const NavButton = ({ attached, content, handleLogOut, to }) => (
+const NavButton = ({ attached, content, logOut, to }) => (
   <Button
     as={Link}
     attached={ attached || true}
     content={content}
-    onClick={content === 'Log Out' ? handleLogOut : null}
+    onClick={content === 'Log Out' ? logOut : null}
     size='large'
     to={to}
   />
@@ -17,7 +17,7 @@ const NavButton = ({ attached, content, handleLogOut, to }) => (
 NavButton.propTypes = {
   attached: PropTypes.string,
   content: PropTypes.string.isRequired,
-  handleLogOut: PropTypes.func,
+  logOut: PropTypes.func,
   to: PropTypes.string.isRequired
 }
 

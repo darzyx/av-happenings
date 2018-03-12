@@ -59,43 +59,42 @@ class HomePage extends Component {
   }
 
   render() {
-    const { _activeEventsSort, _events, _isGetting } = this.props
+    const { _activeEventsSort, _events, _isGetting, _loggedIn } = this.props
     const noEvents = _events.length === 0
+    const { _handleMenuClick } = this
 
     return (
       <div id='home-page'>
         <HomeMenu
           activeEventsSort={_activeEventsSort}
-          handleMenuClick={this._handleMenuClick}
+          handleMenuClick={_handleMenuClick}
         />
         <Divider hidden />
         <Container>
           <Divider hidden />
-          {
-            _isGetting ?
-            <Loader active content='Loading...' inline='centered' /> :
-            noEvents ?
-            <Message content='No happenings fetched!' header='Empty' /> :
-            <Card.Group doubling itemsPerRow={3} stackable>
-              {
-                _events.map((event, key) =>
-                  <EventCard event={event} key={key} />
-                )
-              }
-            </Card.Group>
-          }
+            {
+              _isGetting ?
+              <Loader active content='Loading...' inline='centered' /> :
+              noEvents ?
+              <Message content='No happenings fetched!' header='Empty' /> :
+              <Card.Group doubling itemsPerRow={3} stackable>
+                {
+                  _events.map((event, key) =>
+                    <EventCard event={event} key={key} />
+                  )
+                }
+              </Card.Group>
+            }
           <Divider hidden />
         </Container>
-        <Link to='/submit'>
-          <SunIcon />
-        </Link>
+        <Link to={_loggedIn ? '/submit' : '/login'}><SunIcon /></Link>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => {
-  const { activeEventsSort, eventsBySort } = state
+  const { activeEventsSort, eventsBySort, user } = state
 
   if (eventsBySort[activeEventsSort]) {
     const { isGetting, items } = eventsBySort[activeEventsSort]
@@ -103,21 +102,23 @@ const mapStateToProps = state => {
     return {
       _activeEventsSort: activeEventsSort,
       _events: items,
-      _isGetting: isGetting
+      _isGetting: isGetting,
+      _loggedIn: user.loggedIn
     }
   } else {
     return {
       _activeEventsSort: activeEventsSort,
       _events: [ ],
-      _isGetting: true
+      _isGetting: true,
+      _loggedIn: user.loggedIn
     }
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  _selectEventsSort: eventsSort => { dispatch(selectEventsSort(eventsSort)) },
-  _getEventsIfNeed: eventsSort => { dispatch(getEventsIfNeed(eventsSort)) },
-  _voidGottenEvents: eventsSort => { dispatch(voidGottenEvents(eventsSort)) }
+  _selectEventsSort: eventsSort => dispatch(selectEventsSort(eventsSort)),
+  _getEventsIfNeed: eventsSort => dispatch(getEventsIfNeed(eventsSort)),
+  _voidGottenEvents: eventsSort => dispatch(voidGottenEvents(eventsSort))
 })
 
 HomePage.propTypes = {

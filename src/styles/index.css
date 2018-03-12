@@ -8,9 +8,14 @@
    min-height: 100vh;
  }
 
+ .banner-link {
+   color: rgba(255,255,255,.9);
+   text-decoration: underline;
+ }
+
  #user-modal-trigger {
    cursor: pointer;
-   color: white;
+   color: rgba(255,255,255,.9);
    text-decoration: underline;
  }
 

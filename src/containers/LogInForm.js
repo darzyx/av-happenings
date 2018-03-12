@@ -51,7 +51,7 @@ class LogInForm extends Component {
         {
           error &&
           <Message
-            header='Log In Error'
+            header={error.code}
             content={error.message}
             color='red'
           />

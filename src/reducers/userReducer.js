@@ -2,7 +2,7 @@ import { CACHE_USER_DATA, RESET_USER_DATA } from '../actions/userActions'
 
 const initUserState = {
   loggedIn: false,
-  displayName: ' ',
+  username: ' ',
   email: ' ',
   likeCount: 0,
   eventCount: 0

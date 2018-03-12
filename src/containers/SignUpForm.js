@@ -1,20 +1,59 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { timestamp, userAuth, usersDB } from '../Firebase'
 import { Field, reduxForm } from 'redux-form'
-import { Divider, Form } from 'semantic-ui-react'
+import { Form, Message } from 'semantic-ui-react'
 
 class SignUpForm extends Component {
-  _handleSubmitClick(values) {
-    console.log(values)
+  constructor(props) {
+    super(props)
+
+    this.state = {error: null, success: false }
+
+    this._handleSignUpClick = this._handleSignUpClick.bind(this)
+    this._createUserAuthentication = this._createUserAuthentication.bind(this)
+    this._createUserDatabaseEntry = this._createUserDatabaseEntry.bind(this)
+  }
+
+  _handleSignUpClick(values) {
+    this._createUserAuthentication(values)
+  }
+
+  _createUserAuthentication(values) {
+    const {email, password} = values
+
+    userAuth.createUserWithEmailAndPassword(email, password).then(
+      () => this._createUserDatabaseEntry(values),
+      (error) => this.setState({error: error})
+    )
+  }
+
+  _createUserDatabaseEntry(values) {
+    const {username, email} = values
+    const {uid} = userAuth.currentUser
+
+    console.log(uid)
+
+    usersDB.doc(uid).set({
+      username: username,
+      email: email,
+      joined: timestamp,
+      likeCount: 0,
+      eventCount: 0
+    }).then(
+      () => this.setState({ success: true }),
+      (error) => this.setState({error: error})
+    )
   }
 
   render() {
     const { handleSubmit, pristine, submitting } = this.props
     const disable = pristine || submitting
+    const { error, success } = this.state
 
     return (
-      <Form onSubmit={handleSubmit(this._handleSubmitClick)}>
+      <Form onSubmit={handleSubmit(this._handleSignUpClick)}>
         <Form.Group>
           <Form.Field
             component='input'
@@ -55,7 +94,22 @@ class SignUpForm extends Component {
             width={8}
           />
         </Form.Group>
-        <Divider hidden />
+        {
+          error &&
+          <Message
+            header={error.code}
+            content={error.message}
+            color='red'
+          />
+        }
+        {
+          success &&
+          <Message
+            header='Success'
+            content='You are now signed up!'
+            color='green'
+          />
+        }
         <Form.Group>
           <Form.Button disabled={disable} type='submit'>
             Sign Up

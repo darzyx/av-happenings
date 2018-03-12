@@ -1,12 +1,30 @@
-import { userAuth } from '../Firebase'
+import { userAuth, usersDB } from '../Firebase'
 
-export const UPDATE_LOGIN_STATUS = 'UPDATE_LOGIN_STATUS'
+export const CACHE_USER_DATA = 'CACHE_USER_DATA'
+export const RESET_USER_DATA = 'RESET_USER_DATA'
 
-const updateLogInStatus = status => ({
-  type: UPDATE_LOGIN_STATUS,
-  status
+const cacheUserData = userData => ({
+  type: CACHE_USER_DATA,
+  userData
 })
 
-export const watchLogInStatus = () => dispatch => {
-  userAuth.onAuthStateChanged((user) => dispatch(updateLogInStatus(!!user)) )
+const resetUserData = () => ({
+  type: RESET_USER_DATA
+})
+
+const getUserData = () => dispatch => {
+  const { uid } = userAuth.currentUser
+
+  usersDB.doc(uid).get().then(
+    (user) => { dispatch(cacheUserData(user.data())) },
+    // TODO: Inform the user of this error
+    () => console.log('Could not fetch the user\'s information.')
+  )
+}
+
+export const observeLoginStatus = () => dispatch => {
+  userAuth.onAuthStateChanged((user) => {
+    if (user) { dispatch(getUserData()) }
+    else { dispatch(resetUserData()) }
+  })
 }

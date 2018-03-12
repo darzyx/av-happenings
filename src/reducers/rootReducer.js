@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
+import { userReducer } from './userReducer'
 import { reducer as formReducer } from 'redux-form'
-import { logInStatusReducer } from './userReducers'
 import {
   activeEventsSortReducer,
   eventsBySortReducer,
@@ -8,9 +8,9 @@ import {
 } from './eventsReducers'
 
 const rootReducer = combineReducers({
+  user: userReducer,
   activeEventsSort: activeEventsSortReducer,
   eventsBySort: eventsBySortReducer,
-  logInStatus: logInStatusReducer,
   postEvent: postEventReducer,
   form: formReducer
 })

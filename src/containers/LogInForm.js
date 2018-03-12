@@ -2,19 +2,30 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import { Divider, Form } from 'semantic-ui-react'
+import { userAuth } from '../Firebase'
+import { Form, Message } from 'semantic-ui-react'
 
 class LogInForm extends Component {
-  _handleSubmitClick(values) {
-    console.log(values)
+  constructor(props) {
+    super(props)
+
+    this.state = { error: null }
+
+    this._handleLogInClick = this._handleLogInClick.bind(this)
+  }
+
+  _handleLogInClick(values) {
+    userAuth.signInWithEmailAndPassword(values.email, values.password)
+      .catch((error) => this.setState({ error: error }))
   }
 
   render() {
     const { handleSubmit, pristine, submitting } = this.props
     const disable = pristine || submitting
+    const { error } = this.state
 
     return (
-      <Form onSubmit={handleSubmit(this._handleSubmitClick)}>
+      <Form onSubmit={handleSubmit(this._handleLogInClick)}>
         <Form.Group>
           <Form.Field
             component='input'
@@ -37,7 +48,14 @@ class LogInForm extends Component {
             width={16}
           />
         </Form.Group>
-        <Divider hidden />
+        {
+          error &&
+          <Message
+            header='Log In Error'
+            content={error.message}
+            color='red'
+          />
+        }
         <Form.Group>
           <Form.Button disabled={disable} type='submit'>
             Log In

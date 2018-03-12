@@ -14,13 +14,9 @@ export default class HomeMenu extends Component {
     this._handleMouseOut = this._handleMouseOut.bind(this)
   }
 
-  _handleMouseOver() {
-    this.setState({ mouseOver: true })
-  }
+  _handleMouseOver = () => this.setState({ mouseOver: true })
 
-  _handleMouseOut() {
-    this.setState({ mouseOver: false })
-  }
+  _handleMouseOut = () => this.setState({ mouseOver: false })
 
   render() {
     const { activeEventsSort, handleMenuClick } = this.props

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Grid, Header, Segment } from 'semantic-ui-react'
+
 import UserModal from './UserModal'
 import NavModal from './NavModal'
 

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { Card, Container, Divider, Loader, Message } from 'semantic-ui-react'
+
 import HomeMenu from './HomeMenu'
 import EventCard from '../components/EventCard'
 import SunIcon from '../components/SunIcon'
@@ -10,7 +12,6 @@ import {
   getEventsIfNeed,
   voidGottenEvents
 } from '../actions/eventsActions'
-import { Card, Container, Divider, Loader, Message } from 'semantic-ui-react'
 
 class HomePage extends Component {
   constructor(props) {
@@ -95,24 +96,22 @@ class HomePage extends Component {
 
 const mapStateToProps = state => {
   const { activeEventsSort, eventsBySort, user } = state
+  const stateProps = {
+    _activeEventsSort: activeEventsSort,
+    _loggedIn: user.loggedIn,
+    _isGetting: null,
+    _events: null
+  }
 
   if (eventsBySort[activeEventsSort]) {
-    const { isGetting, items } = eventsBySort[activeEventsSort]
-
-    return {
-      _activeEventsSort: activeEventsSort,
-      _events: items,
-      _isGetting: isGetting,
-      _loggedIn: user.loggedIn
-    }
+    stateProps._events = eventsBySort[activeEventsSort].items
+    stateProps._isGetting = eventsBySort[activeEventsSort].isGetting
   } else {
-    return {
-      _activeEventsSort: activeEventsSort,
-      _events: [ ],
-      _isGetting: true,
-      _loggedIn: user.loggedIn
-    }
+    stateProps._events = [ ]
+    stateProps._isGetting = true
   }
+
+  return stateProps
 }
 
 const mapDispatchToProps = dispatch => ({

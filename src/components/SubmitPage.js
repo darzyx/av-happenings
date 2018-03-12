@@ -1,6 +1,7 @@
 import React from 'react'
-import SubmitForm from '../containers/SubmitForm'
 import { Container, Divider, Header, Message, Segment } from 'semantic-ui-react'
+
+import SubmitForm from '../containers/SubmitForm'
 
 const SubmitPage = () => (
   <Container>

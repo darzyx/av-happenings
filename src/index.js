@@ -4,10 +4,11 @@ import { applyMiddleware, createStore } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
-import rootReducer from './reducers/rootReducer'
 import 'semantic-ui-css/semantic.min.css'
+
 import './styles/index.css'
 import App from './App'
+import rootReducer from './reducers/rootReducer'
 import registerServiceWorker from './utilities/registerServiceWorker'
 
 const middleware = [thunk]

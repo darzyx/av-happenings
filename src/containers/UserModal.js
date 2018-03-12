@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Header, Icon, Modal, Statistic } from 'semantic-ui-react'
+import TimeAgo from 'react-timeago'
 
 export default class UserModal extends Component {
   state = { modalOpen: false }
@@ -9,7 +10,7 @@ export default class UserModal extends Component {
   _handleClose = () => this.setState({ modalOpen: false })
 
   render() {
-    const { username, email, likeCount, eventCount } = this.props.user
+    const { username, email, likeCount, eventCount, joined } = this.props.user
 
     return (
       <Modal
@@ -41,7 +42,7 @@ export default class UserModal extends Component {
             </Statistic.Group>
             <Header textAlign='center'>
               <Header.Subheader>
-                Joined 4 months ago
+                Joined <TimeAgo date={joined} />
               </Header.Subheader>
             </Header>
           </Modal.Description>

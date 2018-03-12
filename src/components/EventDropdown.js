@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Dropdown } from 'semantic-ui-react'
+
 import ReportEventModal from '../containers/ReportEventModal'
 import DeleteEventModal from '../containers/DeleteEventModal'
 

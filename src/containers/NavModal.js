@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { userAuth } from '../Firebase'
 import { Button, Modal } from 'semantic-ui-react'
+
+import { userAuth } from '../Firebase'
 import NavButton from '../components/NavButton'
 
 class NavModal extends Component {

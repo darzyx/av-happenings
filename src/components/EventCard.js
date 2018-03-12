@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Card, Icon, Image, Menu } from 'semantic-ui-react'
+
 import EventDropdown from './EventDropdown'
 
 const sampleImage = require('../media/example.jpg')

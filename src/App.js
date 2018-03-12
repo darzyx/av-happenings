@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+
 import RouterScrollReset from './containers/RouterScrollReset'
 import { observeLoginStatus } from './actions/userActions'
 import Banner from './containers/Banner'

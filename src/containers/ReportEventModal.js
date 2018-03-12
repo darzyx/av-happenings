@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import { Dropdown, Modal } from 'semantic-ui-react'
+
 import ReportForm from './ReportForm'
 import ReportFormButtons from './ReportFormButtons'
-import { Dropdown, Modal } from 'semantic-ui-react'
 
 export default class ReportEventModal extends Component {
   constructor(props) {

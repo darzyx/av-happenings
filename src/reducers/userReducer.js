@@ -6,7 +6,7 @@ const initUserState = {
   email: ' ',
   likeCount: 0,
   eventCount: 0,
-  uid: null,
+  uid: ' ',
   loaded: false
 }
 

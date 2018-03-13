@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {Card, Icon, Image, Menu} from 'semantic-ui-react'
 import TimeAgo from 'react-timeago'
 
-import EventDropdown from '../components/EventDropdown'
+import EventDropdown from './EventDropdown'
 
 const sampleImage = require('../media/example.jpg')
 
@@ -35,7 +35,8 @@ export default class EventCard extends Component {
       likeCount,
       time,
       timestamp,
-      username
+      username,
+      uid
     } = this.props.event
 
     return (
@@ -49,7 +50,7 @@ export default class EventCard extends Component {
           src={sampleImage}
         />
         <Card.Content>
-          <EventDropdown />
+          <EventDropdown eventUID={uid} />
           <Card.Header>{title}</Card.Header>
           <Card.Meta>{date} @ {time}</Card.Meta>
           <Card.Meta>{location}</Card.Meta>

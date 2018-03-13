@@ -16,7 +16,7 @@ class Banner extends Component {
           <Grid.Row columns={2}>
             <Grid.Column width={10}>
               <Header as={Link} inverted to='/'>
-                Antelope Valley Happenings
+                AV Happenings
               </Header>
               <br />
               {

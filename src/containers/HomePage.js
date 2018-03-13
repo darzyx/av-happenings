@@ -7,6 +7,7 @@ import {Card, Container, Divider, Loader, Message} from 'semantic-ui-react'
 import HomeMenu from './HomeMenu'
 import EventCard from './EventCard'
 import SunIcon from '../components/SunIcon'
+import WelcomeBanner from '../components/WelcomeBanner'
 import {
   selectEventsSort,
   getEventsIfNeed,
@@ -60,7 +61,7 @@ class HomePage extends Component {
   }
 
   render() {
-    const {_activeEventsSort, _events, _isGetting} = this.props
+    const {_activeEventsSort, _events, _isGetting, _loggedIn} = this.props
     const noEvents = _events.length === 0
     const {_handleMenuClick } = this
 
@@ -70,22 +71,28 @@ class HomePage extends Component {
           activeEventsSort={_activeEventsSort}
           handleMenuClick={_handleMenuClick}
         />
-        <Divider hidden />
         <Container>
+          {
+            !_loggedIn &&
+            <React.Fragment>
+              <Divider hidden />
+              <WelcomeBanner />
+            </React.Fragment>
+          }
           <Divider hidden />
-            {
-              _isGetting ?
-              <Loader active content='Loading...' inline='centered' /> :
-              noEvents ?
-              <Message content='No happenings fetched!' header='Empty' /> :
-              <Card.Group doubling itemsPerRow={3} stackable>
-                {
-                  _events.map((event, key) =>
-                    <EventCard event={event} key={key} />
-                  )
-                }
-              </Card.Group>
-            }
+          {
+            _isGetting ?
+            <Loader active content='Loading...' inline='centered' /> :
+            noEvents ?
+            <Message content='No happenings fetched!' header='Empty' /> :
+            <Card.Group doubling itemsPerRow={3} stackable>
+              {
+                _events.map((event, key) =>
+                  <EventCard event={event} key={key} />
+                )
+              }
+            </Card.Group>
+          }
           <Divider hidden />
         </Container>
         <Link to='/submit'><SunIcon /></Link>
@@ -95,11 +102,12 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = state => {
-  const {activeEventsSort, eventsBySort} = state
+  const {activeEventsSort, eventsBySort, user} = state
   const stateProps = {
     _activeEventsSort: activeEventsSort,
+    _loggedIn: user.loggedIn,
     _isGetting: null,
-    _events: null
+    _events: null,
   }
 
   if (eventsBySort[activeEventsSort]) {
@@ -121,6 +129,7 @@ const mapDispatchToProps = dispatch => ({
 
 HomePage.propTypes = {
   _activeEventsSort: PropTypes.string.isRequired,
+  _loggedIn: PropTypes.bool.isRequired,
   _events: PropTypes.array.isRequired,
   _isGetting: PropTypes.bool.isRequired,
   _selectEventsSort: PropTypes.func.isRequired,

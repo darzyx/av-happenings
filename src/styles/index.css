@@ -34,6 +34,20 @@
   border-radius: 0;
 }
 
+#welcome-banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 15vh;
+  background: url('../media/joshua-tree.png') center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  font-size: 1.5rem;
+}
+
 #sun-icon {
   position: fixed;
   z-index: 1;

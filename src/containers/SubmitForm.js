@@ -7,14 +7,24 @@ import { Divider, Form, Message } from 'semantic-ui-react'
 import { postEventIfValid } from '../actions/eventsActions'
 
 class SubmitForm extends Component {
+  constructor(props) {
+    super(props)
+
+    this._handleSubmitClick = this._handleSubmitClick.bind(this)
+  }
+
+  _handleSubmitClick(event) {
+    const {_postEventIfValid, _user} = this.props
+
+    _postEventIfValid(event, _user)
+  }
+
   render() {
-    const {
-      handleSubmit, _postEventIfValid, _error, pristine, reset, submitting
-    } = this.props
+    const {handleSubmit, _error, pristine, reset, submitting} = this.props
     const disable = pristine || submitting
 
     return (
-      <Form onSubmit={handleSubmit(_postEventIfValid)}>
+      <Form onSubmit={handleSubmit(this._handleSubmitClick)}>
         <Form.Group>
           <Form.Field
             component='input'
@@ -88,11 +98,12 @@ class SubmitForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  _error: state.postEvent.error
+  _error: state.postEvent.error,
+  _user: state.user
 })
 
 const mapDispatchToProps = dispatch => ({
-  _postEventIfValid: event => dispatch(postEventIfValid(event))
+  _postEventIfValid: (event, user) => dispatch(postEventIfValid(event, user))
 })
 
 SubmitForm.propTypes = {

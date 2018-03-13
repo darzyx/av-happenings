@@ -16,7 +16,7 @@ const getUserData = () => dispatch => {
   const { uid } = userAuth.currentUser
 
   usersDB.doc(uid).get().then(
-    (user) => { dispatch(cacheUserData(user.data())) },
+    (user) => { dispatch(cacheUserData({uid: uid, ...user.data()})) },
     // TODO: Inform the user of this error
     () => console.log('Could not fetch the user\'s information.')
   )

@@ -108,9 +108,13 @@ const postEventFailure = error => ({
   payload: error
 })
 
-const postEvent = event => dispatch => {
-  event.timestamp = timestamp
+const postEvent = (event, user) => dispatch => {
   event.featured = false
+  event.timestamp = timestamp
+  event.uid = user.uid
+  event.username = user.username
+  event.likeCount = 1
+  event.commentCount = 0
 
   eventsDB.add(event).then(
     (docRef) => { dispatch(postEventSuccess(docRef.id)) },
@@ -128,10 +132,10 @@ const eventFieldErrors = event => {
   }
 }
 
-export const postEventIfValid = event => dispatch => {
+export const postEventIfValid = (event, user) => dispatch => {
   dispatch(postEventRequest())
 
-  if (eventFieldErrors(event) === 'none') { dispatch(postEvent(event)) }
+  if (eventFieldErrors(event) === 'none') { dispatch(postEvent(event, user)) }
   else { dispatch(postEventFailure(eventFieldErrors(event))) }
 }
 

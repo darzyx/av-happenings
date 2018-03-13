@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Menu } from 'semantic-ui-react'
 
-const menuOptions = ['top', 'hot', 'new', 'liked', 'mine']
+const menuOptions = ['top', 'featured', 'new', 'liked', 'mine']
 
 export default class HomeMenu extends Component {
   constructor(props) {

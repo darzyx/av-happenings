@@ -9,7 +9,11 @@ const sampleImage = require('../media/example.jpg')
 const EventCard = ({ event }) => (
   <Card color='blue'>
     <Image
-      label={{ color: 'yellow', content: 'Featured', ribbon: true }}
+      label={
+        event.featured ?
+        { color: 'yellow', content: 'Featured!', ribbon: true } :
+        null
+      }
       src={sampleImage}
     />
     <Card.Content>
@@ -23,11 +27,11 @@ const EventCard = ({ event }) => (
       <Menu icon='labeled' secondary size='mini' widths={2}>
         <Menu.Item>
           <Icon name='comment outline' />
-          8
+          {event.likeCount}
         </Menu.Item>
         <Menu.Item>
           <Icon name='heart outline' />
-          104
+          {event.commentCount}
         </Menu.Item>
       </Menu>
     </Card.Content>

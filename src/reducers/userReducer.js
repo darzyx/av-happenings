@@ -5,7 +5,8 @@ const initUserState = {
   username: ' ',
   email: ' ',
   likeCount: 0,
-  eventCount: 0
+  eventCount: 0,
+  uid: null
 }
 
 export const userReducer = (state = initUserState, action) => {

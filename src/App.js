@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom'
 
 import RouterScrollReset from './containers/RouterScrollReset'
-import { observeLoginStatus } from './actions/userActions'
+import {observeLoginStatus} from './actions/userActions'
 import Banner from './containers/Banner'
 import HomePage from './containers/HomePage'
 import LogInPage from './components/LogInPage'
@@ -14,7 +14,7 @@ import AboutPage from './components/AboutPage'
 import NotFoundPage from './components/NotFoundPage'
 
 class App extends Component {
-  componentDidMount() { this.props._observeLoginStatus() }
+  componentDidMount() {this.props._observeLoginStatus() }
 
   render() {
     const {_loggedIn} = this.props

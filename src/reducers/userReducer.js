@@ -1,4 +1,4 @@
-import { CACHE_USER_DATA, RESET_USER_DATA } from '../actions/userActions'
+import {CACHE_USER_DATA, RESET_USER_DATA} from '../actions/userActions'
 
 const initUserState = {
   loggedIn: false,

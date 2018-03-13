@@ -1,35 +1,37 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Button, Modal } from 'semantic-ui-react'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {Button, Modal} from 'semantic-ui-react'
 
-import { userAuth } from '../Firebase'
+import {userAuth} from '../Firebase'
 import NavButton from '../components/NavButton'
 
 class NavModal extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { modalOpen: false }
+    this.state = {modalOpen: false}
 
     this._handleOpen = this._handleOpen.bind(this)
     this._handleClose = this._handleClose.bind(this)
     this._handleLogOut = this._handleLogOut.bind(this)
   }
 
-  _handleOpen = () => this.setState({ modalOpen: true })
+  _handleOpen = () => this.setState({modalOpen: true})
 
-  _handleClose = () => this.setState({ modalOpen: false })
+  _handleClose = () => this.setState({modalOpen: false})
 
   _handleLogOut = () => userAuth.signOut()
 
   render() {
-    const { _handleOpen, _handleClose, _handleLogOut } = this
-    const { modalOpen } = this.state
-    const { _loggedIn } = this.props
+    const {_handleOpen, _handleClose, _handleLogOut} = this
+    const {modalOpen} = this.state
+    const {_loggedIn} = this.props
 
     return (
       <Modal
-        trigger={<Button floated='right' icon='bars' onClick={_handleOpen}/>}
+        trigger={
+          <Button floated='right' icon='bars' inverted onClick={_handleOpen} />
+        }
         onClose={_handleClose}
         open={modalOpen}
         basic
@@ -56,6 +58,6 @@ class NavModal extends Component {
   }
 }
 
-const mapStateToProps = state => ({ _loggedIn: state.user.loggedIn })
+const mapStateToProps = state => ({_loggedIn: state.user.loggedIn})
 
 export default connect(mapStateToProps, null)(NavModal)

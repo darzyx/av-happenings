@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { Card, Container, Divider, Loader, Message } from 'semantic-ui-react'
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+import {Card, Container, Divider, Loader, Message} from 'semantic-ui-react'
 
 import HomeMenu from './HomeMenu'
-import EventCard from '../components/EventCard'
+import EventCard from './EventCard'
 import SunIcon from '../components/SunIcon'
 import {
   selectEventsSort,
@@ -23,14 +23,14 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
-    const { _activeEventsSort, _getEventsIfNeed } = this.props
+    const {_activeEventsSort, _getEventsIfNeed} = this.props
 
     _getEventsIfNeed(_activeEventsSort)
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps._activeEventsSort !== this.props._activeEventsSort) {
-      const { _activeEventsSort, _getEventsIfNeed } = nextProps
+      const {_activeEventsSort, _getEventsIfNeed} = nextProps
 
       _getEventsIfNeed(_activeEventsSort)
     }
@@ -53,16 +53,16 @@ class HomePage extends Component {
   }
 
   _handleMenuClick(item) {
-    const { _activeEventsSort } = this.props
+    const {_activeEventsSort} = this.props
 
-    if (item === _activeEventsSort) { this._handleRefresh() }
-    else { this._handleChangeSort(item) }
+    if (item === _activeEventsSort) {this._handleRefresh() }
+    else {this._handleChangeSort(item) }
   }
 
   render() {
-    const { _activeEventsSort, _events, _isGetting } = this.props
+    const {_activeEventsSort, _events, _isGetting} = this.props
     const noEvents = _events.length === 0
-    const { _handleMenuClick } = this
+    const {_handleMenuClick } = this
 
     return (
       <div id='home-page'>
@@ -95,7 +95,7 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = state => {
-  const { activeEventsSort, eventsBySort } = state
+  const {activeEventsSort, eventsBySort} = state
   const stateProps = {
     _activeEventsSort: activeEventsSort,
     _isGetting: null,

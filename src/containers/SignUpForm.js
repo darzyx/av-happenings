@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
-import { Form, Message } from 'semantic-ui-react'
+import {connect} from 'react-redux'
+import {Field, reduxForm} from 'redux-form'
+import {Form, Message} from 'semantic-ui-react'
 
-import { timestamp, userAuth, usersDB } from '../Firebase'
+import {timestamp, userAuth, usersDB} from '../Firebase'
 
 class SignUpForm extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {error: null, success: false }
+    this.state = {error: null, success: false}
 
     this._handleSignUpClick = this._handleSignUpClick.bind(this)
     this._createUserAuthentication = this._createUserAuthentication.bind(this)
@@ -43,15 +43,15 @@ class SignUpForm extends Component {
       likeCount: 0,
       eventCount: 0
     }).then(
-      () => this.setState({ success: true }),
+      () => this.setState({success: true}),
       (error) => this.setState({error: error})
     )
   }
 
   render() {
-    const { handleSubmit, pristine, submitting } = this.props
+    const {handleSubmit, pristine, submitting} = this.props
     const disable = pristine || submitting
-    const { error, success } = this.state
+    const {error, success} = this.state
 
     return (
       <Form onSubmit={handleSubmit(this._handleSignUpClick)}>
@@ -127,6 +127,6 @@ SignUpForm.propTypes = {
   submitting: PropTypes.bool.isRequired
 }
 
-SignUpForm = reduxForm({ form: 'signup' })(SignUpForm)
+SignUpForm = reduxForm({form: 'signup' })(SignUpForm)
 
 export default connect(null, null)(SignUpForm)

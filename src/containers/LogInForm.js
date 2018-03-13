@@ -1,29 +1,29 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
-import { Form, Message } from 'semantic-ui-react'
+import {connect} from 'react-redux'
+import {Field, reduxForm} from 'redux-form'
+import {Form, Message} from 'semantic-ui-react'
 
-import { userAuth } from '../Firebase'
+import {userAuth} from '../Firebase'
 
 class LogInForm extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { error: null }
+    this.state = {error: null}
 
     this._handleLogInClick = this._handleLogInClick.bind(this)
   }
 
   _handleLogInClick(values) {
     userAuth.signInWithEmailAndPassword(values.email, values.password)
-      .catch((error) => this.setState({ error: error }))
+      .catch((error) => this.setState({error: error}))
   }
 
   render() {
-    const { handleSubmit, pristine, submitting } = this.props
+    const {handleSubmit, pristine, submitting} = this.props
     const disable = pristine || submitting
-    const { error } = this.state
+    const {error} = this.state
 
     return (
       <Form onSubmit={handleSubmit(this._handleLogInClick)}>
@@ -73,6 +73,6 @@ LogInForm.propTypes = {
   submitting: PropTypes.bool.isRequired
 }
 
-LogInForm = reduxForm({ form: 'login' })(LogInForm)
+LogInForm = reduxForm({form: 'login' })(LogInForm)
 
 export default connect(null, null)(LogInForm)

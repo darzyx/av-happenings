@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
-import { Header, Icon, Modal, Statistic } from 'semantic-ui-react'
+import React, {Component} from 'react'
+import {Header, Icon, Modal, Statistic} from 'semantic-ui-react'
 import TimeAgo from 'react-timeago'
 
 export default class UserModal extends Component {
-  state = { modalOpen: false }
+  state = {modalOpen: false }
 
-  _handleOpen = () => this.setState({ modalOpen: true })
+  _handleOpen = () => this.setState({modalOpen: true})
 
-  _handleClose = () => this.setState({ modalOpen: false })
+  _handleClose = () => this.setState({modalOpen: false})
 
   render() {
-    const { username, email, likeCount, eventCount, joined } = this.props.user
+    const {username, email, likeCount, eventCount, joined} = this.props.user
 
     return (
       <Modal

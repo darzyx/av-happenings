@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { Grid, Header, Segment } from 'semantic-ui-react'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+import {Grid, Header, Segment} from 'semantic-ui-react'
 
 import UserModal from './UserModal'
 import NavModal from './NavModal'
 
 class Banner extends Component {
   render() {
-    const { _user } = this.props
+    const {_user} = this.props
 
     return (
       <Segment attached='top' basic id='header' inverted>
@@ -21,9 +21,7 @@ class Banner extends Component {
               <br />
               {
                 _user.loggedIn ?
-                <div>
-                  <p>Hello, <UserModal user={_user} />!</p>
-                </div> :
+                <div><p>Hello, <UserModal user={_user} />!</p></div> :
                 <div>
                   <p>
                     <Link className='banner-link' to='/login'>Log In </Link>

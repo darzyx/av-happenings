@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Divider, Header, Segment } from 'semantic-ui-react'
+import {Container, Divider, Header, Segment} from 'semantic-ui-react'
 
 const HelpPage = () => (
   <Container>

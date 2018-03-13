@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
-import { Divider, Form, Message } from 'semantic-ui-react'
+import {connect} from 'react-redux'
+import {Field, reduxForm} from 'redux-form'
+import {Divider, Form, Message} from 'semantic-ui-react'
 
-import { postEventIfValid } from '../actions/eventsActions'
+import {postEventIfValid} from '../actions/eventsActions'
 
 class SubmitForm extends Component {
   constructor(props) {
@@ -115,6 +115,6 @@ SubmitForm.propTypes = {
   submitting: PropTypes.bool.isRequired
 }
 
-SubmitForm = reduxForm({ form: 'submit' })(SubmitForm)
+SubmitForm = reduxForm({form: 'submit'})(SubmitForm)
 
 export default connect(mapStateToProps, mapDispatchToProps)(SubmitForm)

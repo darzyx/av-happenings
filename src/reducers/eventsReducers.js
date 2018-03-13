@@ -63,7 +63,7 @@ const eventsReducer = (state = initEventsState, action) => {
   }
 }
 
-export const eventsBySortReducer = (state = { }, action) => {
+export const eventsBySortReducer = (state = {}, action) => {
   switch (action.type) {
     case VOID_GOTTEN_EVENTS:
     case GET_EVENTS_REQUEST:
@@ -80,7 +80,7 @@ export const eventsBySortReducer = (state = { }, action) => {
 
 // POST EVENT REDUCER
 
-const initPostEventState = { error: ' ', id: null, requesting: false }
+const initPostEventState = {error: ' ', id: null, requesting: false}
 
 export const postEventReducer = (state = initPostEventState, action) => {
   switch (action.type) {

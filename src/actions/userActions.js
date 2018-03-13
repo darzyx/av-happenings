@@ -1,4 +1,4 @@
-import { userAuth, usersDB } from '../Firebase'
+import {userAuth, usersDB} from '../Firebase'
 
 export const CACHE_USER_DATA = 'CACHE_USER_DATA'
 export const RESET_USER_DATA = 'RESET_USER_DATA'
@@ -16,7 +16,7 @@ const getUserData = () => dispatch => {
   const { uid } = userAuth.currentUser
 
   usersDB.doc(uid).get().then(
-    (user) => { dispatch(cacheUserData({uid: uid, ...user.data()})) },
+    (user) => dispatch(cacheUserData({uid: uid, ...user.data()})),
     // TODO: Inform the user of this error
     () => console.log('Could not fetch the user\'s information.')
   )

@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
-import { Button } from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
+import {Button} from 'semantic-ui-react'
 
-const NavButton = ({ attached, content, logOut, to }) => (
+const NavButton = ({attached, content, logOut, to}) => (
   <Button
     as={Link}
     attached={ attached || true}

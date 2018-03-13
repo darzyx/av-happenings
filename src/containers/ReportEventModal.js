@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Dropdown, Modal } from 'semantic-ui-react'
+import React, {Component} from 'react'
+import {Dropdown, Modal} from 'semantic-ui-react'
 
 import ReportForm from './ReportForm'
 import ReportFormButtons from './ReportFormButtons'
@@ -8,15 +8,15 @@ export default class ReportEventModal extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { modalOpen: false }
+    this.state = {modalOpen: false}
 
     this._handleModalOpen = this._handleModalOpen.bind(this)
     this._handleModalClose = this._handleModalClose.bind(this)
   }
 
-  _handleModalOpen = () => this.setState({ modalOpen: true })
+  _handleModalOpen = () => this.setState({modalOpen: true})
 
-  _handleModalClose = () => this.setState({ modalOpen: false })
+  _handleModalClose = () => this.setState({modalOpen: false})
 
   render() {
     return (

@@ -1,6 +1,6 @@
-import { combineReducers } from 'redux'
-import { userReducer } from './userReducer'
-import { reducer as formReducer } from 'redux-form'
+import {combineReducers} from 'redux'
+import {userReducer} from './userReducer'
+import {reducer as formReducer} from 'redux-form'
 import {
   activeEventsSortReducer,
   eventsBySortReducer,

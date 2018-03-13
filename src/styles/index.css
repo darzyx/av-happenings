@@ -49,8 +49,30 @@
   max-height: 100px;
 }
 
+#heart-icon {
+  color: rgba(0,0,0,.5);
+  cursor: pointer;
+}
+
+#heart-icon:hover {
+  color: #e03997;
+}
+
+#comment-icon {
+  color: rgba(0,0,0,.5);
+  cursor: pointer;
+}
+
+#comment-icon:hover {
+  color: #00b5ad;
+}
+
 .card-dropdown {
   float: right;
+}
+
+#card-footer {
+  font-size: 0.8rem;
 }
 
 .radio-container {

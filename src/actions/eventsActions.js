@@ -1,4 +1,4 @@
-import { eventsDB, timestamp } from '../Firebase'
+import {eventsDB, timestamp} from '../Firebase'
 
 // ACTION TYPES
 
@@ -123,7 +123,7 @@ const postEvent = (event, user) => dispatch => {
 }
 
 const eventFieldErrors = event => {
-  const { title, date, time, location, description } = event
+  const {title, date, time, location, description} = event
 
   if (!!(title && date && time && location && description) === false) {
     return 'All fields are required before submitting.'

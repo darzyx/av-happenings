@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { Menu } from 'semantic-ui-react'
+import {Menu} from 'semantic-ui-react'
 
 const menuOptions = ['top', 'featured', 'new', 'liked', 'mine']
 
@@ -8,20 +8,20 @@ export default class HomeMenu extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { mouseOver: false }
+    this.state = {mouseOver: false}
 
     this._handleMouseOver = this._handleMouseOver.bind(this)
     this._handleMouseOut = this._handleMouseOut.bind(this)
   }
 
-  _handleMouseOver = () => this.setState({ mouseOver: true })
+  _handleMouseOver = () => this.setState({mouseOver: true})
 
-  _handleMouseOut = () => this.setState({ mouseOver: false })
+  _handleMouseOut = () => this.setState({mouseOver: false})
 
   render() {
-    const { activeEventsSort, handleMenuClick } = this.props
-    const { _handleMouseOver, _handleMouseOut } = this
-    const { mouseOver } = this.state
+    const {activeEventsSort, handleMenuClick} = this.props
+    const {_handleMouseOver, _handleMouseOut} = this
+    const {mouseOver} = this.state
 
     return (
       <Menu

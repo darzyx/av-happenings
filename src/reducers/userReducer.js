@@ -6,7 +6,8 @@ const initUserState = {
   email: ' ',
   likeCount: 0,
   eventCount: 0,
-  uid: null
+  uid: null,
+  loaded: false
 }
 
 export const userReducer = (state = initUserState, action) => {
@@ -14,11 +15,15 @@ export const userReducer = (state = initUserState, action) => {
     case CACHE_USER_DATA:
       return {
         ...state,
+        ...action.userData,
         loggedIn: true,
-        ...action.userData
+        loaded: true
       }
     case RESET_USER_DATA:
-      return initUserState
+      return {
+        ...initUserState,
+        loaded: true
+      }
     default:
       return state
   }

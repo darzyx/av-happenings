@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {Grid, Header, Segment} from 'semantic-ui-react'
+import {Grid, Header as Heading, Segment} from 'semantic-ui-react'
 
 import UserModal from './UserModal'
 import NavModal from './NavModal'
 
-class Banner extends Component {
+class Header extends Component {
   render() {
     const {_user} = this.props
 
@@ -15,9 +15,9 @@ class Banner extends Component {
         <Grid>
           <Grid.Row columns={2}>
             <Grid.Column width={10}>
-              <Header as={Link} inverted to='/'>
+              <Heading as={Link} inverted to='/'>
                 AV Happenings
-              </Header>
+              </Heading>
               <br />
               {
                 _user.loggedIn ?
@@ -45,4 +45,4 @@ const mapStateToProps = state => ({
   _user: state.user
 })
 
-export default connect(mapStateToProps, null)(Banner)
+export default connect(mapStateToProps, null)(Header)

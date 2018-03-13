@@ -1,17 +1,17 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {Header, Segment} from 'semantic-ui-react'
+import {Header as Heading, Segment} from 'semantic-ui-react'
 
 const WelcomeBanner = () => (
   <Link to='/signup'>
     <Segment id='welcome-banner' inverted raised textAlign='center'>
-      <Header inverted>
+      <Heading inverted>
         Welcome to Antelope Valley Happenings!
-        <Header.Subheader>
+        <Heading.Subheader>
           Discover, share, and discuss community submitted events!
           Click to join!
-        </Header.Subheader>
-      </Header>
+        </Heading.Subheader>
+      </Heading>
     </Segment>
   </Link>
 )

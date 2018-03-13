@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Header, Icon, Modal, Statistic} from 'semantic-ui-react'
+import {Header as Heading, Icon, Modal, Statistic} from 'semantic-ui-react'
 import TimeAgo from 'react-timeago'
 
 export default class UserModal extends Component {
@@ -23,7 +23,7 @@ export default class UserModal extends Component {
         onClose={this._handleClose}
         size='small'
       >
-        <Header content={username} subheader={email} textAlign='center' />
+        <Heading content={username} subheader={email} textAlign='center' />
         <Modal.Content>
           <Modal.Description>
             <Statistic.Group size='mini' widths={2}>
@@ -40,11 +40,11 @@ export default class UserModal extends Component {
                 </Statistic.Label>
               </Statistic>
             </Statistic.Group>
-            <Header textAlign='center'>
-              <Header.Subheader>
+            <Heading textAlign='center'>
+              <Heading.Subheader>
                 Joined <TimeAgo date={joined} />
-              </Header.Subheader>
-            </Header>
+              </Heading.Subheader>
+            </Heading>
           </Modal.Description>
         </Modal.Content>
       </Modal>

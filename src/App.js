@@ -5,7 +5,7 @@ import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom'
 import RouterScrollReset from './containers/RouterScrollReset'
 import {observeLoginStatus} from './actions/userActions'
 import LoadingDimmer from './components/LoadingDimmer'
-import Banner from './containers/Banner'
+import Header from './containers/Header'
 import HomePage from './containers/HomePage'
 import LogInPage from './components/LogInPage'
 import SignUpPage from './components/SignUpPage'
@@ -26,7 +26,7 @@ class App extends Component {
         {
           _userLoaded ?
           <div id='app'>
-            <Banner />
+            <Header />
             <Switch>
               <Route exact path='/' component={HomePage} />
               <Route path='/login' render={() =>

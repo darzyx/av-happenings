@@ -36,7 +36,8 @@ export default class EventCard extends Component {
       time,
       timestamp,
       username,
-      uid
+      uid,
+      id
     } = this.props.event
 
     return (
@@ -50,7 +51,7 @@ export default class EventCard extends Component {
           src={sampleImage}
         />
         <Card.Content>
-          <EventDropdown eventUID={uid} />
+          <EventDropdown eventUID={uid} eventID={id} />
           <Card.Header>{title}</Card.Header>
           <Card.Meta>{date} @ {time}</Card.Meta>
           <Card.Meta>{location}</Card.Meta>

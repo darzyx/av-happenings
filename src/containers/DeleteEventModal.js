@@ -1,7 +1,11 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
 import {Button, Dropdown, Modal} from 'semantic-ui-react'
 
-export default class DeleteEventModal extends Component {
+import {deleteEvent} from '../actions/eventsActions'
+
+class DeleteEventModal extends Component {
   constructor(props) {
     super(props)
 
@@ -9,14 +13,23 @@ export default class DeleteEventModal extends Component {
 
     this._handleModalOpen = this._handleModalOpen.bind(this)
     this._handleModalClose = this._handleModalClose.bind(this)
+    this._handleDeleteClick = this._handleDeleteClick.bind(this)
   }
 
   _handleModalOpen = () => this.setState({modalOpen: true})
 
   _handleModalClose = () => this.setState({modalOpen: false})
 
+  _handleDeleteClick() {
+    const {_deleteEvent, eventID} = this.props
+
+    _deleteEvent(eventID)
+
+    this._handleModalClose()
+  }
+
   render() {
-    const {_handleModalOpen, _handleModalClose} = this
+    const {_handleModalOpen, _handleModalClose, _handleDeleteClick} = this
     const {modalOpen} = this.state
 
     return (
@@ -40,9 +53,21 @@ export default class DeleteEventModal extends Component {
         </Modal.Content>
         <Modal.Actions>
           <Button onClick={_handleModalClose}>Back</Button>
-          <Button onClick={_handleModalClose}>Delete Forever</Button>
+          <Button onClick={_handleDeleteClick}>Delete Forever</Button>
         </Modal.Actions>
       </Modal>
     )
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  _deleteEvent: id => dispatch(deleteEvent(id))
+})
+
+DeleteEventModal.propTypes = {
+  _deleteEvent: PropTypes.func.isRequired,
+  eventID: PropTypes.string.isRequired,
+  eventUID: PropTypes.string.isRequired
+}
+
+export default connect(null, mapDispatchToProps)(DeleteEventModal)

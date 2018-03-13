@@ -8,7 +8,7 @@ import DeleteEventModal from './DeleteEventModal'
 
 class EventDropdown extends Component {
   render() {
-    const {eventUID, _user} = this.props
+    const {eventID, eventUID, _user} = this.props
     const userIsOwner = _user.uid === eventUID
 
     return (
@@ -17,7 +17,11 @@ class EventDropdown extends Component {
           <Dropdown.Item icon='linkify' text='Copy link' />
           {
             _user.loggedIn &&
-            (userIsOwner ? <DeleteEventModal /> : <ReportEventModal />)
+            (
+              userIsOwner ?
+              <DeleteEventModal eventID={eventID} eventUID={eventUID} /> :
+              <ReportEventModal />
+            )
           }
         </Dropdown.Menu>
       </Dropdown>
@@ -30,6 +34,7 @@ const mapStateToProps = state => ({
 })
 
 EventDropdown.propTypes = {
+  eventID: PropTypes.string.isRequired,
   eventUID: PropTypes.string.isRequired,
   _user: PropTypes.object.isRequired
 }

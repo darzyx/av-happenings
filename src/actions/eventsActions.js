@@ -154,7 +154,7 @@ const deleteEventFailure = error => ({
   payload: error
 })
 
-export const deleteEventActions = id => dispatch => {
+export const deleteEvent = id => dispatch => {
   dispatch(deleteEventRequest())
 
   eventsDB.doc(id).delete().then(

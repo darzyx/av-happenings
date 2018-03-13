@@ -60,7 +60,7 @@ class HomePage extends Component {
   }
 
   render() {
-    const { _activeEventsSort, _events, _isGetting, _loggedIn } = this.props
+    const { _activeEventsSort, _events, _isGetting } = this.props
     const noEvents = _events.length === 0
     const { _handleMenuClick } = this
 
@@ -88,17 +88,16 @@ class HomePage extends Component {
             }
           <Divider hidden />
         </Container>
-        <Link to={_loggedIn ? '/submit' : '/login'}><SunIcon /></Link>
+        <Link to='/submit'><SunIcon /></Link>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => {
-  const { activeEventsSort, eventsBySort, user } = state
+  const { activeEventsSort, eventsBySort } = state
   const stateProps = {
     _activeEventsSort: activeEventsSort,
-    _loggedIn: user.loggedIn,
     _isGetting: null,
     _events: null
   }

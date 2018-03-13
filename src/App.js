@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 
 import RouterScrollReset from './containers/RouterScrollReset'
 import { observeLoginStatus } from './actions/userActions'
@@ -17,6 +17,8 @@ class App extends Component {
   componentDidMount() { this.props._observeLoginStatus() }
 
   render() {
+    const {_loggedIn} = this.props
+
     return (
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <RouterScrollReset>
@@ -24,9 +26,13 @@ class App extends Component {
             <Banner />
             <Switch>
               <Route exact path='/' component={HomePage} />
-              <Route path='/login' component={LogInPage} />
+              <Route path='/login' render={() =>
+                _loggedIn ? <Redirect to='/' /> : <LogInPage />
+              }/>
               <Route path='/signup' component={SignUpPage} />
-              <Route path='/submit' component={SubmitPage} />
+              <Route path='/submit' render={() =>
+                _loggedIn ? <SubmitPage /> : <Redirect to='/login' />
+              }/>
               <Route path='/help' component={HelpPage} />
               <Route path='/about' component={AboutPage} />
               <Route component={NotFoundPage} />
@@ -38,8 +44,10 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = state => ({_loggedIn: state.user.loggedIn})
+
 const mapDispatchToProps = dispatch => ({
   _observeLoginStatus: () => dispatch(observeLoginStatus())
 })
 
-export default connect(null, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)

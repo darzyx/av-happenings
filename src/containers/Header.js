@@ -24,9 +24,9 @@ class Header extends Component {
                 <div><p>Hello, <UserModal user={_user} />!</p></div> :
                 <div>
                   <p>
-                    <Link className='banner-link' to='/login'>Log In </Link>
+                    <Link className='header-link' to='/login'>Log In </Link>
                     or
-                    <Link className='banner-link' to='/signup'> Sign Up</Link>
+                    <Link className='header-link' to='/signup'> Sign Up</Link>
                   </p>
                 </div>
               }

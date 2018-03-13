@@ -141,24 +141,27 @@ export const postEventIfValid = (event, user) => dispatch => {
 
 // DELETE EVENT ACTION CREATORS
 
-const deleteEventRequest = () => ({
-  type: DELETE_EVENT_REQUEST
+const deleteEventRequest = id => ({
+  type: DELETE_EVENT_REQUEST,
+  id
 })
 
-const deleteEventSuccess = () => ({
-  type: DELETE_EVENT_SUCCESS
+const deleteEventSuccess = id => ({
+  type: DELETE_EVENT_SUCCESS,
+  id
 })
 
-const deleteEventFailure = error => ({
+const deleteEventFailure = (id, error) => ({
   type: DELETE_EVENT_FAILURE,
-  payload: error
+  id,
+  error
 })
 
 export const deleteEvent = id => dispatch => {
-  dispatch(deleteEventRequest())
+  dispatch(deleteEventRequest(id))
 
   eventsDB.doc(id).delete().then(
-    () => { dispatch(deleteEventSuccess()) },
-    (error) => { dispatch(deleteEventFailure(error)) }
+    () => { dispatch(deleteEventSuccess(id)) },
+    (error) => { dispatch(deleteEventFailure(id, error)) }
   )
 }

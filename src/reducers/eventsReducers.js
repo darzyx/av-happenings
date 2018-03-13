@@ -6,7 +6,10 @@ import {
   GET_EVENTS_FAILURE,
   POST_EVENT_REQUEST,
   POST_EVENT_SUCCESS,
-  POST_EVENT_FAILURE
+  POST_EVENT_FAILURE,
+  DELETE_EVENT_REQUEST,
+  DELETE_EVENT_SUCCESS,
+  DELETE_EVENT_FAILURE
 } from '../actions/eventsActions'
 
 // ACTIVE EVENTS SORT
@@ -73,6 +76,18 @@ export const eventsBySortReducer = (state = {}, action) => {
         ...state,
         [action.eventsSort]: eventsReducer(state[action.eventsSort], action)
       }
+    case DELETE_EVENT_SUCCESS:
+      let newState = {...state}
+
+      for (let key in newState) {
+        newState[key].items = newState[key].items.filter((item) => {
+          return item.id !== action.id
+        })
+      }
+
+      return newState
+    case DELETE_EVENT_REQUEST:
+    case DELETE_EVENT_FAILURE:
     default:
       return state
   }

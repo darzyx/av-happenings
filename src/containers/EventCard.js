@@ -1,11 +1,10 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {Card, Icon, Image, Menu} from 'semantic-ui-react'
+import {Card, Icon, Menu} from 'semantic-ui-react'
 import TimeAgo from 'react-timeago'
 
+import EventModal from './EventModal'
 import EventDropdown from './EventDropdown'
-
-const sampleImage = require('../media/example.jpg')
 
 export default class EventCard extends Component {
   constructor(props) {
@@ -30,7 +29,6 @@ export default class EventCard extends Component {
       date,
       location,
       description,
-      featured,
       commentCount,
       likeCount,
       time,
@@ -41,15 +39,8 @@ export default class EventCard extends Component {
     } = this.props.event
 
     return (
-      <Card color='blue'>
-        <Image
-          label={
-            featured ?
-            {color: 'yellow', content: 'Featured!', ribbon: true} :
-            null
-          }
-          src={sampleImage}
-        />
+      <Card color='blue' >
+        <EventModal event={this.props.event} />
         <Card.Content>
           <EventDropdown eventUID={uid} eventID={id} />
           <Card.Header>{title}</Card.Header>
@@ -69,7 +60,7 @@ export default class EventCard extends Component {
             </Menu.Item>
           </Menu>
           <center>
-            <p id='card-footer'>
+            <p className='post-info-footer'>
               Posted <TimeAgo date={timestamp} /> by {username}
             </p>
           </center>

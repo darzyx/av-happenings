@@ -63,6 +63,10 @@
   max-height: 100px;
 }
 
+.event-image {
+  cursor: pointer;
+}
+
 #heart-icon {
   color: rgba(0,0,0,.5);
   cursor: pointer;
@@ -85,8 +89,9 @@
   float: right;
 }
 
-#card-footer {
+.post-info-footer {
   font-size: 0.8rem;
+  color: rgba(0,0,0,.5);
 }
 
 .radio-container {

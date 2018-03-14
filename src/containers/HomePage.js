@@ -24,21 +24,22 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
-    const {_activeEventsSort, _getEventsIfNeed} = this.props
+    const {_activeEventsSort, _getEventsIfNeed, _user} = this.props
 
-    _getEventsIfNeed(_activeEventsSort)
+    _getEventsIfNeed(_activeEventsSort, _user)
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps._activeEventsSort !== this.props._activeEventsSort) {
-      const {_activeEventsSort, _getEventsIfNeed} = nextProps
+      const {_activeEventsSort, _getEventsIfNeed, _user} = nextProps
 
-      _getEventsIfNeed(_activeEventsSort)
+      _getEventsIfNeed(_activeEventsSort, _user)
     }
   }
 
   _handleChangeSort(nextEventsSort) {
     this.props._selectEventsSort(nextEventsSort)
+
     window.scrollTo(0, 0)
   }
 
@@ -46,11 +47,13 @@ class HomePage extends Component {
     const {
       _activeEventsSort,
       _getEventsIfNeed,
-      _voidGottenEvents
+      _voidGottenEvents,
+      _user
     } = this.props
 
     _voidGottenEvents(_activeEventsSort)
-    _getEventsIfNeed(_activeEventsSort)
+    
+    _getEventsIfNeed(_activeEventsSort, _user)
   }
 
   _handleMenuClick(item) {
@@ -61,7 +64,7 @@ class HomePage extends Component {
   }
 
   render() {
-    const {_activeEventsSort, _events, _isGetting, _loggedIn} = this.props
+    const {_activeEventsSort, _events, _isGetting, _user} = this.props
     const noEvents = _events.length === 0
     const {_handleMenuClick } = this
 
@@ -70,10 +73,11 @@ class HomePage extends Component {
         <HomeMenu
           activeEventsSort={_activeEventsSort}
           handleMenuClick={_handleMenuClick}
+          loggedIn={_user.loggedIn}
         />
         <Container>
           {
-            !_loggedIn &&
+            !_user.loggedIn &&
             <React.Fragment>
               <Divider hidden />
               <WelcomeBanner />
@@ -105,7 +109,7 @@ const mapStateToProps = state => {
   const {activeEventsSort, eventsBySort, user} = state
   const stateProps = {
     _activeEventsSort: activeEventsSort,
-    _loggedIn: user.loggedIn,
+    _user: user,
     _isGetting: null,
     _events: null,
   }
@@ -123,13 +127,15 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   _selectEventsSort: eventsSort => dispatch(selectEventsSort(eventsSort)),
-  _getEventsIfNeed: eventsSort => dispatch(getEventsIfNeed(eventsSort)),
+  _getEventsIfNeed: (eventsSort, user) => {
+    dispatch(getEventsIfNeed(eventsSort, user))
+  },
   _voidGottenEvents: eventsSort => dispatch(voidGottenEvents(eventsSort))
 })
 
 HomePage.propTypes = {
   _activeEventsSort: PropTypes.string.isRequired,
-  _loggedIn: PropTypes.bool.isRequired,
+  _user: PropTypes.object.isRequired,
   _events: PropTypes.array.isRequired,
   _isGetting: PropTypes.bool.isRequired,
   _selectEventsSort: PropTypes.func.isRequired,

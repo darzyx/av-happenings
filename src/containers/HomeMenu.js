@@ -2,8 +2,6 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {Menu} from 'semantic-ui-react'
 
-const menuOptions = ['top', 'featured', 'new', 'liked', 'mine']
-
 export default class HomeMenu extends Component {
   constructor(props) {
     super(props)
@@ -19,9 +17,13 @@ export default class HomeMenu extends Component {
   _handleMouseOut = () => this.setState({mouseOver: false})
 
   render() {
-    const {activeEventsSort, handleMenuClick} = this.props
+    const {activeEventsSort, handleMenuClick, loggedIn} = this.props
     const {_handleMouseOver, _handleMouseOut} = this
     const {mouseOver} = this.state
+    let menuOptions
+
+    if (loggedIn) {menuOptions = ['top', 'featured', 'new', 'mine']}
+    else {menuOptions = ['top', 'featured', 'new']}
 
     return (
       <Menu
@@ -55,5 +57,6 @@ export default class HomeMenu extends Component {
 
 HomeMenu.propTypes = {
   activeEventsSort: PropTypes.string.isRequired,
-  handleMenuClick: PropTypes.func.isRequired
+  handleMenuClick: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired
 }

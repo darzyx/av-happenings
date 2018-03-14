@@ -51,19 +51,25 @@ const getEventsFailure = (eventsSort, error) => ({
   error
 })
 
-const sortedEventsDB = eventsSort => {
+const sortedEventsDB = (eventsSort, user) => {
   switch (eventsSort) {
+    case 'top':
+      return eventsDB.orderBy('likeCount', 'desc')
     case 'new':
       return eventsDB.orderBy('timestamp', 'desc')
+    case 'featured':
+      return eventsDB.where('featured', '==', true)
+    case 'mine':
+      return eventsDB.where('uid', '==', user.uid)
     default:
       return eventsDB
   }
 }
 
-const getEvents = eventsSort => dispatch => {
+const getEvents = (eventsSort, user) => dispatch => {
   dispatch(getEventsRequest(eventsSort))
 
-  sortedEventsDB(eventsSort).get().then(
+  sortedEventsDB(eventsSort, user).get().then(
     (querySnapshot) => {
       const events = []
 
@@ -86,9 +92,9 @@ const eventsAreCached = (state, eventsSort) => {
   else { return events.didInvalidate }
 }
 
-export const getEventsIfNeed = eventsSort => (dispatch, getState) => {
+export const getEventsIfNeed = (eventsSort, user) => (dispatch, getState) => {
   if (eventsAreCached(getState(), eventsSort)) {
-    dispatch(getEvents(eventsSort))
+    dispatch(getEvents(eventsSort, user))
   }
 }
 

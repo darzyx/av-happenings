@@ -123,7 +123,12 @@ const postEvent = (event, user) => dispatch => {
   event.commentCount = 0
 
   eventsDB.add(event).then(
-    (docRef) => { dispatch(postEventSuccess(docRef.id)) },
+    (eventSnapshot) => {
+      const eventLikesDB = eventsDB.doc(eventSnapshot.id).collection('likes')
+
+      eventLikesDB.doc(user.uid).set({ uid: user.uid })
+        .then(() => dispatch(postEventSuccess(eventSnapshot.id)))
+    },
     (error) => { dispatch(postEventFailure(error)) }
   )
 }

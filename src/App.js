@@ -32,7 +32,9 @@ class App extends Component {
               <Route path='/login' render={() =>
                 _loggedIn ? <Redirect to='/' /> : <LogInPage />
               }/>
-              <Route path='/signup' component={SignUpPage} />
+              <Route path='/signup' render={() =>
+                _loggedIn ? <Redirect to='/' /> : <SignUpPage />
+              }/>
               <Route path='/submit' render={() =>
                 _loggedIn ? <SubmitPage /> : <Redirect to='/login' />
               }/>

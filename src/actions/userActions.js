@@ -12,7 +12,7 @@ const resetUserData = () => ({
   type: RESET_USER_DATA
 })
 
-const getUserData = () => dispatch => {
+export const getUserData = () => dispatch => {
   const { uid } = userAuth.currentUser
 
   usersDB.doc(uid).get().then(

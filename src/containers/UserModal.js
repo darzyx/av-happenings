@@ -1,13 +1,30 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
 import {Header as Heading, Icon, Modal, Statistic} from 'semantic-ui-react'
 import TimeAgo from 'react-timeago'
 
-export default class UserModal extends Component {
-  state = {modalOpen: false }
+import {getUserData} from '../actions/userActions'
+
+class UserModal extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {modalOpen: false}
+
+    this._handleOpen = this._handleOpen.bind(this)
+    this._handleClose = this._handleClose.bind(this)
+    this._handleTriggerClick = this._handleTriggerClick.bind(this)
+  }
 
   _handleOpen = () => this.setState({modalOpen: true})
 
   _handleClose = () => this.setState({modalOpen: false})
+
+  _handleTriggerClick() {
+    this.props._getUserData()
+    this._handleOpen()
+  }
 
   render() {
     const {username, email, likeCount, eventCount, joined} = this.props.user
@@ -15,7 +32,7 @@ export default class UserModal extends Component {
     return (
       <Modal
         trigger={
-          <a id='user-modal-trigger' onClick={this._handleOpen}>
+          <a id='user-modal-trigger' onClick={this._handleTriggerClick}>
             {username}
           </a>
         }
@@ -51,3 +68,13 @@ export default class UserModal extends Component {
     )
   }
 }
+
+UserModal.propTypes = {
+  _getUserData: PropTypes.func.isRequired
+}
+
+const mapDispatchToProps = dispatch => ({
+  _getUserData: () => dispatch(getUserData())
+})
+
+export default connect(null, mapDispatchToProps)(UserModal)

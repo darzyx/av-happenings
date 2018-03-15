@@ -179,8 +179,21 @@ const deleteEventFailure = (id, error) => ({
 export const deleteEvent = id => dispatch => {
   dispatch(deleteEventRequest(id))
 
-  eventsDB.doc(id).delete().then(
-    () => { dispatch(deleteEventSuccess(id)) },
-    (error) => { dispatch(deleteEventFailure(id, error)) }
-  )
+  eventsDB.doc(id).get()
+    .then((eventSnapshot) => {
+      const eventUserID = eventSnapshot.data().uid
+
+      eventsDB.doc(id).delete().then(
+        () => { dispatch(deleteEventSuccess(id)) },
+        (error) => { dispatch(deleteEventFailure(id, error)) }
+      )
+
+      usersDB.doc(eventUserID).get()
+        .then((userSnapshot) => {
+          const userEventCount = userSnapshot.data().eventCount
+          const userDB = usersDB.doc(eventUserID)
+
+          userDB.update({ eventCount: userEventCount - 1 })
+        })
+    })
 }

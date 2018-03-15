@@ -1,18 +1,15 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {Card, Container, Divider, Loader, Message} from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { Card, Container, Divider, Loader, Message } from 'semantic-ui-react'
 
 import HomeMenu from './HomeMenu'
 import EventCard from './EventCard'
 import SunIcon from '../components/SunIcon'
 import WelcomeBanner from '../components/WelcomeBanner'
-import {
-  selectEventsSort,
-  getEventsIfNeed,
-  voidGottenEvents
-} from '../actions/eventsActions'
+import { selectEventsSort, voidGottenEvents } from '../actions/eventMiscActions'
+import { getEventsIfNeed } from '../actions/eventGetActions'
 
 class HomePage extends Component {
   constructor(props) {
@@ -24,16 +21,16 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
-    const {_activeEventsSort, _getEventsIfNeed, _user} = this.props
+    const { _eventsSort, _getEventsIfNeed, _user } = this.props
 
-    _getEventsIfNeed(_activeEventsSort, _user)
+    _getEventsIfNeed(_eventsSort, _user)
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps._activeEventsSort !== this.props._activeEventsSort) {
-      const {_activeEventsSort, _getEventsIfNeed, _user} = nextProps
+    if (nextProps._eventsSort !== this.props._eventsSort) {
+      const { _eventsSort, _getEventsIfNeed, _user } = nextProps
 
-      _getEventsIfNeed(_activeEventsSort, _user)
+      _getEventsIfNeed(_eventsSort, _user)
     }
   }
 
@@ -45,58 +42,54 @@ class HomePage extends Component {
 
   _handleRefresh() {
     const {
-      _activeEventsSort,
+      _eventsSort,
       _getEventsIfNeed,
       _voidGottenEvents,
       _user
     } = this.props
 
-    _voidGottenEvents(_activeEventsSort)
-    
-    _getEventsIfNeed(_activeEventsSort, _user)
+    _voidGottenEvents(_eventsSort)
+
+    _getEventsIfNeed(_eventsSort, _user)
   }
 
   _handleMenuClick(item) {
-    const {_activeEventsSort} = this.props
+    const { _eventsSort } = this.props
 
-    if (item === _activeEventsSort) {this._handleRefresh() }
-    else {this._handleChangeSort(item) }
+    if (item === _eventsSort) { this._handleRefresh() }
+    else { this._handleChangeSort(item) }
   }
 
   render() {
-    const {_activeEventsSort, _events, _isGetting, _user} = this.props
+    const { _eventsSort, _events, _isGetting, _user } = this.props
     const noEvents = _events.length === 0
-    const {_handleMenuClick } = this
+    const { _handleMenuClick } = this
 
     return (
       <div id='home-page'>
         <HomeMenu
-          activeEventsSort={_activeEventsSort}
+          eventsSort={_eventsSort}
           handleMenuClick={_handleMenuClick}
           loggedIn={_user.loggedIn}
         />
         <Container>
-          {
-            !_user.loggedIn &&
-            <React.Fragment>
-              <Divider hidden />
-              <WelcomeBanner />
-            </React.Fragment>
-          }
+        {
+          !_user.loggedIn &&
+          <React.Fragment>
+            <Divider hidden />
+            <WelcomeBanner />
+          </React.Fragment>
+        }
           <Divider hidden />
-          {
-            _isGetting ?
-            <Loader active content='Loading...' inline='centered' /> :
-            noEvents ?
-            <Message content='No happenings fetched!' header='Empty' /> :
-            <Card.Group doubling itemsPerRow={3} stackable>
-              {
-                _events.map((event, key) =>
-                  <EventCard event={event} key={key} />
-                )
-              }
-            </Card.Group>
-          }
+        {
+          _isGetting ?
+          <Loader active content='Loading...' inline='centered' /> :
+          noEvents ?
+          <Message content='No happenings fetched!' header='Empty' /> :
+          <Card.Group doubling itemsPerRow={3} stackable>
+          { _events.map((event, key) => <EventCard event={event} key={key} />) }
+          </Card.Group>
+        }
           <Divider hidden />
         </Container>
         <Link to='/submit'><SunIcon /></Link>
@@ -106,17 +99,17 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = state => {
-  const {activeEventsSort, eventsBySort, user} = state
+  const { eventsSort, eventsBySort, user } = state
   const stateProps = {
-    _activeEventsSort: activeEventsSort,
+    _eventsSort: eventsSort,
     _user: user,
     _isGetting: null,
     _events: null,
   }
 
-  if (eventsBySort[activeEventsSort]) {
-    stateProps._events = eventsBySort[activeEventsSort].items
-    stateProps._isGetting = eventsBySort[activeEventsSort].isGetting
+  if (eventsBySort[eventsSort]) {
+    stateProps._events = eventsBySort[eventsSort].items
+    stateProps._isGetting = eventsBySort[eventsSort].isGetting
   } else {
     stateProps._events = [ ]
     stateProps._isGetting = true
@@ -134,7 +127,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 HomePage.propTypes = {
-  _activeEventsSort: PropTypes.string.isRequired,
+  _eventsSort: PropTypes.string.isRequired,
   _user: PropTypes.object.isRequired,
   _events: PropTypes.array.isRequired,
   _isGetting: PropTypes.bool.isRequired,

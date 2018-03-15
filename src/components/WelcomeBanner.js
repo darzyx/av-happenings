@@ -1,6 +1,6 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-import {Header as Heading, Segment} from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
+import { Header as Heading, Segment } from 'semantic-ui-react'
 
 const WelcomeBanner = () => (
   <Link to='/signup'>

@@ -1,27 +1,27 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {Button, Dropdown, Modal} from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { Button, Dropdown, Modal } from 'semantic-ui-react'
 
-import {deleteEvent} from '../actions/eventsActions'
+import { deleteEvent } from '../actions/eventDeleteActions'
 
 class DeleteEventModal extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {modalOpen: false}
+    this.state = { modalOpen: false }
 
     this._handleModalOpen = this._handleModalOpen.bind(this)
     this._handleModalClose = this._handleModalClose.bind(this)
     this._handleDeleteClick = this._handleDeleteClick.bind(this)
   }
 
-  _handleModalOpen = () => this.setState({modalOpen: true})
+  _handleModalOpen = () => this.setState({ modalOpen: true })
 
-  _handleModalClose = () => this.setState({modalOpen: false})
+  _handleModalClose = () => this.setState({ modalOpen: false })
 
   _handleDeleteClick() {
-    const {_deleteEvent, eventID} = this.props
+    const { _deleteEvent, eventID } = this.props
 
     _deleteEvent(eventID)
 
@@ -29,13 +29,13 @@ class DeleteEventModal extends Component {
   }
 
   render() {
-    const {_handleModalOpen, _handleModalClose, _handleDeleteClick} = this
-    const {modalOpen} = this.state
+    const { _handleModalOpen, _handleModalClose, _handleDeleteClick } = this
+    const { modalOpen } = this.state
 
     return (
       <Modal
-        open={modalOpen}
         onClose={_handleModalClose}
+        open={modalOpen}
         size='small'
         trigger={
           <Dropdown.Item

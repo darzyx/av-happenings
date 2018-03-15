@@ -1,18 +1,16 @@
-import {combineReducers} from 'redux'
-import {userReducer} from './userReducer'
-import {reducer as formReducer} from 'redux-form'
-import {commentsReducer} from './commentReducers'
-import {
-  activeEventsSortReducer,
-  eventsBySortReducer,
-  postEventReducer
-} from './eventsReducers'
+import { combineReducers } from 'redux'
+import { userReducer } from './userReducer'
+import { reducer as formReducer } from 'redux-form'
+import { commentsReducer } from './commentReducers'
+import { eventsSortReducer } from './eventsSortReducer'
+import { eventPostReducer } from './eventPostReducer'
+import { eventsBySortReducer } from './eventsBySortReducer'
 
 const rootReducer = combineReducers({
   user: userReducer,
-  activeEventsSort: activeEventsSortReducer,
+  eventsSort: eventsSortReducer,
   eventsBySort: eventsBySortReducer,
-  postEvent: postEventReducer,
+  eventPost: eventPostReducer,
   comments: commentsReducer,
   form: formReducer
 })

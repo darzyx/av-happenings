@@ -1,4 +1,4 @@
-import {eventsDB} from '../Firebase'
+import { eventsDB } from '../Firebase'
 
 export const GET_COMMENTS_REQUEST = 'GET_COMMENTS_REQUEST'
 export const GET_COMMENTS_RECEIVE = 'GET_COMMENTS_RECEIVE'
@@ -33,13 +33,10 @@ export const getComments = eid => dispatch => {
         comments.push({ id: comment.id, ...comment.data() })
       })
 
-      if (comments.length > 0) {
-        dispatch(getCommentsReceive(comments))
-      } else {
-        dispatch(getCommentsFailure('No comments retrieved.'))
-      }
+      if (comments.length > 0) { dispatch(getCommentsReceive(comments))
+      } else { dispatch(getCommentsFailure('No comments retrieved.')) }
     },
-    (error) => { dispatch(getCommentsFailure(error)) }
+    (error) => dispatch(getCommentsFailure(error))
     )
 }
 

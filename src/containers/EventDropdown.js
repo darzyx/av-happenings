@@ -1,14 +1,14 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {Dropdown} from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { Dropdown } from 'semantic-ui-react'
 
 import ReportEventModal from './ReportEventModal'
 import DeleteEventModal from './DeleteEventModal'
 
 class EventDropdown extends Component {
   render() {
-    const {eventID, eventUID, _user} = this.props
+    const { eventID, eventUID, _user } = this.props
     const userIsOwner = _user.uid === eventUID
 
     return (

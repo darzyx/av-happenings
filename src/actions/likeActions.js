@@ -1,4 +1,4 @@
-import {eventsDB, usersDB} from '../Firebase'
+import { eventsDB, usersDB } from '../Firebase'
 
 export const UPDATE_EVENT_LIKE_COUNT = 'UPDATE_EVENT_LIKE_COUNT'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Dimmer, Header as Heading, Loader} from 'semantic-ui-react'
+import { Dimmer, Header as Heading, Loader } from 'semantic-ui-react'
 
 const LoadingDimmer = () => (
   <Dimmer active inverted>

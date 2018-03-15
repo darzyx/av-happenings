@@ -1,25 +1,25 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {Header as Heading, Icon, Modal, Statistic} from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { Header as Heading, Icon, Modal, Statistic } from 'semantic-ui-react'
 import TimeAgo from 'react-timeago'
 
-import {getUserData} from '../actions/userActions'
+import { getUserData } from '../actions/userActions'
 
 class UserModal extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {modalOpen: false}
+    this.state = { modalOpen: false }
 
     this._handleOpen = this._handleOpen.bind(this)
     this._handleClose = this._handleClose.bind(this)
     this._handleTriggerClick = this._handleTriggerClick.bind(this)
   }
 
-  _handleOpen = () => this.setState({modalOpen: true})
+  _handleOpen = () => this.setState({ modalOpen: true })
 
-  _handleClose = () => this.setState({modalOpen: false})
+  _handleClose = () => this.setState({ modalOpen: false })
 
   _handleTriggerClick() {
     this.props._getUserData()
@@ -27,7 +27,7 @@ class UserModal extends Component {
   }
 
   render() {
-    const {username, email, likeCount, eventCount, joined} = this.props.user
+    const { username, email, likeCount, eventCount, joined } = this.props.user
 
     return (
       <Modal

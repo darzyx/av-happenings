@@ -5,7 +5,7 @@ import {
   CACHE_USER_COMMENT
 } from '../actions/commentActions'
 
-export const commentsReducer = (state = [], action) => {
+export const commentsReducer = (state = [ ], action) => {
   switch (action.type) {
     case GET_COMMENTS_REQUEST:
     case GET_COMMENTS_RECEIVE:

@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Field} from 'redux-form'
+import { Field } from 'redux-form'
 
 // Custom Radio (Semantic UI's doesn't stylistically play nice with Redux Form)
 
-const ReduxFormRadio = ({label, name, value}) => (
+const ReduxFormRadio = ({ label, name, value }) => (
   <div className='radio-container'>
     <Field
       className='radio'

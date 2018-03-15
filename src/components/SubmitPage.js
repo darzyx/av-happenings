@@ -16,8 +16,8 @@ const SubmitPage = () => (
       <Heading>Submit</Heading>
       <SubmitForm />
     </Segment>
-    <Message attached='bottom' color='orange' style={{textAlign: 'center'}}>
-      Please be mindful of the content rules.
+    <Message attached='bottom' color='orange'>
+      <center>Please be mindful of the content rules.</center>
     </Message>
   </Container>
 )

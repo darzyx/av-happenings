@@ -1,5 +1,10 @@
 import React from 'react'
-import {Container, Divider, Header as Heading, Segment} from 'semantic-ui-react'
+import {
+  Container,
+  Divider,
+  Header as Heading,
+  Segment
+} from 'semantic-ui-react'
 
 const AboutPage = () => (
   <Container>

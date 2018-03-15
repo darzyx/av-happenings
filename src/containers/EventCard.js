@@ -1,11 +1,11 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {Redirect} from 'react-router-dom'
-import {Card, Icon, Menu} from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import { Card, Icon, Menu } from 'semantic-ui-react'
 import TimeAgo from 'react-timeago'
 
-import {likeEvent} from '../actions/likeActions'
+import { likeEvent } from '../actions/likeActions'
 import EventModal from './EventModal'
 import EventDropdown from './EventDropdown'
 
@@ -20,22 +20,23 @@ class EventCard extends Component {
   }
 
   _handleLikeClick() {
-    const {_likeEvent, _user} = this.props
-    const {id} = this.props.event
+    const { _likeEvent, _user } = this.props
+    const { id } = this.props.event
 
-    if (_user.loggedIn) {_likeEvent(id, _user.uid)}
+    if (_user.loggedIn) { _likeEvent(id, _user.uid) }
     else { this.setState({ redirectToLogin: true }) }
   }
 
   _handleCommentClick() {
-    const {_user} = this.props
-    if (_user.loggedIn) {console.log('ATTEMPTED COMMENT')}
+    const { _user } = this.props
+
+    if (_user.loggedIn) { console.log('ATTEMPTED COMMENT') }
     else { this.setState({ redirectToLogin: true }) }
   }
 
   render() {
-    const {_handleCommentClick, _handleLikeClick} = this
-    const {redirectToLogin} = this.state
+    const { _handleCommentClick, _handleLikeClick } = this
+    const { redirectToLogin } = this.state
     const {
       title,
       date,

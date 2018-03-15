@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {submit} from 'redux-form'
-import {Button, Modal} from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { submit } from 'redux-form'
+import { Button, Modal } from 'semantic-ui-react'
 
 class ReportFormButtons extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class ReportFormButtons extends Component {
   }
 
   _handleReportClick() {
-    const {_handleModalClose, _submitReport} = this.props
+    const { _handleModalClose, _submitReport } = this.props
 
     _submitReport()
 
@@ -20,7 +20,7 @@ class ReportFormButtons extends Component {
   }
 
   render() {
-    const {_handleModalClose} = this.props
+    const { _handleModalClose } = this.props
 
     return (
       <Modal.Actions>

@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import TimeAgo from 'react-timeago'
 import {
   Divider,
@@ -30,9 +30,9 @@ class EventModal extends Component {
   _handleClose = () => this.setState({modalOpen: false})
 
   render() {
-    const {_handleOpen, _handleClose} = this
-    const {modalOpen} = this.state
-    const {_loggedIn} = this.props
+    const { _handleOpen, _handleClose } = this
+    const { modalOpen } = this.state
+    const { _loggedIn } = this.props
     const {
       title,
       date,
@@ -69,17 +69,13 @@ class EventModal extends Component {
             <Heading as='h1'>
               {title}
               <Heading.Subheader>
-                {date + ' @ ' + time}
-                <br />
-                {location}
+                {date + ' @ ' + time}<br />{location}
               </Heading.Subheader>
             </Heading>
           </center>
         </Modal.Header>
         <Modal.Content>
-          <Modal.Description>
-            {description}
-          </Modal.Description>
+          <Modal.Description>{description}</Modal.Description>
           {
             _loggedIn ?
             <React.Fragment>

@@ -19,22 +19,25 @@ export default class ReportEventModal extends Component {
   _handleModalClose = () => this.setState({ modalOpen: false })
 
   render() {
+    const { _handleModalOpen, _handleModalClose } = this
+    const { modalOpen } = this.state
+
     return (
       <Modal
-        open={this.state.modalOpen}
-        onClose={this._handleModalClose}
+        open={modalOpen}
+        onClose={_handleModalClose}
         size='small'
         trigger={
           <Dropdown.Item
             icon='warning sign'
-            onClick={this._handleModalOpen}
+            onClick={_handleModalOpen}
             text='Report'
           />
         }
       >
         <Modal.Header>Report Happening</Modal.Header>
         <Modal.Content><ReportForm /></Modal.Content>
-        <ReportFormButtons _handleModalClose={this._handleModalClose} />
+        <ReportFormButtons _handleModalClose={_handleModalClose} />
       </Modal>
     )
   }

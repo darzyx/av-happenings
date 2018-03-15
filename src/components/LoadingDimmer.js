@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dimmer, Header as Heading, Loader } from 'semantic-ui-react'
 
-const LoadingDimmer = () => (
+const LoadingDimmer = () =>
   <Dimmer active inverted>
     <Loader inverted size='large'>
       <Heading
@@ -11,6 +11,5 @@ const LoadingDimmer = () => (
       />
     </Loader>
   </Dimmer>
-)
 
 export default LoadingDimmer

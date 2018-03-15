@@ -17,9 +17,7 @@ class SignUpForm extends Component {
     this._createUserDatabaseEntry = this._createUserDatabaseEntry.bind(this)
   }
 
-  _handleSignUpClick(values) {
-    this._createUserAuthentication(values)
-  }
+  _handleSignUpClick = values => this._createUserAuthentication(values)
 
   _createUserAuthentication(values) {
     const { email, password } = values
@@ -49,9 +47,10 @@ class SignUpForm extends Component {
     const { handleSubmit, pristine, submitting } = this.props
     const disable = pristine || submitting
     const { error, success } = this.state
+    const { _handleSignUpClick } = this
 
     return (
-      <Form onSubmit={handleSubmit(this._handleSignUpClick)}>
+      <Form onSubmit={handleSubmit(_handleSignUpClick)}>
         <Form.Group>
           <Form.Field
             component='input'

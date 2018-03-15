@@ -9,7 +9,7 @@ import {
 
 import SubmitForm from '../containers/SubmitForm'
 
-const SubmitPage = () => (
+const SubmitPage = () =>
   <Container>
     <Divider hidden />
     <Segment attached='top'>
@@ -20,6 +20,5 @@ const SubmitPage = () => (
       <center>Please be mindful of the content rules.</center>
     </Message>
   </Container>
-)
 
 export default SubmitPage

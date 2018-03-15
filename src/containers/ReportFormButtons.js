@@ -20,12 +20,12 @@ class ReportFormButtons extends Component {
   }
 
   render() {
-    const { _handleModalClose } = this.props
+    const { _handleModalClose, _handleReportClick } = this.props
 
     return (
       <Modal.Actions>
         <Button onClick={_handleModalClose}>Back</Button>
-        <Button onClick={this._handleReportClick}>Submit Report</Button>
+        <Button onClick={_handleReportClick}>Submit Report</Button>
       </Modal.Actions>
     )
   }

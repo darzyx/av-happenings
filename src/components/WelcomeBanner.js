@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Header as Heading, Segment } from 'semantic-ui-react'
 
-const WelcomeBanner = () => (
+const WelcomeBanner = () =>
   <Link to='/signup'>
     <Segment id='welcome-banner' inverted raised textAlign='center'>
       <Heading inverted>
@@ -14,6 +14,5 @@ const WelcomeBanner = () => (
       </Heading>
     </Segment>
   </Link>
-)
 
 export default WelcomeBanner

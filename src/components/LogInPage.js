@@ -10,7 +10,7 @@ import {
 
 import LogInForm from '../containers/LogInForm'
 
-const LogInPage = () => (
+const LogInPage = () =>
   <Container>
     <Divider hidden />
     <Segment attached='top'>
@@ -21,6 +21,5 @@ const LogInPage = () => (
       <center>New here? <Link to='/signup'>Sign Up</Link></center>
     </Message>
   </Container>
-)
 
 export default LogInPage

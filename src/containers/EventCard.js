@@ -37,6 +37,7 @@ class EventCard extends Component {
   render() {
     const { _handleCommentClick, _handleLikeClick } = this
     const { redirectToLogin } = this.state
+    const { event } = this.props
     const {
       title,
       date,
@@ -49,12 +50,12 @@ class EventCard extends Component {
       username,
       uid,
       id
-    } = this.props.event
+    } = event
 
     return (
       <Card color='blue' >
         {redirectToLogin && <Redirect to='/login' />}
-        <EventModal event={this.props.event} />
+        <EventModal event={event} />
         <Card.Content>
           <EventDropdown eventUID={uid} eventID={id} />
           <Card.Header>{title}</Card.Header>
@@ -65,12 +66,10 @@ class EventCard extends Component {
         <Card.Content extra>
           <Menu icon='labeled' secondary size='mini' widths={2}>
             <Menu.Item id='comment-icon' onClick={_handleCommentClick}>
-              <Icon name='comment outline' />
-              {commentCount}
+              <Icon name='comment outline' /> {commentCount}
             </Menu.Item>
             <Menu.Item id='heart-icon' onClick={_handleLikeClick}>
-              <Icon name='heart outline' />
-              {likeCount}
+              <Icon name='heart outline' /> {likeCount}
             </Menu.Item>
           </Menu>
           <center>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Button } from 'semantic-ui-react'
 
-const NavButton = ({ attached, content, logOut, to }) => (
+const NavButton = ({ attached, content, logOut, to }) =>
   <Button
     as={Link}
     attached={attached || true}
@@ -12,7 +12,6 @@ const NavButton = ({ attached, content, logOut, to }) => (
     size='large'
     to={to}
   />
-)
 
 NavButton.propTypes = {
   attached: PropTypes.string,

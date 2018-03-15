@@ -6,7 +6,7 @@ import {
   Segment
 } from 'semantic-ui-react'
 
-const AboutPage = () => (
+const AboutPage = () =>
   <Container>
     <Divider hidden />
     <Segment>
@@ -17,6 +17,6 @@ const AboutPage = () => (
       </p>
     </Segment>
   </Container>
-)
+
 
 export default AboutPage

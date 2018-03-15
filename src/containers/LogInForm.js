@@ -23,10 +23,11 @@ class LogInForm extends Component {
   render() {
     const { handleSubmit, pristine, submitting } = this.props
     const disable = pristine || submitting
+    const { _handleLogInClick } = this
     const { error } = this.state
 
     return (
-      <Form onSubmit={handleSubmit(this._handleLogInClick)}>
+      <Form onSubmit={handleSubmit(_handleLogInClick)}>
         <Form.Group>
           <Form.Field
             component='input'

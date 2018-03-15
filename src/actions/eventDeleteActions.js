@@ -34,14 +34,11 @@ export const deleteEvent = id => dispatch => {
 
       usersDB.doc(eventUserID).get()
         .then((userSnapshot) => {
-          const userEventCount = userSnapshot.data().eventCount
-          const userLikeCount = userSnapshot.data().likeCount
           const userDB = usersDB.doc(eventUserID)
+          const newEventCount = userSnapshot.data().eventCount - 1
+          const newLikeCount = userSnapshot.data().likeCount - 1
 
-          userDB.update({
-            eventCount: userEventCount - 1,
-            likeCount: userLikeCount - 1
-          })
+          userDB.update({ eventCount: newEventCount, likeCount: newLikeCount })
         })
     })
 }

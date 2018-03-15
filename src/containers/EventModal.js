@@ -69,7 +69,7 @@ class EventModal extends Component {
             <Heading as='h1'>
               {title}
               <Heading.Subheader>
-                {date + ' @ ' + time}<br />{location}
+                {date + ' @ ' + time} <br /> {location}
               </Heading.Subheader>
             </Heading>
           </center>

@@ -10,16 +10,15 @@ class CommentForm extends Component {
     this._handleCommentClick = this._handleCommentClick.bind(this)
   }
 
-  _handleCommentClick() {
-    console.log('ATTEMPTED COMMENT')
-  }
+  _handleCommentClick = () => console.log('ATTEMPTED COMMENT')
 
   render() {
-    const {handleSubmit, pristine, reset, submitting} = this.props
+    const { handleSubmit, pristine, reset, submitting } = this.props
     const disable = pristine || submitting
+    const { _handleCommentClick } = this
 
     return (
-      <Form onSubmit={handleSubmit(this._handleCommentClick)}>
+      <Form onSubmit={handleSubmit(_handleCommentClick)}>
         <Form.Group>
           <Form.TextArea
             component='textarea'

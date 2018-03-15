@@ -35,8 +35,7 @@ export const getComments = eid => dispatch => {
 
       if (comments.length > 0) { dispatch(getCommentsReceive(comments))
       } else { dispatch(getCommentsFailure('No comments retrieved.')) }
-    },
-    (error) => dispatch(getCommentsFailure(error))
+    }, (error) => dispatch(getCommentsFailure(error))
     )
 }
 

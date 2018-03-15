@@ -28,16 +28,18 @@ class UserModal extends Component {
 
   render() {
     const { username, email, likeCount, eventCount, joined } = this.props.user
+    const { _handleClose, _handleTriggerClick } = this
+    const { modalOpen } = this.state
 
     return (
       <Modal
         trigger={
-          <a id='user-modal-trigger' onClick={this._handleTriggerClick}>
+          <a id='user-modal-trigger' onClick={_handleTriggerClick}>
             {username}
           </a>
         }
-        open={this.state.modalOpen}
-        onClose={this._handleClose}
+        open={modalOpen}
+        onClose={_handleClose}
         size='small'
       >
         <Heading content={username} subheader={email} textAlign='center' />

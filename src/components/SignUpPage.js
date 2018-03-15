@@ -10,7 +10,7 @@ import {
 
 import SignUpForm from '../containers/SignUpForm'
 
-const SignUpPage = () => (
+const SignUpPage = () =>
   <Container>
     <Divider hidden />
     <Segment attached='top'>
@@ -26,6 +26,5 @@ const SignUpPage = () => (
       <center>Have an account? <Link to='/login'>Log In</Link></center>
     </Message>
   </Container>
-)
 
 export default SignUpPage

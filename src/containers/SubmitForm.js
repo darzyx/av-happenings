@@ -22,9 +22,10 @@ class SubmitForm extends Component {
   render() {
     const { handleSubmit, _error, pristine, reset, submitting } = this.props
     const disable = pristine || submitting
+    const { _handleSubmitClick } = this
 
     return (
-      <Form onSubmit={handleSubmit(this._handleSubmitClick)}>
+      <Form onSubmit={handleSubmit(_handleSubmitClick)}>
         <Form.Group>
           <Form.Field
             component='input'

@@ -6,7 +6,7 @@ import {
   Segment
 } from 'semantic-ui-react'
 
-const HelpPage = () => (
+const HelpPage = () =>
   <Container>
     <Divider hidden />
     <Segment>
@@ -14,6 +14,5 @@ const HelpPage = () => (
       <p>Get started with AV Happenings.</p>
     </Segment>
   </Container>
-)
 
 export default HelpPage

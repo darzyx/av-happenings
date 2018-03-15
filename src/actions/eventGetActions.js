@@ -40,16 +40,16 @@ const getEvents = (eventsSort, user) => dispatch => {
   dispatch(getEventsRequest(eventsSort))
 
   sortedEventsDB(eventsSort, user).get()
-    .then((querySnapshot) => {
-      const events = []
+    .then((eventsSnapshot) => {
+      const events = [ ]
 
-      querySnapshot.forEach((event) => {
+      eventsSnapshot.forEach((event) => {
         events.push({ id: event.id, ...event.data() })
       })
 
       if (events.length) { dispatch(getEventsReceive(eventsSort, events)) }
       else { dispatch(getEventsFailure(eventsSort, 'No events retrieved.')) }
-      }, (error) => { dispatch(getEventsFailure(eventsSort, error)) }
+      }, (error) => dispatch(getEventsFailure(eventsSort, error))
     )
 }
 

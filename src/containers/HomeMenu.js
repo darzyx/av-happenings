@@ -21,7 +21,6 @@ export default class HomeMenu extends Component {
     const { _handleMouseOver, _handleMouseOut } = this
     const { mouseOver } = this.state
     let menuOptions
-
     if (loggedIn) { menuOptions = ['top', 'featured', 'new', 'mine'] }
     else { menuOptions = ['top', 'featured', 'new'] }
 

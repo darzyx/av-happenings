@@ -1,11 +1,21 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {Divider, Header as Heading, Image, Modal} from 'semantic-ui-react'
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import TimeAgo from 'react-timeago'
+import {
+  Divider,
+  Header as Heading,
+  Image,
+  Message,
+  Modal
+} from 'semantic-ui-react'
+
+import CommentForm from './CommentForm'
 
 const sampleImage = require('../media/example.jpg')
 
-export default class EventModal extends Component {
+class EventModal extends Component {
   constructor(props) {
     super(props)
 
@@ -22,6 +32,7 @@ export default class EventModal extends Component {
   render() {
     const {_handleOpen, _handleClose} = this
     const {modalOpen} = this.state
+    const {_loggedIn} = this.props
     const {
       title,
       date,
@@ -69,6 +80,19 @@ export default class EventModal extends Component {
           <Modal.Description>
             {description}
           </Modal.Description>
+          {
+            _loggedIn ?
+            <React.Fragment>
+              <Divider hidden />
+              <CommentForm />
+            </React.Fragment> :
+            <Message>
+              <Link to='/login'>Log In </Link>
+              or
+              <Link to='/signup'> Sign Up </Link>
+              in order to join the discussion!
+            </Message>
+          }
           <Divider hidden />
           <center>
             <p className='post-info-footer'>
@@ -82,5 +106,12 @@ export default class EventModal extends Component {
 }
 
 EventModal.propTypes = {
-  event: PropTypes.object.isRequired
+  event: PropTypes.object.isRequired,
+  _loggedIn: PropTypes.bool.isRequired
 }
+
+const mapStateToProps = state => ({
+  _loggedIn: state.user.loggedIn
+})
+
+export default connect(mapStateToProps, null)(EventModal)

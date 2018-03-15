@@ -19,6 +19,5 @@ export const userAuth = firebase.auth()
 export const usersDB = database().collection('users')
 export const eventsDB = database().collection('events')
 export const reportsDB = database().collection('reports')
-export const commentsDB = database().collection('comments')
 
 export const timestamp = database.FieldValue.serverTimestamp()

@@ -1,12 +1,14 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
 import {Card, Icon, Menu} from 'semantic-ui-react'
 import TimeAgo from 'react-timeago'
 
+import {likeEvent} from '../actions/likeActions'
 import EventModal from './EventModal'
 import EventDropdown from './EventDropdown'
 
-export default class EventCard extends Component {
+class EventCard extends Component {
   constructor(props) {
     super(props)
 
@@ -15,7 +17,10 @@ export default class EventCard extends Component {
   }
 
   _handleLikeClick() {
-    console.log('ATTEMPTED LIKE')
+    const {_likeEvent, _uid} = this.props
+    const {id} = this.props.event
+
+    _likeEvent(id, _uid)
   }
 
   _handleCommentClick() {
@@ -73,3 +78,13 @@ export default class EventCard extends Component {
 EventCard.propTypes = {
   event: PropTypes.object.isRequired
 }
+
+const mapStateToProps = state => ({
+  _uid: state.user.uid
+})
+
+const mapDispatchToProps = dispatch => ({
+  _likeEvent: (eid, uid) => dispatch(likeEvent(eid, uid))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventCard)

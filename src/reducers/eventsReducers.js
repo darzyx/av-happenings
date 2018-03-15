@@ -1,3 +1,4 @@
+import {UPDATE_EVENT_LIKES} from '../actions/likeActions'
 import {
   SELECT_EVENTS_SORT,
   VOID_GOTTEN_EVENTS,
@@ -67,6 +68,8 @@ const eventsReducer = (state = initEventsState, action) => {
 }
 
 export const eventsBySortReducer = (state = {}, action) => {
+  let newState
+
   switch (action.type) {
     case VOID_GOTTEN_EVENTS:
     case GET_EVENTS_REQUEST:
@@ -76,8 +79,18 @@ export const eventsBySortReducer = (state = {}, action) => {
         ...state,
         [action.eventsSort]: eventsReducer(state[action.eventsSort], action)
       }
+    case UPDATE_EVENT_LIKES:
+      newState = JSON.parse(JSON.stringify(state))
+
+      for (let key in newState) {
+        newState[key].items.forEach((item) => {
+          if (item.id === action.eid) {item.likeCount += action.changeVal}
+        })
+      }
+
+      return newState
     case DELETE_EVENT_SUCCESS:
-      let newState = {...state}
+      newState = JSON.parse(JSON.stringify(state))
 
       for (let key in newState) {
         newState[key].items = newState[key].items.filter((item) => {

@@ -1,14 +1,11 @@
 import {eventsDB} from '../Firebase'
 
-export const LIKE_EVENT_INCREMENT = 'LIKE_EVENT_INCREMENT'
-export const LIKE_EVENT_DECREMENT = 'LIKE_EVENT_DECREMENT'
+export const UPDATE_EVENT_LIKES = 'UPDATE_EVENT_LIKES'
 
-const likeEventIncrement = () => ({
-  type: LIKE_EVENT_INCREMENT
-})
-
-const likeEventDecrement = () => ({
-  type: LIKE_EVENT_DECREMENT
+const updateEventLikes = (eid, changeVal) => ({
+  type: UPDATE_EVENT_LIKES,
+  eid,
+  changeVal
 })
 
 export const likeEvent = (eid, uid) => dispatch => {
@@ -21,13 +18,13 @@ export const likeEvent = (eid, uid) => dispatch => {
 
       if (like.exists) {
         changeVal = -1
-        dispatch(likeEventDecrement())
         eventUserLikeDB.delete()
       } else {
         changeVal = 1
-        dispatch(likeEventIncrement())
         eventUserLikeDB.set({ uid: uid })
       }
+
+      dispatch(updateEventLikes(eid, changeVal))
 
       eventDB.get()
         .then((event) => {

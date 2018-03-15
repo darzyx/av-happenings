@@ -1,4 +1,5 @@
-import {UPDATE_EVENT_LIKES} from '../actions/likeActions'
+import {UPDATE_EVENT_LIKE_COUNT} from '../actions/likeActions'
+import {UPDATE_EVENT_COMMENT_COUNT} from '../actions/commentActions'
 import {
   SELECT_EVENTS_SORT,
   VOID_GOTTEN_EVENTS,
@@ -79,12 +80,22 @@ export const eventsBySortReducer = (state = {}, action) => {
         ...state,
         [action.eventsSort]: eventsReducer(state[action.eventsSort], action)
       }
-    case UPDATE_EVENT_LIKES:
+    case UPDATE_EVENT_LIKE_COUNT:
       newState = JSON.parse(JSON.stringify(state))
 
       for (let key in newState) {
         newState[key].items.forEach((item) => {
           if (item.id === action.eid) {item.likeCount += action.changeVal}
+        })
+      }
+
+      return newState
+    case UPDATE_EVENT_COMMENT_COUNT:
+      newState = JSON.parse(JSON.stringify(state))
+
+      for (let key in newState) {
+        newState[key].items.forEach((item) => {
+          if (item.id === action.eid) {item.commentCount += action.changeVal}
         })
       }
 

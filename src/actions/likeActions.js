@@ -1,9 +1,9 @@
 import {eventsDB, usersDB} from '../Firebase'
 
-export const UPDATE_EVENT_LIKES = 'UPDATE_EVENT_LIKES'
+export const UPDATE_EVENT_LIKE_COUNT = 'UPDATE_EVENT_LIKE_COUNT'
 
-const updateEventLikes = (eid, changeVal) => ({
-  type: UPDATE_EVENT_LIKES,
+const updateEventLikeCount = (eid, changeVal) => ({
+  type: UPDATE_EVENT_LIKE_COUNT,
   eid,
   changeVal
 })
@@ -24,7 +24,7 @@ export const likeEvent = (eid, uid) => dispatch => {
         eventUserLikeDB.set({ uid: uid })
       }
 
-      dispatch(updateEventLikes(eid, changeVal))
+      dispatch(updateEventLikeCount(eid, changeVal))
 
       eventDB.get()
         .then((eventSnapshot) => {

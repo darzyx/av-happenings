@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom'
 import {Card, Icon, Menu} from 'semantic-ui-react'
 import TimeAgo from 'react-timeago'
 
@@ -12,23 +13,29 @@ class EventCard extends Component {
   constructor(props) {
     super(props)
 
+    this.state = { redirectToLogin: false }
+
     this._handleLikeClick = this._handleLikeClick.bind(this)
     this._handleCommentClick = this._handleCommentClick.bind(this)
   }
 
   _handleLikeClick() {
-    const {_likeEvent, _uid} = this.props
+    const {_likeEvent, _user} = this.props
     const {id} = this.props.event
 
-    _likeEvent(id, _uid)
+    if (_user.loggedIn) {_likeEvent(id, _user.uid)}
+    else { this.setState({ redirectToLogin: true }) }
   }
 
   _handleCommentClick() {
-    console.log('ATTEMPTED COMMENT')
+    const {_user} = this.props
+    if (_user.loggedIn) {console.log('ATTEMPTED COMMENT')}
+    else { this.setState({ redirectToLogin: true }) }
   }
 
   render() {
     const {_handleCommentClick, _handleLikeClick} = this
+    const {redirectToLogin} = this.state
     const {
       title,
       date,
@@ -45,6 +52,7 @@ class EventCard extends Component {
 
     return (
       <Card color='blue' >
+        {redirectToLogin && <Redirect to='/login' />}
         <EventModal event={this.props.event} />
         <Card.Content>
           <EventDropdown eventUID={uid} eventID={id} />
@@ -80,7 +88,7 @@ EventCard.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  _uid: state.user.uid
+  _user: state.user
 })
 
 const mapDispatchToProps = dispatch => ({

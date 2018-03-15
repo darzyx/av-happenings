@@ -1,4 +1,4 @@
-import {eventsDB, timestamp} from '../Firebase'
+import {eventsDB, usersDB, timestamp} from '../Firebase'
 
 // ACTION TYPES
 
@@ -127,6 +127,14 @@ const postEvent = (event, user) => dispatch => {
       const eventLikesDB = eventsDB.doc(eventSnapshot.id).collection('likes')
 
       eventLikesDB.doc(user.uid).set({ uid: user.uid })
+        .then(() => {
+          usersDB.doc(user.uid).get()
+            .then((userSnapshot) => {
+              usersDB.doc(user.uid).update({
+                eventCount: userSnapshot.data().eventCount + 1
+              })
+            })
+        })
         .then(() => dispatch(postEventSuccess(eventSnapshot.id)))
     },
     (error) => { dispatch(postEventFailure(error)) }

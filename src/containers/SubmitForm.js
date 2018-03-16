@@ -42,7 +42,7 @@ class SubmitForm extends Component {
             label='Date'
             name='date'
             placeholder='When is it?'
-            type='date'
+            type='text'
             width={8}
           />
         </Form.Group>

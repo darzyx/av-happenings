@@ -42,7 +42,6 @@ class EventCard extends Component {
       title,
       date,
       location,
-      description,
       commentCount,
       likeCount,
       time,
@@ -61,7 +60,6 @@ class EventCard extends Component {
           <Card.Header>{title}</Card.Header>
           <Card.Meta>{date} @ {time}</Card.Meta>
           <Card.Meta>{location}</Card.Meta>
-          <Card.Description>{description}</Card.Description>
         </Card.Content>
         <Card.Content extra>
           <Menu icon='labeled' secondary size='mini' widths={2}>

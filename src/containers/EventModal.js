@@ -1,19 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import TimeAgo from 'react-timeago'
-import {
-  Divider,
-  Header as Heading,
-  Image,
-  Loader,
-  Message,
-  Modal
-} from 'semantic-ui-react'
+import { Divider, Header as Heading, Image, Modal } from 'semantic-ui-react'
 
 import { getComments } from '../actions/commentGetActions'
-import CommentForm from './CommentForm'
+import CommentFormSection from '../components/CommentFormSection'
+import CommentsSection from '../components/CommentsSection'
 
 const sampleImage = require('../media/example.jpg')
 
@@ -45,7 +38,6 @@ class EventModal extends Component {
     const { _handleClose, _handleTriggerClick } = this
     const { modalOpen } = this.state
     const { _comments, _loggedIn } = this.props
-    const noComments = _comments.items.length === 0
     const {
       title,
       date,
@@ -90,41 +82,15 @@ class EventModal extends Component {
         </Modal.Header>
         <Modal.Content>
           <Modal.Description>{description}</Modal.Description>
-          {
-            _loggedIn ?
-            <React.Fragment>
-              <Divider hidden />
-              <CommentForm eid={id} />
-            </React.Fragment> :
-            <Message>
-              <Link to='/login'>Log In </Link>
-              or
-              <Link to='/signup'> Sign Up </Link>
-              in order to join the discussion!
-            </Message>
-          }
-          <Divider hidden />
-          {
-            _comments.isGetting ?
-            <Loader active content='Loading...' inline='centered' /> :
-            noComments ?
-            <center>
-              <Message content='No comments here yet!' header='Empty' />
-            </center> :
-            _comments.items.map((comment, key) =>
-              <Message
-                header={comment.username}
-                content={comment.description}
-                key={key}
-              />
-            )
-          }
           <Divider hidden />
           <center>
             <p className='post-info-footer'>
               Posted <TimeAgo date={timestamp} /> by {username}
             </p>
           </center>
+          <Divider hidden />
+          <CommentFormSection loggedIn={_loggedIn} eid={id} />
+          <CommentsSection comments={_comments} />
         </Modal.Content>
       </Modal>
     )

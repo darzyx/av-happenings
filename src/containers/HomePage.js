@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Card, Container, Divider, Loader, Message } from 'semantic-ui-react'
+import { Container } from 'semantic-ui-react'
 
 import HomeMenu from './HomeMenu'
-import EventCard from './EventCard'
 import SunIcon from '../components/SunIcon'
 import WelcomeBanner from '../components/WelcomeBanner'
+import EventsSection from '../components/EventsSection'
 import { selectEventsSort, voidGottenEvents } from '../actions/eventMiscActions'
 import { getEventsIfNeed } from '../actions/eventGetActions'
 
@@ -62,7 +62,6 @@ class HomePage extends Component {
 
   render() {
     const { _eventsSort, _events, _isGetting, _user } = this.props
-    const noEvents = _events.length === 0
     const { _handleMenuClick } = this
 
     return (
@@ -73,26 +72,8 @@ class HomePage extends Component {
           loggedIn={_user.loggedIn}
         />
         <Container>
-        {
-          !_user.loggedIn &&
-          <React.Fragment>
-            <Divider hidden />
-            <WelcomeBanner />
-          </React.Fragment>
-        }
-          <Divider hidden />
-        {
-          _isGetting ?
-          <Loader active content='Loading...' inline='centered' /> :
-          noEvents ?
-          <center>
-            <Message content='No happenings fetched!' header='Empty' />
-          </center> :
-          <Card.Group doubling itemsPerRow={3} stackable>
-          { _events.map((event, key) => <EventCard event={event} key={key} />) }
-          </Card.Group>
-        }
-          <Divider hidden />
+          <WelcomeBanner loggedIn={_user.loggedIn} />
+          <EventsSection isGetting={_isGetting} events={_events} />
         </Container>
         <Link to='/submit'><SunIcon /></Link>
       </div>

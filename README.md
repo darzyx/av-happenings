@@ -28,6 +28,7 @@ To install this app you will need the following:
 * Firebase
 * React Router
 * Semantic UI
+* Single Page Apps for GitHub Pages
 
 Please check out the `package.json` file for more.
 

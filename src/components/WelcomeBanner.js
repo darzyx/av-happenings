@@ -5,7 +5,7 @@ import { Header as Heading, Segment } from 'semantic-ui-react'
 const WelcomeBanner = () =>
   <Link to='/signup'>
     <Segment id='welcome-banner' inverted raised textAlign='center'>
-      <Heading inverted>
+      <Heading as='h1' inverted>
         Welcome to Antelope Valley Happenings!
         <Heading.Subheader>
           Discover, share, and discuss community submitted events!

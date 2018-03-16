@@ -40,12 +40,10 @@
   justify-content: center;
   align-items: center;
 
-  min-height: 15vh;
+  min-height: 25vh;
   background: url('../media/joshua-tree.png') center center;
   background-size: cover;
   background-repeat: no-repeat;
-
-  font-size: 1.5rem;
 }
 
 #sun-icon {
@@ -107,4 +105,13 @@
 
 .radio-label {
   padding-left: 10px;
+}
+
+#not-found-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 20vh;
 }

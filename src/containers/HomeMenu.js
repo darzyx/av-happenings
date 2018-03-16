@@ -34,20 +34,24 @@ export default class HomeMenu extends Component {
         widths={menuOptions.length}
       >
       {
-        menuOptions.map((item, key) =>
-          <Menu.Item
-            active={eventsSort === item}
-            icon={eventsSort === item && mouseOver ? 'refresh' : null}
-            key={key}
-            name={eventsSort === item && mouseOver ? null : item}
-            onClick={() => {
-              _handleMouseOver()
-              handleMenuClick(item)
-            }}
-            onMouseEnter={eventsSort === item ? _handleMouseOver: null}
-            onMouseLeave={eventsSort === item ? _handleMouseOut: null}
-          />
-        )
+        menuOptions.map((item, key) => {
+          const isActive = eventsSort === item
+
+          return (
+            <Menu.Item
+              active={isActive}
+              icon={isActive && mouseOver ? 'refresh' : null}
+              key={key}
+              name={isActive && mouseOver ? null : item}
+              onClick={() => {
+                _handleMouseOver()
+                handleMenuClick(item)
+              }}
+              onMouseEnter={isActive ? _handleMouseOver : null}
+              onMouseLeave={isActive ? _handleMouseOut : null}
+            />
+          )
+        })
       }
       </Menu>
     )

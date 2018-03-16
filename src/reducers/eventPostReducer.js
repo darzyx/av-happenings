@@ -4,7 +4,7 @@ import {
   POST_EVENT_FAILURE
 } from '../actions/eventPostActions'
 
-const initEventPostState = {error: ' ', id: null, requesting: false}
+const initEventPostState = { error: ' ', id: null, requesting: false }
 
 export const eventPostReducer = (state = initEventPostState, action) => {
   switch (action.type) {
@@ -24,7 +24,7 @@ export const eventPostReducer = (state = initEventPostState, action) => {
     case POST_EVENT_FAILURE:
       return {
         ...state,
-        error: action.payload,
+        error: action.error,
         id: null,
         requesting: false
       }

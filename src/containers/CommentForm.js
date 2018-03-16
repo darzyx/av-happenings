@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { Form } from 'semantic-ui-react'
+
+import { postCommentIfValid } from '../actions/commentPostActions'
 
 class CommentForm extends Component {
   constructor(props) {
@@ -10,7 +13,11 @@ class CommentForm extends Component {
     this._handleCommentClick = this._handleCommentClick.bind(this)
   }
 
-  _handleCommentClick = () => console.log('ATTEMPTED COMMENT')
+  _handleCommentClick(comment) {
+    const { eid, _postCommentIfValid, _user } = this.props
+
+    _postCommentIfValid(comment, eid, _user)
+  }
 
   render() {
     const { handleSubmit, pristine, reset, submitting } = this.props
@@ -24,7 +31,7 @@ class CommentForm extends Component {
             component='textarea'
             control={Field}
             label='Comment'
-            name='comment'
+            name='description'
             placeholder='Say something about this happening!'
             type='text'
             width={16}
@@ -41,6 +48,24 @@ class CommentForm extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  _error: state.comments.error,
+  _user: state.user
+})
+
+const mapDispatchToProps = dispatch => ({
+  _postCommentIfValid: (comment, eid, user) => {
+    dispatch(postCommentIfValid(comment, eid, user))
+  }
+})
+
+CommentForm.propTypes = {
+  eid: PropTypes.string.isRequired,
+  _error: PropTypes.string,
+  _postCommentIfValid: PropTypes.func.isRequired,
+  _user: PropTypes.object.isRequired
+}
+
 CommentForm = reduxForm({ form: 'comment' })(CommentForm)
 
-export default connect(null, null)(CommentForm)
+export default connect(mapStateToProps, mapDispatchToProps)(CommentForm)

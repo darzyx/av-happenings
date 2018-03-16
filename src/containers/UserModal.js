@@ -49,13 +49,13 @@ class UserModal extends Component {
               <Statistic>
                 <Statistic.Value>{likeCount}</Statistic.Value>
                 <Statistic.Label>
-                  <Icon color='pink' name='heart' />Likes
+                  <Icon color='pink' name='heart' /> Likes
                 </Statistic.Label>
               </Statistic>
               <Statistic>
                 <Statistic.Value>{eventCount}</Statistic.Value>
                 <Statistic.Label>
-                  <Icon color='teal' name='write' />Posted
+                  <Icon color='teal' name='write' /> Posted
                 </Statistic.Label>
               </Statistic>
             </Statistic.Group>

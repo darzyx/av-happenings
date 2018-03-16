@@ -85,7 +85,9 @@ class HomePage extends Component {
           _isGetting ?
           <Loader active content='Loading...' inline='centered' /> :
           noEvents ?
-          <Message content='No happenings fetched!' header='Empty' /> :
+          <center>
+            <Message content='No happenings fetched!' header='Empty' />
+          </center> :
           <Card.Group doubling itemsPerRow={3} stackable>
           { _events.map((event, key) => <EventCard event={event} key={key} />) }
           </Card.Group>

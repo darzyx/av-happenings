@@ -14,12 +14,10 @@ const SignUpPage = () =>
   <Container>
     <Divider hidden />
     <Segment attached='top'>
-      <Heading>
-        Sign Up
-        <Heading.Subheader>
-          Wohoo! Glad you decided to join us! :)
-        </Heading.Subheader>
-      </Heading>
+      <Heading
+        content='Sign Up'
+        subheader='Wohoo! Glad you decided to join us! :)'
+      />
       <SignUpForm />
     </Segment>
     <Message attached='bottom' color='orange'>

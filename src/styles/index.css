@@ -43,6 +43,10 @@
   border-radius: 0;
 }
 
+#sort-description {
+  color: #E1965D;
+}
+
 #welcome-banner {
   display: flex;
   flex-direction: column;

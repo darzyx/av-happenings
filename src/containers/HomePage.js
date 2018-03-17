@@ -73,7 +73,11 @@ class HomePage extends Component {
         />
         <Container>
           <WelcomeBanner loggedIn={_user.loggedIn} />
-          <EventsSection isGetting={_isGetting} events={_events} />
+          <EventsSection
+            isGetting={_isGetting}
+            events={_events}
+            eventsSort={_eventsSort}
+          />
         </Container>
         <Link to='/submit'><SunIcon /></Link>
       </div>

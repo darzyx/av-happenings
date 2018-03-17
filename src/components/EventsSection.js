@@ -5,28 +5,22 @@ import {
   Divider,
   Loader,
   Header as Heading,
+  Icon,
   Message
 } from 'semantic-ui-react'
 
 import EventModal from '../containers/EventModal'
 
 const sortDescription = {
-  top: 'The most liked.',
-  hot: 'The most discussed.',
-  featured: 'Site-selected happenings.',
-  new: 'The most recently submitted.',
-  mine: 'Happenings I\'ve shared.'
+  top: ['The most liked.', 'heart outline'],
+  hot: ['The most discussed.', 'comments outline'],
+  featured: ['Site-selected happenings.', 'empty star'],
+  new: ['The most recently submitted.', 'clock'],
+  mine: ['Happenings I\'ve shared.', 'user outline']
 }
 
 const EventsSection = ({ events, eventsSort, isGetting }) =>
   <React.Fragment>
-    <Divider hidden />
-    <Heading
-      as='h4'
-      id='sort-description'
-      content={sortDescription[eventsSort]}
-      textAlign='center'
-    />
     <Divider hidden />
   {
     isGetting ?
@@ -35,9 +29,20 @@ const EventsSection = ({ events, eventsSort, isGetting }) =>
     <center>
       <Message content='No happenings fetched!' header='Empty' />
     </center> :
-    <Card.Group doubling itemsPerRow={3} stackable>
-    { events.map((event, key) => <EventModal event={event} key={key} />) }
-    </Card.Group>
+    <React.Fragment>
+      <center>
+        <Heading as='h4'>
+          <Icon id='description-icon' name={sortDescription[eventsSort][1]} />
+          <Heading.Subheader id='description-text'>
+            {sortDescription[eventsSort][0]}
+          </Heading.Subheader>
+        </Heading>
+      </center>
+      <Divider hidden />
+      <Card.Group doubling itemsPerRow={3} stackable>
+      { events.map((event, key) => <EventModal event={event} key={key} />) }
+      </Card.Group>
+    </React.Fragment>
   }
     <Divider hidden />
   </React.Fragment>

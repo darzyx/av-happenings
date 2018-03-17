@@ -36,6 +36,8 @@ Please check out the `package.json` file for more.
 
 Created and managed by Jose Dario Sanchez.
 
+Images retrieved from [Pixabay](https://pixabay.com/ "Pixabay").
+
 ## License
 
 MIT

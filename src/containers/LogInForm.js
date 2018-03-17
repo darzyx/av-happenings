@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import { Form, Message } from 'semantic-ui-react'
+import { Divider, Form, Message } from 'semantic-ui-react'
 
 import { userAuth } from '../Firebase'
 
@@ -54,6 +54,7 @@ class LogInForm extends Component {
           error &&
           <Message header={error.code} content={error.message} color='red' />
         }
+        <Divider hidden />
         <Form.Group>
           <Form.Button disabled={disable} type='submit'>Log In</Form.Button>
         </Form.Group>

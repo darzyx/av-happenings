@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import { Form } from 'semantic-ui-react'
+import { Divider, Form } from 'semantic-ui-react'
 
 import ReduxFormRadio from '../components/ReduxFormRadio'
 
@@ -43,6 +43,7 @@ class ReportForm extends Component {
             width={16}
           />
         </Form.Group>
+        <Divider hidden />
         {/* Submit button is remote */}
       </Form>
     )

@@ -11,10 +11,10 @@ import {
 import LogInForm from '../containers/LogInForm'
 
 const LogInPage = () =>
-  <Container>
+  <Container text>
     <Divider hidden />
     <Segment attached='top'>
-      <Heading>Log In</Heading>
+      <Heading as='h2' content='Log In' subheader='Welcome back!' />
       <LogInForm />
     </Segment>
     <Message attached='bottom' color='orange'>

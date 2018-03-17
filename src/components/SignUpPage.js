@@ -11,18 +11,23 @@ import {
 import SignUpForm from '../containers/SignUpForm'
 
 const SignUpPage = () =>
-  <Container>
-    <Divider hidden />
-    <Segment attached='top'>
-      <Heading
-        content='Sign Up'
-        subheader='Wohoo! Glad you decided to join us! :)'
-      />
-      <SignUpForm />
-    </Segment>
-    <Message attached='bottom' color='orange'>
-      <center>Have an account? <Link to='/login'>Log In</Link></center>
-    </Message>
+  <Container text>
+    <div>
+    <Container text>
+      <Divider hidden />
+      <Segment attached='top'>
+        <Heading
+          as='h2'
+          content='Sign Up'
+          subheader='Wohoo! Glad you decided to join us! :)'
+        />
+        <SignUpForm />
+      </Segment>
+      <Message attached='bottom' color='orange'>
+        <center>Have an account? <Link to='/login'>Log In</Link></center>
+      </Message>
+    </Container>
+    </div>
   </Container>
 
 export default SignUpPage

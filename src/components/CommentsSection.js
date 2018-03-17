@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Header as Heading, Loader, Message } from 'semantic-ui-react'
+import { Header as Heading, Message } from 'semantic-ui-react'
 
 import { deleteComment } from '../actions/commentDeleteActions'
 
@@ -25,7 +25,12 @@ class CommentsSection extends Component {
       <Heading>Comments</Heading>
       {
         comments.isGetting ?
-        <Loader active content='Loading...' inline='centered' /> :
+        <center>
+          <Message
+            content='Fetching comments for this happening...'
+            header='Loading'
+          />
+        </center> :
         comments.items.length === 0 ?
         <center>
           <Message content='No comments here yet!' header='Empty' />

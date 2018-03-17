@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import { Form, Message } from 'semantic-ui-react'
+import { Divider, Form, Message } from 'semantic-ui-react'
 
 import { timestamp, userAuth, usersDB } from '../Firebase'
 
@@ -103,6 +103,7 @@ class SignUpForm extends Component {
             color='green'
           />
         }
+        <Divider hidden />
         <Form.Group>
           <Form.Button disabled={disable} type='submit'>Sign Up</Form.Button>
         </Form.Group>

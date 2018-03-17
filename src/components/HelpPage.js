@@ -7,10 +7,10 @@ import {
 } from 'semantic-ui-react'
 
 const HelpPage = () =>
-  <Container>
+  <Container text>
     <Divider hidden />
-    <Segment>
-      <Heading>Help</Heading>
+    <Segment padded='very'>
+      <Heading as='h2'>How can we help you?</Heading>
       <p>Get started with AV Happenings.</p>
     </Segment>
   </Container>

@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Divider, Message } from 'semantic-ui-react'
 
 const NotFoundPage = () =>
-  <Container>
+  <Container text>
     <Divider hidden />
     <center>
       <Message

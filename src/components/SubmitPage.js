@@ -10,10 +10,10 @@ import {
 import SubmitForm from '../containers/SubmitForm'
 
 const SubmitPage = () =>
-  <Container>
+  <Container text>
     <Divider hidden />
     <Segment attached='top'>
-      <Heading>Submit</Heading>
+      <Heading as='h2' textAlign='center'>Submit</Heading>
       <SubmitForm />
     </Segment>
     <Message attached='bottom' color='orange'>

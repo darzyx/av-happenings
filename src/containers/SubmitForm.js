@@ -85,6 +85,7 @@ class SubmitForm extends Component {
             <p>{_error}</p>
           </Message>
         }
+        <Divider hidden />
         <Form.Group>
           <Form.Button disabled={disable} type='submit'>Submit</Form.Button>
           <Form.Button disabled={disable} onClick={reset} type='button'>

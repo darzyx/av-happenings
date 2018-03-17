@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import { Form } from 'semantic-ui-react'
+import { Divider, Form } from 'semantic-ui-react'
 
 import { postCommentIfValid } from '../actions/commentPostActions'
 
@@ -37,6 +37,7 @@ class CommentForm extends Component {
             width={16}
           />
         </Form.Group>
+        <Divider hidden />
         <Form.Group>
           <Form.Button disabled={disable} type='submit'>Comment</Form.Button>
           <Form.Button disabled={disable} onClick={reset} type='button'>

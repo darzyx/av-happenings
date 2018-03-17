@@ -65,7 +65,11 @@ class EventCard extends Component {
           src={eventImage}
         />
         <Card.Content>
-          <EventDropdown eventUID={uid} eventID={id} />
+          <EventDropdown
+            eventUID={uid}
+            eventID={id}
+            handleTriggerClick={handleTriggerClick}
+          />
           <Card.Header className='card-header' onClick={handleTriggerClick}>
             {title}
           </Card.Header>

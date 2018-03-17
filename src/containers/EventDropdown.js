@@ -8,12 +8,17 @@ import DeleteEventModal from './DeleteEventModal'
 
 class EventDropdown extends Component {
   render() {
-    const { eventID, eventUID, _user } = this.props
+    const { eventID, eventUID, handleTriggerClick, _user } = this.props
     const userIsOwner = _user.uid === eventUID
 
     return (
       <Dropdown className='card-dropdown' direction='left' pointing='top'>
         <Dropdown.Menu>
+          <Dropdown.Item
+            icon='expand'
+            onClick={handleTriggerClick}
+            text='Expand'
+          />
           {
             _user.loggedIn &&
             (
@@ -35,6 +40,7 @@ const mapStateToProps = state => ({
 EventDropdown.propTypes = {
   eventID: PropTypes.string.isRequired,
   eventUID: PropTypes.string.isRequired,
+  handleTriggerClick: PropTypes.func.isRequired,
   _user: PropTypes.object.isRequired
 }
 

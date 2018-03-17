@@ -10,12 +10,16 @@
 
  #app {
    position: relative;
-   padding-bottom: calc(80px + 5vw);  /* Height of the footer */
+   padding-bottom: calc(80px + 2vw);  /* Height of the footer */
  }
 
  .header-link {
    color: rgba(255,255,255,.9);
    text-decoration: underline;
+ }
+
+ .event-description {
+   white-space: pre-line;
  }
 
  #user-modal-trigger {
@@ -29,7 +33,7 @@
   background: linear-gradient(#E1965D, #CF7456);
 
   border-radius: 0;
-  border-color: #E1965D;
+  border: 1px solid #CF7456;
 }
 
 #home-menu {
@@ -138,10 +142,11 @@
   bottom: 0;
 
   width: 100%;
-  height: calc(80px + 5vw); /* Bottom padding of the app div */
+  height: calc(80px + 2vw); /* Bottom padding of the app div */
 
   background: #E1965D;
   background: linear-gradient(#E1965D, #CF7456);
+  border: 1px solid #CF7456;
 }
 
 #jds-link {

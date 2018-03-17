@@ -77,7 +77,9 @@ class EventModal extends Component {
           </center>
         </Modal.Header>
         <Modal.Content>
-          <Modal.Description>{description}</Modal.Description>
+          <Modal.Description className='event-description'>
+            {description}
+          </Modal.Description>
           <Divider hidden />
           <center>
             <p className='post-info-footer'>

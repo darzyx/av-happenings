@@ -25,6 +25,8 @@ const sortedEventsDB = (eventsSort, user) => {
   switch (eventsSort) {
     case 'top':
       return eventsDB.orderBy('likeCount', 'desc')
+    case 'hot':
+      return eventsDB.orderBy('commentCount', 'desc')
     case 'new':
       return eventsDB.orderBy('timestamp', 'desc')
     case 'featured':

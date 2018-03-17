@@ -12,10 +12,13 @@ class SignUpForm extends Component {
 
     this.state = { error: null, success: false }
 
+    this._handleClearError = this._handleClearError.bind(this)
     this._handleSignUpClick = this._handleSignUpClick.bind(this)
     this._createUserAuthentication = this._createUserAuthentication.bind(this)
     this._createUserDatabaseEntry = this._createUserDatabaseEntry.bind(this)
   }
+
+  _handleClearError = () => this.setState({ error: null })
 
   _handleSignUpClick = values => this._createUserAuthentication(values)
 
@@ -45,12 +48,15 @@ class SignUpForm extends Component {
 
   render() {
     const { handleSubmit, pristine, submitting } = this.props
+    const { _handleClearError, _handleSignUpClick } = this
     const disable = pristine || submitting
     const { error, success } = this.state
-    const { _handleSignUpClick } = this
 
     return (
-      <Form onSubmit={handleSubmit(_handleSignUpClick)}>
+      <Form
+        onChange={_handleClearError}
+        onSubmit={handleSubmit(_handleSignUpClick)}
+      >
         <Form.Group>
           <Form.Field
             component='input'

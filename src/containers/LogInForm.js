@@ -12,8 +12,11 @@ class LogInForm extends Component {
 
     this.state = { error: null }
 
+    this._handleClearError = this._handleClearError.bind(this)
     this._handleLogInClick = this._handleLogInClick.bind(this)
   }
+
+  _handleClearError = () => this.setState({ error: null })
 
   _handleLogInClick(values) {
     userAuth.signInWithEmailAndPassword(values.email, values.password)
@@ -23,11 +26,14 @@ class LogInForm extends Component {
   render() {
     const { handleSubmit, pristine, submitting } = this.props
     const disable = pristine || submitting
-    const { _handleLogInClick } = this
+    const { _handleClearError, _handleLogInClick } = this
     const { error } = this.state
 
     return (
-      <Form onSubmit={handleSubmit(_handleLogInClick)}>
+      <Form
+        onChange={_handleClearError}
+        onSubmit={handleSubmit(_handleLogInClick)}
+      >
         <Form.Group>
           <Form.Field
             component='input'

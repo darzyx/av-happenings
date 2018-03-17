@@ -7,6 +7,7 @@ import { Divider, Header as Heading, Image, Modal } from 'semantic-ui-react'
 import { getComments } from '../actions/commentGetActions'
 import CommentFormSection from '../components/CommentFormSection'
 import CommentsSection from '../components/CommentsSection'
+import EventCard from './EventCard'
 
 const sampleImage = require('../media/example.jpg')
 
@@ -38,12 +39,12 @@ class EventModal extends Component {
     const { _handleClose, _handleTriggerClick } = this
     const { modalOpen } = this.state
     const { _comments, _user } = this.props
+    const { event } = this.props
     const {
       title,
       date,
       location,
       description,
-      featured,
       time,
       timestamp,
       username,
@@ -55,19 +56,14 @@ class EventModal extends Component {
         closeIcon
         onClose={_handleClose}
         open={modalOpen}
+        size='small'
         trigger={
-          <Image
-            className='event-image'
-            label={
-              featured ?
-              {color: 'yellow', content: 'Featured!', ribbon: true} :
-              null
-            }
-            onClick={_handleTriggerClick}
-            src={sampleImage}
+          <EventCard
+            event={event}
+            eventImage={sampleImage}
+            handleTriggerClick={_handleTriggerClick}
           />
         }
-        size='small'
       >
         <Image src={sampleImage} />
         <Modal.Header>

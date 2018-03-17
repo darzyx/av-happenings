@@ -2,11 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { Card, Icon, Menu } from 'semantic-ui-react'
+import { Card, Icon, Image, Menu } from 'semantic-ui-react'
 import TimeAgo from 'react-timeago'
 
 import { likeEvent } from '../actions/likeActions'
-import EventModal from './EventModal'
 import EventDropdown from './EventDropdown'
 
 class EventCard extends Component {
@@ -28,22 +27,23 @@ class EventCard extends Component {
   }
 
   _handleCommentClick() {
-    const { _user } = this.props
+    const { _user, handleTriggerClick } = this.props
 
-    if (_user.loggedIn) { console.log('ATTEMPTED COMMENT') }
+    if (_user.loggedIn) { handleTriggerClick() }
     else { this.setState({ redirectToLogin: true }) }
   }
 
   render() {
     const { _handleCommentClick, _handleLikeClick } = this
     const { redirectToLogin } = this.state
-    const { event } = this.props
+    const { event, eventImage, handleTriggerClick } = this.props
     const {
       title,
       date,
       location,
       commentCount,
       likeCount,
+      featured,
       time,
       timestamp,
       username,
@@ -52,12 +52,23 @@ class EventCard extends Component {
     } = event
 
     return (
-      <Card color='blue' >
+      <Card color='blue'>
         {redirectToLogin && <Redirect to='/login' />}
-        <EventModal event={event} />
+        <Image
+          className='card-image'
+          label={
+            featured ?
+            {color: 'yellow', content: 'Featured!', ribbon: true} :
+            null
+          }
+          onClick={handleTriggerClick}
+          src={eventImage}
+        />
         <Card.Content>
           <EventDropdown eventUID={uid} eventID={id} />
-          <Card.Header>{title}</Card.Header>
+          <Card.Header className='card-header' onClick={handleTriggerClick}>
+            {title}
+          </Card.Header>
           <Card.Meta>{date} @ {time}</Card.Meta>
           <Card.Meta>{location}</Card.Meta>
         </Card.Content>
@@ -82,7 +93,10 @@ class EventCard extends Component {
 }
 
 EventCard.propTypes = {
-  event: PropTypes.object.isRequired
+  event: PropTypes.object.isRequired,
+  eventImage: PropTypes.string.isRequired,
+  handleTriggerClick: PropTypes.func.isRequired,
+  _likeEvent: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

@@ -14,7 +14,6 @@ class EventDropdown extends Component {
     return (
       <Dropdown className='card-dropdown' direction='left' pointing='top'>
         <Dropdown.Menu>
-          <Dropdown.Item icon='linkify' text='Copy link' />
           {
             _user.loggedIn &&
             (

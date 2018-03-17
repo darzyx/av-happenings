@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Divider, Loader, Message } from 'semantic-ui-react'
 
-import EventCard from '../containers/EventCard'
+import EventModal from '../containers/EventModal'
 
 const EventsSection = ({ events, isGetting }) =>
   <React.Fragment>
@@ -14,7 +14,7 @@ const EventsSection = ({ events, isGetting }) =>
       <Message content='No happenings fetched!' header='Empty' />
     </center> :
     <Card.Group doubling itemsPerRow={3} stackable>
-    { events.map((event, key) => <EventCard event={event} key={key} />) }
+    { events.map((event, key) => <EventModal event={event} key={key} />) }
     </Card.Group>
   }
   <Divider hidden />

@@ -77,10 +77,6 @@
   max-height: 100px;
 }
 
-.event-image {
-  cursor: pointer;
-}
-
 #heart-icon {
   color: rgba(0,0,0,.5);
   cursor: pointer;
@@ -97,6 +93,10 @@
 
 #comment-icon:hover {
   color: #00b5ad;
+}
+
+.card-header, .card-image {
+  cursor: pointer;
 }
 
 .card-dropdown {

@@ -13,6 +13,7 @@ import SubmitPage from './components/SubmitPage'
 import HelpPage from './components/HelpPage'
 import AboutPage from './components/AboutPage'
 import NotFoundPage from './components/NotFoundPage'
+import Footer from './components/Footer'
 
 class App extends Component {
   componentDidMount = () => this.props._observeLoginStatus()
@@ -42,6 +43,7 @@ class App extends Component {
               <Route path='/about' component={AboutPage} />
               <Route component={NotFoundPage} />
             </Switch>
+            <Footer />
           </div> :
           <LoadingDimmer />
         }

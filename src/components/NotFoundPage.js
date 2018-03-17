@@ -1,14 +1,17 @@
 import React from 'react'
-import { Container, Divider, Message } from 'semantic-ui-react'
+import { Container, Divider, Image, Message } from 'semantic-ui-react'
+
+const tumbleweedImg = require('../media/tumbleweed.png')
 
 const NotFoundPage = () =>
   <Container text>
     <Divider hidden />
     <center>
       <Message
-        header='404'
+        header='Oops! You took a wrong turn.'
         content='The page you are looking for does not exist.'
       />
+      <Image src={tumbleweedImg} size='medium' />
     </center>
   </Container>
 

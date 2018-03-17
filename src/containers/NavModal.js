@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Button, Modal } from 'semantic-ui-react'
 
@@ -56,6 +57,10 @@ class NavModal extends Component {
       </Modal>
     )
   }
+}
+
+NavModal.propTypes = {
+  _loggedIn: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = state => ({ _loggedIn: state.user.loggedIn })

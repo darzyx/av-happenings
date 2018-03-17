@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 
@@ -61,5 +62,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   _observeLoginStatus: () => dispatch(observeLoginStatus())
 })
+
+App.propTypes = {
+  _loggedIn: PropTypes.bool.isRequired,
+  _userLoaded: PropTypes.bool.isRequired
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

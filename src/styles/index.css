@@ -148,9 +148,10 @@
 
 #footer {
   position: absolute;
+  right: 0;
   bottom: 0;
 
-  width: 100%;
+  width: 100vw;
   height: calc(80px + 2vw); /* Bottom padding of the app div */
 
   background: #E1965D;

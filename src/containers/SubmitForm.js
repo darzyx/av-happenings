@@ -2,15 +2,20 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
+import { Redirect } from 'react-router-dom'
 import { Divider, Form, Message } from 'semantic-ui-react'
 
-import { postEventIfValid } from '../actions/eventPostActions'
+import { postEventReset, postEventIfValid } from '../actions/eventPostActions'
 
 class SubmitForm extends Component {
   constructor(props) {
     super(props)
 
     this._handleSubmitClick = this._handleSubmitClick.bind(this)
+  }
+
+  componentWillUnmount() {
+    this.props._postEventReset()
   }
 
   _handleSubmitClick(event) {
@@ -20,12 +25,20 @@ class SubmitForm extends Component {
   }
 
   render() {
-    const { handleSubmit, _error, pristine, reset, submitting } = this.props
+    const {
+      handleSubmit,
+      _error,
+      pristine,
+      reset,
+      submitting,
+      _posted
+    } = this.props
     const disable = pristine || submitting
     const { _handleSubmitClick } = this
 
     return (
       <Form onSubmit={handleSubmit(_handleSubmitClick)}>
+        { _posted  && <Redirect to='/' /> }
         <Form.Group>
           <Form.Field
             component='input'
@@ -99,17 +112,21 @@ class SubmitForm extends Component {
 
 const mapStateToProps = state => ({
   _error: state.eventPost.error,
+  _posted: state.eventPost.posted,
   _user: state.user
 })
 
 const mapDispatchToProps = dispatch => ({
+  _postEventReset: () => dispatch(postEventReset()),
   _postEventIfValid: (event, user) => dispatch(postEventIfValid(event, user))
 })
 
 SubmitForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
+  _postEventReset: PropTypes.func.isRequired,
   _postEventIfValid: PropTypes.func.isRequired,
   _error: PropTypes.string.isRequired,
+  _posted: PropTypes.bool.isRequired,
   pristine: PropTypes.bool.isRequired,
   reset: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired

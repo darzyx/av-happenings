@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Grid, Header as Heading, Segment } from 'semantic-ui-react'
@@ -33,6 +34,10 @@ class Header extends Component {
       </Segment>
     )
   }
+}
+
+Header.propTypes = {
+  _user: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({

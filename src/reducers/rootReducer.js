@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import { userReducer } from './userReducer'
 import { reducer as formReducer } from 'redux-form'
-import { commentsReducer } from './commentReducers'
+import { commentsReducer } from './commentsReducer'
 import { commentPostReducer } from './commentPostReducer'
 import { eventsSortReducer } from './eventsSortReducer'
 import { eventPostReducer } from './eventPostReducer'

@@ -37,7 +37,7 @@ class EventModal extends Component {
   render() {
     const { _handleClose, _handleTriggerClick } = this
     const { modalOpen } = this.state
-    const { _comments, _loggedIn } = this.props
+    const { _comments, _user } = this.props
     const {
       title,
       date,
@@ -89,8 +89,8 @@ class EventModal extends Component {
             </p>
           </center>
           <Divider hidden />
-          <CommentFormSection loggedIn={_loggedIn} eid={id} />
-          <CommentsSection comments={_comments} />
+          <CommentFormSection loggedIn={_user.loggedIn} eid={id} />
+          <CommentsSection comments={_comments} user={_user} eid={id} />
         </Modal.Content>
       </Modal>
     )
@@ -99,6 +99,7 @@ class EventModal extends Component {
 
 const mapStateToProps = state => ({
   _comments: state.comments,
+  _user: state.user,
   _loggedIn: state.user.loggedIn
 })
 
@@ -108,6 +109,7 @@ const mapDispatchToProps = dispatch => ({
 
 EventModal.propTypes = {
   _comments: PropTypes.object.isRequired,
+  _user: PropTypes.object.isRequired,
   event: PropTypes.object.isRequired,
   _getComments: PropTypes.func.isRequired,
   _loggedIn: PropTypes.bool.isRequired

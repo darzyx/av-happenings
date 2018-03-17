@@ -4,6 +4,7 @@ import {
   GET_COMMENTS_FAILURE
 } from '../actions/commentGetActions'
 import { POST_COMMENT_SUCCESS } from '../actions/commentPostActions'
+import { DELETE_COMMENT_SUCCESS } from '../actions/commentDeleteActions'
 
 const initCommentsState = { error: null, isGetting: false, items: [ ] }
 
@@ -32,6 +33,11 @@ export const commentsReducer = (state = initCommentsState, action) => {
       return {
         ...state,
         items: state.items.slice().reverse().concat([action.comment]).reverse()
+      }
+    case DELETE_COMMENT_SUCCESS:
+      return {
+        ...state,
+        items: state.items.filter((comment) => comment.id !== action.cid )
       }
     default:
       return state

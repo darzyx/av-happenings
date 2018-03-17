@@ -2,6 +2,7 @@ import { eventsReducer } from './eventsReducer'
 import { VOID_GOTTEN_EVENTS } from '../actions/eventMiscActions'
 import { UPDATE_EVENT_LIKE_COUNT } from '../actions/likeActions'
 import { POST_COMMENT_SUCCESS } from '../actions/commentPostActions'
+import { DELETE_COMMENT_SUCCESS } from '../actions/commentDeleteActions'
 import {
   GET_EVENTS_REQUEST,
   GET_EVENTS_RECEIVE,
@@ -36,6 +37,16 @@ export const eventsBySortReducer = (state = { }, action) => {
 
       return newState
     case POST_COMMENT_SUCCESS:  // update event comment count
+      newState = JSON.parse(JSON.stringify(state))
+
+      for (let key in newState) {
+        newState[key].items.forEach((item) => {
+          if (item.id === action.eid) {item.commentCount += action.changeVal}
+        })
+      }
+
+      return newState
+    case DELETE_COMMENT_SUCCESS:  // update event comment count
       newState = JSON.parse(JSON.stringify(state))
 
       for (let key in newState) {

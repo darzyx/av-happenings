@@ -32,7 +32,6 @@ export default class HomeMenu extends Component {
         color='orange'
         id='home-menu'
         pointing
-        size='small'
         widths={menuOptions.length}
       >
       {

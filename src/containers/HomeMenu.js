@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Menu } from 'semantic-ui-react'
 
+import '../styles/HomeMenu.css'
+
 export default class HomeMenu extends Component {
   constructor(props) {
     super(props)

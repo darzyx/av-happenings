@@ -1,0 +1,17 @@
+#footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  width: 100vw;
+  height: calc(80px + 2vw); /* Bottom padding of the app div */
+
+  background: #E1965D;
+  background: linear-gradient(#E1965D, #CF7456);
+  border: 1px solid #CF7456;
+}
+
+#jds-link {
+  color: rgba(255,255,255,.9);
+  text-decoration: underline;
+}

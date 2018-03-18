@@ -9,7 +9,7 @@ const NotFoundPage = () =>
     <center>
       <Message
         header='Oops! You took a wrong turn.'
-        content='The page you are looking for does not exist.'
+        content={'The page ' + window.location.pathname + ' does not exist.'}
       />
       <Image src={tumbleweedImg} size='medium' />
     </center>

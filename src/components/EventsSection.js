@@ -9,6 +9,7 @@ import {
   Message
 } from 'semantic-ui-react'
 
+import '../styles/EventsSection.css'
 import EventModal from '../containers/EventModal'
 
 const sortDescription = {

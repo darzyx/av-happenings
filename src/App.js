@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 
+import './styles/App.css'
 import { observeLoginStatus } from './actions/userActions'
 import RouterScrollReset from './containers/RouterScrollReset'
 import LoadingDimmer from './components/LoadingDimmer'

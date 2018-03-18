@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom'
 import { Card, Icon, Image, Menu } from 'semantic-ui-react'
 import TimeAgo from 'react-timeago'
 
+import '../styles/EventCard.css'
 import { likeEvent } from '../actions/likeActions'
 import EventDropdown from './EventDropdown'
 
@@ -88,11 +89,13 @@ class EventCard extends Component {
               <p className='heart-text'>{likeCount}</p>
             </Menu.Item>
           </Menu>
-          <center>
-            <p className='post-info-footer'>
+        </Card.Content>
+        <Card.Content extra>
+          <Card.Meta textAlign='right'>
+            <p className='event-card-footer'>
               Posted <TimeAgo date={timestamp} /> by {username}
             </p>
-          </center>
+          </Card.Meta>
         </Card.Content>
       </Card>
     )

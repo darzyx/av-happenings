@@ -1,6 +1,8 @@
 import React from 'react'
 import { Divider, Header, Segment } from 'semantic-ui-react'
 
+import '../styles/Footer.css'
+
 const Footer = ({ children }) =>
   <React.Fragment>
     <Divider hidden />

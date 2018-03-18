@@ -1,0 +1,5 @@
+#user-modal-trigger {
+ cursor: pointer;
+ color: rgba(255,255,255,.9);
+ text-decoration: underline;
+}

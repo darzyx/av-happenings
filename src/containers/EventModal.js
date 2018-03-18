@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import TimeAgo from 'react-timeago'
 import { Divider, Header as Heading, Image, Modal } from 'semantic-ui-react'
 
+import '../styles/EventModal.css'
 import { getComments } from '../actions/commentGetActions'
 import CommentFormSection from '../components/CommentFormSection'
 import CommentsSection from '../components/CommentsSection'
@@ -77,12 +78,12 @@ class EventModal extends Component {
           </center>
         </Modal.Header>
         <Modal.Content>
-          <Modal.Description className='event-description'>
+          <Modal.Description className='event-modal-description'>
             {description}
           </Modal.Description>
           <Divider hidden />
           <center>
-            <p className='post-info-footer'>
+            <p className='modal-timeago-and-user'>
               Posted <TimeAgo date={timestamp} /> by {username}
             </p>
           </center>

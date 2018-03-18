@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Divider, Header as Heading, Segment } from 'semantic-ui-react'
 
+import '../styles/WelcomeBanner.css'
+
 const WelcomeBanner = ({ loggedIn }) =>
   <React.Fragment>
   {

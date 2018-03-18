@@ -6,6 +6,8 @@ import {
   Segment
 } from 'semantic-ui-react'
 
+import '../styles/AboutPage.css'
+
 const AboutPage = () =>
   <Container>
     <Divider hidden />

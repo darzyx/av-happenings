@@ -1,0 +1,11 @@
+#welcome-banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 25vh;
+  background: url('../media/joshua-tree-1.png') center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Grid, Header as Heading, Segment } from 'semantic-ui-react'
 
+import '../styles/Header.css'
 import UserModal from './UserModal'
 import NavModal from './NavModal'
 

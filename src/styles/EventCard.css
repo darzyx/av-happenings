@@ -1,0 +1,25 @@
+.card-header, .card-image {
+  cursor: pointer;
+}
+
+.card-dropdown {
+  float: right;
+}
+
+.icon-wrapper:hover .comment-icon,
+.icon-wrapper:hover .comment-text {
+  color: #00b5ad;
+}
+
+.icon-wrapper:hover .heart-icon,
+.icon-wrapper:hover .heart-text {
+  color: #e03997;
+}
+
+.event-card-footer {
+  font-size: 0.8rem;
+}
+
+.ui.label, .ui.labels .label {
+  font-size: 1rem;
+}

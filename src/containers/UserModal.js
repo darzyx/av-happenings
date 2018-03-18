@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Header as Heading, Icon, Modal, Statistic } from 'semantic-ui-react'
 import TimeAgo from 'react-timeago'
 
+import '../styles/UserModal.css'
 import { getUserData } from '../actions/userActions'
 
 class UserModal extends Component {

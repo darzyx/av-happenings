@@ -1,0 +1,4 @@
+#app {
+ position: relative;
+ padding-bottom: calc(80px + 2vw);  /* Height of the footer */
+}

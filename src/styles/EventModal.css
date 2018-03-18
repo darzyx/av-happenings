@@ -1,0 +1,9 @@
+.event-modal-description {
+ white-space: pre-line;
+ color: rgba(0,0,0,0.68);
+}
+
+.modal-timeago-and-user {
+  color: rgba(0,0,0,.4);
+  font-size: 0.9rem;
+}

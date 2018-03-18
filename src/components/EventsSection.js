@@ -24,14 +24,14 @@ const EventsSection = ({ events, eventsSort, isGetting }) =>
     <Divider hidden />
   {
     isGetting ?
-    <Loader active content='Loading...' inline='centered' /> :
+    <Loader active content='Fetching happenings...' inline='centered' /> :
     events.length === 0 ?
     <center>
       <Message content='No happenings fetched!' header='Empty' />
     </center> :
     <React.Fragment>
       <center>
-        <Heading as='h4'>
+        <Heading as='h2'>
           <Icon id='description-icon' name={sortDescription[eventsSort][1]} />
           <Heading.Subheader id='description-text'>
             {sortDescription[eventsSort][0]}

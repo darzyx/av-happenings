@@ -13,11 +13,10 @@ const Footer = ({ children }) =>
           <a id='jds-link' href='https://www.darzyx.com/'>
             Jose Dario Sanchez
           </a>
-          . MIT license.
+          .
         </Header.Subheader>
       </Header>
     </Segment>
   </React.Fragment>
-
 
 export default Footer

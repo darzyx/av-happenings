@@ -79,7 +79,7 @@ class HomePage extends Component {
             eventsSort={_eventsSort}
           />
         </Container>
-        <Link to='/submit'><SunIcon /></Link>
+        <Link aria-label='link to submit' to='/submit'><SunIcon /></Link>
       </div>
     )
   }

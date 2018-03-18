@@ -52,9 +52,10 @@ class EventCard extends Component {
     } = event
 
     return (
-      <Card color='blue'>
+      <Card>
         {redirectToLogin && <Redirect to='/login' />}
         <Image
+          alt='happening image'
           className='card-image'
           label={
             featured ?
@@ -78,11 +79,13 @@ class EventCard extends Component {
         </Card.Content>
         <Card.Content extra>
           <Menu icon='labeled' secondary size='mini' widths={2}>
-            <Menu.Item id='comment-icon' onClick={_handleCommentClick}>
-              <Icon name='comment outline' /> {commentCount}
+            <Menu.Item className='icon-wrapper' onClick={_handleCommentClick}>
+              <Icon className='comment-icon' name='comment outline' />
+              <p className='comment-text'>{commentCount}</p>
             </Menu.Item>
-            <Menu.Item id='heart-icon' onClick={_handleLikeClick}>
-              <Icon name='heart outline' /> {likeCount}
+            <Menu.Item className='icon-wrapper' onClick={_handleLikeClick}>
+              <Icon className='heart-icon' name='heart outline' />
+              <p className='heart-text'>{likeCount}</p>
             </Menu.Item>
           </Menu>
           <center>

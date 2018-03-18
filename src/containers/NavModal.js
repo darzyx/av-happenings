@@ -31,7 +31,13 @@ class NavModal extends Component {
     return (
       <Modal
         trigger={
-          <Button floated='right' icon='bars' inverted onClick={_handleOpen} />
+          <Button
+            aria-label='navigation trigger'
+            floated='right'
+            icon='bars'
+            inverted
+            onClick={_handleOpen}
+          />
         }
         onClose={_handleClose}
         open={modalOpen}

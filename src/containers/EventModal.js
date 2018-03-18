@@ -15,7 +15,7 @@ class EventModal extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {modalOpen: false}
+    this.state = { modalOpen: false }
 
     this._handleOpen = this._handleOpen.bind(this)
     this._handleClose = this._handleClose.bind(this)
@@ -65,7 +65,7 @@ class EventModal extends Component {
           />
         }
       >
-        <Image src={sampleImage} />
+        <Image alt='happening image' src={sampleImage} />
         <Modal.Header>
           <center>
             <Heading as='h1'>

@@ -11,6 +11,8 @@ class SubmitForm extends Component {
   constructor(props) {
     super(props)
 
+    this.state = { isSubmitting: false }
+
     this._handleSubmitClick = this._handleSubmitClick.bind(this)
   }
 
@@ -22,6 +24,8 @@ class SubmitForm extends Component {
     const { _postEventIfValid, _user } = this.props
 
     _postEventIfValid(event, _user)
+
+    this.setState({ isSubmitting: true })
   }
 
   render() {
@@ -30,10 +34,10 @@ class SubmitForm extends Component {
       _error,
       pristine,
       reset,
-      submitting,
       _posted
     } = this.props
-    const disable = pristine || submitting
+    const { isSubmitting } = this.state
+    const disable = pristine || isSubmitting
     const { _handleSubmitClick } = this
 
     return (
